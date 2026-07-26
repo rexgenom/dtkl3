@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- HTML2PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
         :root {
@@ -333,6 +336,33 @@
             .card { border: 1px solid #ccc; page-break-inside: avoid; }
             textarea.form-control { border: 1px solid #ccc; height: 100px; }
             input.form-control { border: none; border-bottom: 1px solid #000; border-radius: 0; }
+            .fab-pdf { display: none !important; }
+        }
+
+        /* Floating Action Button for PDF */
+        .fab-pdf {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+        .fab-pdf:hover {
+            background-color: #dc2626;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(239, 68, 68, 0.5);
         }
     </style>
 </head>
@@ -630,6 +660,11 @@
     </div>
 </div>
 
+<!-- Floating Action Button PDF -->
+<button class="fab-pdf" onclick="saveToPDF()">
+    <i class="fa-solid fa-file-pdf"></i> Simpan PDF
+</button>
+
 <script>
 // Simulator Resistor
 function updateResistor() {
@@ -730,6 +765,27 @@ function calcCircuit() {
 window.onload = function() {
     updateResistor();
 };
+
+// Fungsi Export PDF
+function saveToPDF() {
+    const btn = document.querySelector('.fab-pdf');
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses...';
+    btn.disabled = true;
+
+    const element = document.querySelector('.container');
+    const opt = {
+        margin:       0.4,
+        filename:     'LKPD_Kelistrikan.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save().then(() => {
+        btn.innerHTML = '<i class="fa-solid fa-file-pdf"></i> Simpan PDF';
+        btn.disabled = false;
+    });
+}
 </script>
 
 </body>
