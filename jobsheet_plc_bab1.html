@@ -1,225 +1,461 @@
-<div style="font-family: Arial, Helvetica, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; padding: 10px; width: 100%; max-width: 100%; overflow-x: auto; box-sizing: border-box;">
-<div style="max-width: 100%; margin: 0 auto; background: #ffffff; border-top: 8px solid #1e3a8a; border-radius: 8px; border: 1px solid #cbd5e1;">
-        <!-- HEADER -->
-<div style="padding: 20px; border-bottom: 2px solid #f1f5f9; text-align: center;">
-            <h1 style="font-size: 24px; color: #1e3a8a; font-weight: bold; margin: 0 0 10px 0;">JOBSHEET PRAKTIK</h1>
-            <h2 style="font-size: 18px; color: #334155; margin: 0 0 12px 0;">BAB 1: Inspeksi Perangkat Keras dan Pengawatan PLC Standar Industri</h2>
-            <p style="color: #64748b; font-size: 14px; margin: 0; padding: 0 20px;">
-                Lembar instruksi ini berfokus pada pembiasaan teknis: identifikasi komponen pada panel box yang telah dirakit, membaca <i>wiring diagram</i> secara presisi, serta melakukan inspeksi jalur (Continuity Test). Pemahaman alur <i>wiring</i> (pengawatan) dan penerapan Keselamatan dan Kesehatan Kerja (K3) adalah poin krusial dalam standar industri.
-            </p>
-</div>
-<div style="padding: 15px;">
-            <!-- INFORMASI UMUM -->
-<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
-<div style="background-color: #1e3a8a; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
-                    <h2 style="font-size: 16px; font-weight: bold; margin: 0; display: inline-block;">Informasi Umum Praktik</h2>
-</div>
-<div style="padding: 15px;">
-                    <h3 style="color: #1e3a8a; margin: 0 0 8px 0; font-size: 14px;">A. Tujuan Pembelajaran Praktik</h3>
-                    <ul style="color: #334155; margin-top: 0; margin-bottom: 15px; font-size: 13px; padding-left: 20px;">
-                        <li style="margin-bottom: 4px;">Siswa mampu mengidentifikasi spesifikasi I/O, jenis tegangan, dan komponen fisik pada panel kelistrikan yang sudah terpasang dengan akurat.</li>
-                        <li style="margin-bottom: 4px;">Siswa dapat menguji kesinambungan sirkuit (Continuity Test) menggunakan Multimeter untuk memahami jalur kabel.</li>
-                        <li style="margin-bottom: 4px;">Siswa mampu membiasakan diri membaca diagram sirkuit kontrol PLC <i>(Wiring Diagram)</i> dan mencocokkannya dengan kondisi panel aktual.</li>
-                        <li style="margin-bottom: 4px;">Siswa memahami prinsip kerja komponen input dan output tanpa harus melakukan perakitan dari awal.</li>
-                    </ul>
-                    <h3 style="color: #1e3a8a; margin: 0 0 8px 0; font-size: 14px;">B. Teori Pendukung (Wajib Baca)</h3>
-                    <p style="color: #475569; margin-top: 0; margin-bottom: 15px; text-align: justify; font-size: 13px;">
-                        Pengawatan (wiring) perangkat keras merupakan fondasi paling krusial dalam sistem otomasi industri. Komponen input (sensor, push button, limit switch) bertugas memberikan sinyal informasi mentah. PLC kemudian memproses sinyal ini, dan komponen output (kontaktor, relay, solenoid, lampu) bertugas mengeksekusi instruksi akhir.
-                        <br><br>
-                        Pada praktik ini, panel kontrol telah dirakit sesuai standar industri. Tugas Anda adalah melakukan <i>reverse engineering</i> (menganalisis sistem yang sudah jadi) untuk memahami bagaimana jalur listrik ditarik dari sumber, melewati komponen kendali, masuk ke PLC, dan diteruskan ke aktuator, sambil tetap memperhatikan prosedur keamanan (safety).
-                    </p>
-                    <h3 style="color: #1e3a8a; margin: 0 0 12px 0; font-size: 14px;">C. Daftar Alat (Inventaris Kelompok)</h3>
-                    <table width="100%" cellpadding="0" cellspacing="0" style="table-layout: fixed;">
-    <tr>
-        <td width="50%" style="padding-right: 5px; vertical-align: top;">
-<div style="background-color: #f8fafc; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px;">
-                                    <h4 style="margin: 0 0 8px 0; font-size: 13px; color: #1e3a8a;">Daftar Alat Kerja (Toolbox)</h4>
-                                    <ul style="margin: 0; color: #475569; font-size: 13px; padding-left: 20px;">
-                                        <li style="margin-bottom: 4px;">Multimeter (Digital/Analog)</li>
-                                        <li style="margin-bottom: 4px;">Test Pen</li>
-                                        <li style="margin-bottom: 4px;">Obeng Plus (+) dan Min (-) untuk mengecek kekencangan baut terminal</li>
-                                    </ul>
-</div>
-                            </td>
-        <td width="50%" style="padding-left: 5px; vertical-align: top;">
-<div style="background-color: #f8fafc; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px;">
-                                    <h4 style="margin: 0 0 8px 0; font-size: 13px; color: #1e3a8a;">Fasilitas Praktik</h4>
-                                    <ul style="margin: 0; color: #475569; font-size: 13px; padding-left: 20px;">
-                                        <li style="margin-bottom: 4px;">Panel Box Modul PLC Terangkai</li>
-                                        <li style="margin-bottom: 4px;">Buku Manual PLC / Datasheet</li>
-                                        <li style="margin-bottom: 4px;">Lembar Laporan Praktik Siswa (File Terpisah)</li>
-                                    </ul>
-</div>
-                            </td>
-    </tr>
-                    </table>
-</div>
-</div>
-            <!-- STANDAR K3 & KABEL -->
-<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
-<div style="background-color: #047857; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
-                    <h2 style="font-size: 16px; font-weight: bold; margin: 0; display: inline-block;">K3 Kelistrikan & Standar Warna Kabel</h2>
-</div>
-<div style="padding: 15px;">
-                    <p style="font-size: 13px; color: #334155; margin-top: 0; margin-bottom: 12px;">
-                        Standar warna kabel pada panel kontrol penting untuk diketahui agar inspeksi jalur aman dan mencegah korsleting.
-                    </p>
-<div style="overflow-x: auto; max-width: 100%; margin-bottom: 15px;">
-                        <table width="100%" cellpadding="6" cellspacing="0" style="border-collapse: collapse; min-width: 500px; font-size: 13px;">
-                            <thead>
-    <tr>
-<th style="border: 1px solid #cbd5e1; background-color: #f1f5f9; text-align: left; width: 25%;">Jalur Kelistrikan</th>
-<th style="border: 1px solid #cbd5e1; background-color: #f1f5f9; text-align: left; width: 35%;">Warna Kabel Disarankan</th>
-<th style="border: 1px solid #cbd5e1; background-color: #f1f5f9; text-align: left; width: 40%;">Keterangan Penggunaan</th>
-    </tr>
-                            </thead>
-                            <tbody>
-    <tr>
-        <td style="border: 1px solid #cbd5e1; font-weight: bold;">Tegangan Utama (Fasa / L)</td>
-        <td style="border: 1px solid #cbd5e1;">Hitam / Merah / Coklat</td>
-        <td style="border: 1px solid #cbd5e1;">Dari MCB menuju COM Output atau Beban AC.</td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid #cbd5e1; font-weight: bold;">Netral (N)</td>
-        <td style="border: 1px solid #cbd5e1;">Biru</td>
-        <td style="border: 1px solid #cbd5e1;">Kembalian beban AC (Lampu, Kontaktor).</td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid #cbd5e1; font-weight: bold;">Ground / Arde (PE)</td>
-        <td style="border: 1px solid #cbd5e1;">Kuning setrip Hijau</td>
-        <td style="border: 1px solid #cbd5e1;">Menghubungkan badan panel logam ke bumi.</td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid #cbd5e1; font-weight: bold;">DC Positif (+24VDC)</td>
-        <td style="border: 1px solid #cbd5e1;">Merah / Biru Tua</td>
-        <td style="border: 1px solid #cbd5e1;">Power suplai ke sensor / input modul.</td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid #cbd5e1; font-weight: bold;">DC Negatif (0VDC)</td>
-        <td style="border: 1px solid #cbd5e1;">Hitam / Biru Muda</td>
-        <td style="border: 1px solid #cbd5e1;">Ground referensi untuk DC power suplai.</td>
-    </tr>
-                            </tbody>
-                        </table>
-</div>
-<div style="background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 10px; border-radius: 4px;">
-                        <h4 style="margin: 0 0 8px 0; font-size: 13px; color: #b45309;">Checklist Wajib Sebelum Membuka Panel:</h4>
-                        <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #78350f;">
-                            <li style="margin-bottom: 6px;">Pastikan sumber utama kelistrikan (Steker/Colokan PLN) dalam keadaan <strong>DICABUT</strong> sebelum pengujian multimeter.</li>
-                            <li style="margin-bottom: 6px;">MCB pada panel dalam posisi <strong>OFF (Turun)</strong>.</li>
-                            <li style="margin-bottom: 6px;">Pakai sepatu standar sekolah atau sepatu <i>safety</i> ber-sol karet (Isolator).</li>
-                            <li style="margin-bottom: 0;">Area meja kerja bebas dari benda cair (air minum) untuk menghindari kejut listrik tak terduga.</li>
-                        </ul>
-</div>
-</div>
-</div>
-            <!-- MINGGU 1 -->
-<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
-<div style="background-color: #1e3a8a; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
-                    <h2 style="font-size: 16px; font-weight: bold; margin: 0;">Bagian 1: Pengenalan & Identifikasi Komponen</h2>
-</div>
-<div style="padding: 15px;">
-<div style="background: #eff6ff; color: #1e3a8a; padding: 10px; margin-bottom: 15px; border-left: 3px solid #3b82f6; font-size: 13px;">
-                        <strong>Instruksi Praktik:</strong> Buka pintu panel latih Anda. Telusuri setiap komponen yang menempel di <i>DIN Rail</i> (Rel besi) maupun pintu panel. Gunakan lembar Laporan Praktik untuk mencatat plat identitas komponen (Nameplate) dan mengenali spesifikasinya.
-</div>
-                    <ul style="font-size: 13px; color: #475569; padding-left: 20px;">
-                        <li>Identifikasi Modul CPU PLC beserta tegangan kerjanya.</li>
-                        <li>Identifikasi Power Supply (PSU), perhatikan input AC dan output DC-nya.</li>
-                        <li>Amati tipe dan rating Miniature Circuit Breaker (MCB).</li>
-                        <li>Cek jumlah dan jenis Push Button yang terpasang pada panel.</li>
-                        <li>Periksa Kontaktor Magnet beserta tegangan koilnya.</li>
-                        <li>Catat jumlah Relay bantuan dan indikator panel yang ada.</li>
-                    </ul>
-</div>
-</div>
-            <!-- MINGGU 2 -->
-<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
-<div style="background-color: #1e3a8a; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
-                    <h2 style="font-size: 16px; font-weight: bold; margin: 0;">Bagian 2: Inspeksi Wiring Input PLC</h2>
-</div>
-<div style="padding: 15px;">
-<div style="background: #eff6ff; color: #1e3a8a; padding: 10px; margin-bottom: 15px; border-left: 3px solid #3b82f6; font-size: 13px;">
-                        <strong>Instruksi Praktik:</strong> Pahami jalur kabel dari sumber tegangan menuju terminal input PLC. Lakukan uji kesinambungan (Continuity Test) dengan multimeter pada kondisi panel tak bertegangan (OFF), dan catat hasilnya pada Lembar Laporan.
-</div>
-<div style="margin: 15px 0; padding: 15px; background-color: #f8fafc; border: 2px dashed #cbd5e1; text-align: center; border-radius: 4px;">
-                        <h4 style="color: #1e3a8a; margin: 0 0 8px 0; font-size: 14px;">Ilustrasi Logika Pengawatan Input</h4>
-                        <p style="color: #64748b; margin: 0; font-size: 13px; font-family: monospace;">[+24VDC] ------> [Push Button NO] ------> [Terminal Input PLC: misal 0.00]<br>[ 0VDC ] --------------------------------> [Terminal COM Input PLC]</p>
-                        <i style="font-size: 11px; color: #94a3b8; display: block; margin-top: 5px;">*Contoh untuk sistem PLC Tipe Sinking. Jika Sourcing, kutub +/- dibalik.</i>
-</div>
-                    <p style="font-size: 13px; font-weight: bold; margin-bottom: 8px;">Langkah Inspeksi:</p>
-                    <ul style="color: #475569; padding-left: 20px; font-size: 13px;">
-                        <li>Pastikan panel tidak terhubung ke listrik PLN.</li>
-                        <li>Gunakan Multimeter mode Ohm/Buzzer.</li>
-                        <li>Hubungkan probe pertama ke terminal +24VDC dan probe kedua ke terminal Input PLC (Misal 0.00).</li>
-                        <li>Tekan Push Button yang sesuai, amati apakah multimeter berbunyi/menunjuk 0 Ohm.</li>
-                        <li>Lakukan untuk seluruh input dan catat pemetaan I/O di lembar laporan.</li>
-                    </ul>
-</div>
-</div>
-            <!-- MINGGU 3 -->
-<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
-<div style="background-color: #1e3a8a; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
-                    <h2 style="font-size: 16px; font-weight: bold; margin: 0;">Bagian 3: Inspeksi Wiring Output PLC & Beban</h2>
-</div>
-<div style="padding: 15px;">
-<div style="background: #eff6ff; color: #1e3a8a; padding: 10px; margin-bottom: 15px; border-left: 3px solid #3b82f6; font-size: 13px;">
-                        <strong>Instruksi Praktik:</strong> Pahami jalur kelistrikan dari PLC menuju beban aktuator (Kontaktor/Lampu). Telusuri rute kabel Fasa (L) hingga Netral (N). Catat pemetaan output di Lembar Laporan.
-</div>
-<div style="margin: 15px 0; padding: 15px; background-color: #f8fafc; border: 2px dashed #cbd5e1; text-align: center; border-radius: 4px;">
-                        <h4 style="color: #1e3a8a; margin: 0 0 8px 0; font-size: 14px;">Ilustrasi Logika Pengawatan Output (PLC Relay)</h4>
-                        <p style="color: #64748b; margin: 0; font-size: 13px; font-family: monospace;">[Fasa 220VAC] -----> [Terminal COM Output PLC]<br>[Terminal Output PLC: misal 100.00] -----> [Terminal A1 Kontaktor Magnet]<br>[Terminal A2 Kontaktor Magnet] --------------------------------> [Netral]</p>
-</div>
-                    <p style="font-size: 13px; font-weight: bold; margin-bottom: 8px;">Langkah Inspeksi:</p>
-                    <ul style="color: #475569; padding-left: 20px; font-size: 13px;">
-                        <li>Konfirmasi MCB utama dalam posisi MATI (OFF) (Tingkat Kritis K3).</li>
-                        <li>Amati sambungan dari Fasa menuju COM Output PLC.</li>
-                        <li>Telusuri kabel dari terminal Output PLC (misal 100.00) ke terminal koil beban (misal A1 Kontaktor).</li>
-                        <li>Pastikan kabel netral beban (misal A2) sudah tersambung dengan benar ke terminal blok netral.</li>
-                        <li>Catat semua hubungan ini ke dalam form Pemetaan Tabel Alamat (I/O Allocation) di laporan.</li>
-                    </ul>
-</div>
-</div>
-            <!-- MINGGU 4: COMMISSIONING & EVALUASI -->
-<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
-<div style="background-color: #1e3a8a; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
-                    <h2 style="font-size: 16px; font-weight: bold; margin: 0;">Bagian 4: Commissioning & Pengujian Indikator</h2>
-</div>
-<div style="padding: 15px;">
-<div style="background: #eff6ff; color: #1e3a8a; padding: 10px; margin-bottom: 15px; border-left: 3px solid #3b82f6; font-size: 13px;">
-                        <strong>Instruksi Praktik:</strong> Bersama guru pembimbing, lakukan pengujian indikator daya dengan menghidupkan panel secara berurutan. Laporkan hasilnya pada Laporan Praktik.
-</div>
-                    <p style="font-size: 13px; font-weight: bold; margin-bottom: 8px;">Prosedur Pengaktifan Panel:</p>
-                    <ul style="color: #475569; padding-left: 20px; font-size: 13px;">
-                        <li>Uji tarik ringan: pastikan secara visual tidak ada kabel yang terlepas di dalam panel.</li>
-                        <li>Laporkan kepada Guru Pembimbing bahwa Anda siap melakukan Power-ON.</li>
-                        <li>Hubungkan steker ke sumber PLN.</li>
-                        <li>Naikkan MCB (Posisi ON).</li>
-                        <li>Amati indikator "POWER" pada CPU PLC dan indikator Power Supply. Catat kondisi tersebut di Laporan.</li>
-                    </ul>
-</div>
-</div>
-            <!-- GLOSARIUM / DAFTAR ISTILAH -->
-<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
-<div style="background-color: #475569; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
-                    <h2 style="font-size: 16px; font-weight: bold; margin: 0;">Glosarium & Daftar Istilah Industri</h2>
-</div>
-<div style="padding: 15px;">
-                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #334155;">
-                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>PLC:</strong> Programmable Logic Controller. Komputer industri yang tangguh untuk mengontrol proses manufaktur.</li>
-                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>I/O (Input/Output):</strong> Jalur masuk (sensor/tombol) dan jalur keluar (aktuator/lampu) pada PLC.</li>
-                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>NO (Normally Open):</strong> Kondisi saklar terbuka (arus putus) saat normal. Menutup (arus mengalir) saat ditekan.</li>
-                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>NC (Normally Closed):</strong> Kondisi saklar tertutup (arus mengalir) saat normal. Terbuka (arus putus) saat ditekan.</li>
-                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>Continuity:</strong> Kesinambungan jalur listrik. Kondisi di mana arus bisa mengalir dari titik A ke titik B tanpa hambatan.</li>
-                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>Sinking:</strong> Tipe input PLC di mana terminal COM dihubungkan ke Negatif (0V). Input menerima sinyal Positif (+24V).</li>
-                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>Sourcing:</strong> Tipe input PLC di mana terminal COM dihubungkan ke Positif (+24V). Input menerima sinyal Negatif (0V).</li>
-                        <li style="margin-bottom: 8px;"><strong>Crimping:</strong> Proses menekan secara paksa sekun logam agar menyatu permanen dengan serabut tembaga kabel.</li>
-                    </ul>
-</div>
-</div>
-<!-- FOOTER INFO -->
-<div style="text-align: center; margin-top: 20px; color: #94a3b8; font-size: 11px;">
-                <p>Dokumen Jobsheet Otomasi Industri Terstandar • Praktik PLC Dasar (Versi Inspeksi Panel Terakit)</p>
-</div>
-</div>
-</div>
-</div>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobsheet Praktik PLC Bab 1 - Inspeksi & Pengawatan</title>
+    <!-- HTML2PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        /* ==========================================================
+           1. CSS VARIABLES & RESETS
+           ========================================================== */
+        :root {
+            --primary-blue: #0284c7;
+            --dark-blue: #0f172a;
+            --light-blue: #e0f2fe;
+            --accent-cyan: #06b6d4;
+            --accent-purple: #8b5cf6;
+            --border-color: #cbd5e1;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-gray: #f8fafc;
+            --warning-orange: #f59e0b;
+            --danger-red: #ef4444;
+            --success-green: #10b981;
+            --white: #ffffff;
+            --focus-ring: rgba(2, 132, 199, 0.3);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark); line-height: 1.6; background-color: #e2e8f0; padding: 30px 15px;
+        }
+
+        /* ==========================================================
+           2. CONTAINER & LAYOUT
+           ========================================================== */
+        .wrapper {
+            max-width: 1100px; margin: 0 auto; background-color: var(--white);
+            border-radius: 12px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: var(--white); padding: 40px 30px; text-align: center; border-bottom: 5px solid var(--accent-cyan);
+        }
+
+        header h1 { font-size: 28px; margin-bottom: 10px; font-weight: 800; letter-spacing: -0.5px; }
+        header p { font-size: 15px; opacity: 0.9; max-width: 800px; margin: 0 auto;}
+
+        .content { padding: 40px 30px; }
+
+        /* ==========================================================
+           3. FORM IDENTITAS
+           ========================================================== */
+        .identity-box {
+            background-color: var(--light-blue); border: 1px solid #bae6fd;
+            border-radius: 10px; padding: 25px; margin-bottom: 40px; display: grid; gap: 20px;
+        }
+
+        .identity-header {
+            grid-column: 1 / -1; font-weight: 700; color: var(--primary-blue);
+            font-size: 18px; border-bottom: 2px solid #bae6fd; padding-bottom: 10px; margin-bottom: 5px;
+        }
+
+        .grid-2-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .grid-3-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label {
+            font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;
+        }
+        
+        .form-control {
+            padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px;
+            font-size: 15px; font-family: inherit; transition: all 0.2s; background-color: var(--white);
+        }
+        .form-control:focus { outline: none; border-color: var(--primary-blue); box-shadow: 0 0 0 3px var(--focus-ring); }
+        textarea.form-control { resize: vertical; min-height: 150px; font-family: 'Segoe UI', sans-serif; font-size: 14px;}
+
+        /* ==========================================================
+           4. MODULE SECTIONS
+           ========================================================== */
+        .module-section { margin-bottom: 50px; position: relative; }
+        
+        .module-title {
+            display: flex; align-items: center; font-size: 22px; color: var(--dark-blue);
+            margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #e2e8f0; font-weight: 700;
+        }
+        
+        .module-number {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            color: var(--white); width: 36px; height: 36px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: bold; margin-right: 15px; flex-shrink: 0;
+            box-shadow: 0 4px 6px rgba(6, 182, 212, 0.3);
+        }
+
+        .instruction-text { font-size: 15px; margin-bottom: 25px; color: var(--text-dark); background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary-blue);}
+        
+        /* Table Styles */
+        .k3-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .k3-table th { background-color: var(--dark-blue); color: white; text-align: left; padding: 12px 15px; }
+        .k3-table td { background-color: white; border-bottom: 1px solid #e2e8f0; padding: 12px 15px; }
+
+        /* ==========================================================
+           5. INTERACTIVE SIMULATORS
+           ========================================================== */
+        .interactive-tool-box {
+            background-color: #0f172a; border-radius: 12px; padding: 25px; margin-bottom: 25px; color: white;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .tool-header {
+            font-weight: 700; font-size: 18px; margin-bottom: 20px;
+            display: flex; align-items: center; color: var(--accent-cyan);
+            border-bottom: 1px solid #334155; padding-bottom: 10px;
+        }
+
+        /* Multimeter Simulator */
+        .multimeter-display {
+            background-color: #a3e635; color: #064e3b; font-family: 'Courier New', Courier, monospace;
+            font-size: 32px; font-weight: bold; text-align: right; padding: 15px 20px;
+            border-radius: 8px; margin-bottom: 20px; border: 4px solid #334155;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+        
+        .sim-btn {
+            background-color: #334155; color: white; border: 1px solid #475569; padding: 10px 15px;
+            border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s; width: 100%;
+            margin-bottom: 10px; display: flex; align-items: center; justify-content: center;
+        }
+        .sim-btn:hover { background-color: #475569; }
+        .sim-btn.active { background-color: var(--primary-blue); border-color: var(--accent-cyan); box-shadow: 0 0 10px rgba(6, 182, 212, 0.5); }
+        .sim-btn.btn-pb { background-color: #dc2626; border-color: #b91c1c; }
+        .sim-btn.btn-pb:active { background-color: #991b1b; transform: scale(0.98); }
+
+        /* Wiring Simulator */
+        .wiring-box { background: #1e293b; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .wire-node { 
+            background: #334155; padding: 10px; border-radius: 6px; text-align: center; 
+            margin-bottom: 10px; font-weight: bold; cursor: pointer; border: 2px solid transparent;
+        }
+        .wire-node:hover { background: #475569; }
+        .wire-node.selected { border-color: var(--accent-cyan); background: #0c4a6e; }
+        .wire-node.connected { background: var(--success-green); color: white; }
+        .connection-log { background: #000; font-family: monospace; padding: 15px; border-radius: 6px; color: #10b981; min-height: 80px; font-size: 13px;}
+
+        /* ==========================================================
+           6. PRINT BUTTON
+           ========================================================== */
+        .print-toolbar {
+            text-align: center; margin-bottom: 25px; padding: 15px 25px;
+            background-color: var(--dark-blue); border-radius: 12px; display: flex;
+            justify-content: space-between; align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, var(--success-green), #059669); color: white; border: none; padding: 12px 25px;
+            font-size: 15px; font-weight: bold; border-radius: 8px; cursor: pointer;
+            display: inline-flex; align-items: center; transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
+        }
+        .btn-print:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(16, 185, 129, 0.4); }
+        .toolbar-text { color: var(--light-blue); font-size: 15px; font-weight: 600; }
+
+        @media print {
+            body { background-color: var(--white); padding: 0; }
+            .wrapper { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+            textarea.form-control { border: 1px solid #ccc; height: 200px; }
+            input.form-control, select.form-control { border: none; border-bottom: 1px solid #000; border-radius: 0; padding: 5px 0;}
+            .module-section { page-break-inside: avoid; margin-bottom: 30px;}
+            .print-toolbar, .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="print-toolbar no-print">
+        <span class="toolbar-text">⚡ Simulator Interaktif PLC Terintegrasi</span>
+        <button class="btn-print" onclick="validateAndPrint()">
+            <svg style="width:20px; height:20px; margin-right:8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            Simpan PDF / Cetak
+        </button>
+    </div>
+
+    <div class="wrapper">
+        <header>
+            <h1>JOBSHEET PRAKTIK: PLC BAB 1</h1>
+            <p>Inspeksi Perangkat Keras dan Pengawatan (Wiring) PLC Standar Industri</p>
+        </header>
+
+        <div class="content">
+            <!-- IDENTITAS -->
+            <div class="identity-box">
+                <div class="identity-header">Bagian A: Identitas Siswa</div>
+                <div class="grid-2-col">
+                    <div class="form-group">
+                        <label>Nama Lengkap Peserta Didik</label>
+                        <input type="text" class="form-control" placeholder="Tuliskan nama lengkap..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Kelas / Semester</label>
+                        <input type="text" class="form-control" placeholder="Contoh: XI TITL / Ganjil" required>
+                    </div>
+                </div>
+                <div class="grid-2-col">
+                    <div class="form-group">
+                        <label>Nomor Absen</label>
+                        <input type="number" class="form-control" placeholder="Nomor urut absensi" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Kelompok Kerja</label>
+                        <select class="form-control" required>
+                            <option value="">-- Pilih Kelompok --</option>
+                            <option value="1">Kelompok 1</option>
+                            <option value="2">Kelompok 2</option>
+                            <option value="3">Kelompok 3</option>
+                            <option value="4">Kelompok 4</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEORI K3 -->
+            <div class="module-section">
+                <h2 class="module-title">
+                    <span class="module-number" style="background:var(--warning-orange)">!</span>
+                    Standar K3 & Warna Kabel
+                </h2>
+                <div class="instruction-text">
+                    Standar warna kabel pada panel kontrol penting untuk diketahui agar inspeksi jalur aman dan mencegah korsleting. Pelajari tabel berikut sebelum melakukan praktik virtual maupun fisik.
+                </div>
+                <table class="k3-table">
+                    <thead>
+                        <tr>
+                            <th>Jalur Kelistrikan</th>
+                            <th>Warna Kabel Disarankan</th>
+                            <th>Keterangan Penggunaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Tegangan Utama (Fasa / L)</strong></td><td>Hitam / Merah / Coklat</td><td>Dari MCB menuju COM Output atau Beban AC.</td></tr>
+                        <tr><td><strong>Netral (N)</strong></td><td>Biru</td><td>Kembalian beban AC (Lampu, Kontaktor).</td></tr>
+                        <tr><td><strong>Ground / Arde (PE)</strong></td><td>Kuning setrip Hijau</td><td>Menghubungkan badan panel logam ke bumi.</td></tr>
+                        <tr><td><strong>DC Positif (+24VDC)</strong></td><td>Merah / Biru Tua</td><td>Power suplai ke sensor / input modul.</td></tr>
+                        <tr><td><strong>DC Negatif (0VDC)</strong></td><td>Hitam / Biru Muda</td><td>Ground referensi untuk DC power suplai.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- MODUL 1: INPUT WIRING SIMULATOR -->
+            <div class="module-section">
+                <h2 class="module-title">
+                    <span class="module-number">1</span>
+                    Inspeksi Wiring Input PLC (Continuity Test)
+                </h2>
+                
+                <p class="instruction-text">
+                    Pahami jalur kabel dari sumber tegangan menuju terminal input PLC. Lakukan uji kesinambungan (Continuity Test) menggunakan simulator multimeter digital di bawah ini.
+                </p>
+
+                <!-- Simulator Input -->
+                <div class="interactive-tool-box no-print">
+                    <div class="tool-header">⚡ Simulator Multimeter: Continuity Test (Input Sinking)</div>
+                    
+                    <div class="grid-2-col">
+                        <div>
+                            <div class="multimeter-display" id="mmDisplay">O.L</div>
+                            <div class="grid-2-col" style="gap:10px;">
+                                <button class="sim-btn" id="btnProbeHitam" onclick="toggleProbe('hitam')">1. Pasang Probe Hitam ke 0VDC</button>
+                                <button class="sim-btn" id="btnProbeMerah" onclick="toggleProbe('merah')">2. Pasang Probe Merah ke Input PLC 0.00</button>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                            <p style="margin-bottom: 15px; font-size: 14px; color: var(--light-blue); text-align:center;">Jalur Wiring: +24VDC -> Push Button NO -> Terminal Input 0.00</p>
+                            <button class="sim-btn btn-pb" style="height:80px; width:150px; font-size: 16px; border-radius: 50%;" onmousedown="pressPb(true)" onmouseup="pressPb(false)" onmouseleave="pressPb(false)" ontouchstart="pressPb(true)" ontouchend="pressPb(false)">TEKAN PUSH BUTTON</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Tugas Analisis Modul 1:</label>
+                    <textarea class="form-control" placeholder="1. Apa yang terjadi pada layar multimeter saat tombol ditekan? Mengapa demikian?&#10;2. Jelaskan urutan pengawatan (wiring) dari Power Supply hingga ke Terminal Input PLC secara rinci!" required></textarea>
+                </div>
+            </div>
+
+            <!-- MODUL 2: OUTPUT WIRING SIMULATOR -->
+            <div class="module-section">
+                <h2 class="module-title">
+                    <span class="module-number">2</span>
+                    Inspeksi Wiring Output PLC & Aktuator
+                </h2>
+                
+                <p class="instruction-text">
+                    Pahami jalur kelistrikan dari PLC menuju beban aktuator (Kontaktor). Latih logika pengawatan Anda dengan menyusun jalur secara berurutan pada simulator di bawah ini.
+                </p>
+
+                <!-- Simulator Output -->
+                <div class="interactive-tool-box no-print">
+                    <div class="tool-header">🔗 Simulator Interaktif: Wiring Trace Output PLC</div>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Misi: Hubungkan sumber listrik AC (Fasa) untuk menyalakan Koil Kontaktor Magnet (A1 & A2) melalui Relay Internal PLC (Terminal COM & Output). Klik terminal di bawah ini secara berurutan sesuai alur kelistrikan yang benar!</p>
+                    
+                    <div class="grid-3-col wiring-box">
+                        <div class="wire-node" id="wn_fasa" onclick="selectNode('Fasa 220V', 'COM Output PLC', 'wn_fasa', 'wn_com')">Terminal Fasa 220V (L)</div>
+                        <div class="wire-node" id="wn_com" onclick="selectNode('COM Output PLC', 'Terminal Output PLC (100.00)', 'wn_com', 'wn_out')">Terminal COM Output PLC</div>
+                        <div class="wire-node" id="wn_out" onclick="selectNode('Terminal Output PLC (100.00)', 'A1 Koil Kontaktor', 'wn_out', 'wn_a1')">Terminal Output PLC (100.00)</div>
+                        <div class="wire-node" id="wn_a1" onclick="selectNode('A1 Koil Kontaktor', 'A2 Koil Kontaktor', 'wn_a1', 'wn_a2')">Terminal A1 Koil Kontaktor</div>
+                        <div class="wire-node" id="wn_a2" onclick="selectNode('A2 Koil Kontaktor', 'Terminal Netral (N)', 'wn_a2', 'wn_netral')">Terminal A2 Koil Kontaktor</div>
+                        <div class="wire-node" id="wn_netral" onclick="selectNode('Terminal Netral (N)', 'END', 'wn_netral', '')">Terminal Netral (N)</div>
+                    </div>
+                    <div class="connection-log" id="connLog">
+                        >> Sistem Siap. Silakan klik "Terminal Fasa 220V (L)" sebagai titik awal wiring...
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Tugas Analisis Modul 2:</label>
+                    <textarea class="form-control" placeholder="Tuliskan kembali secara lengkap urutan kabel Fasa 220V hingga Netral berdasarkan simulasi di atas. Apa fungsi terminal COM pada Output PLC?" required></textarea>
+                </div>
+            </div>
+
+        </div> <!-- End Content -->
+    </div> <!-- End Wrapper -->
+
+    <script>
+        // --- 1. SIMULATOR MULTIMETER ---
+        let probeHitam = false;
+        let probeMerah = false;
+
+        function toggleProbe(warna) {
+            if (warna === 'hitam') {
+                probeHitam = !probeHitam;
+                document.getElementById('btnProbeHitam').classList.toggle('active');
+            } else {
+                probeMerah = !probeMerah;
+                document.getElementById('btnProbeMerah').classList.toggle('active');
+            }
+            updateMultimeter(false);
+        }
+
+        function pressPb(isPressed) {
+            updateMultimeter(isPressed);
+        }
+
+        function updateMultimeter(isPbPressed) {
+            const display = document.getElementById('mmDisplay');
+            if (probeHitam && probeMerah) {
+                if (isPbPressed) {
+                    display.innerText = "00.0 Ω";
+                    display.style.color = "#ef4444"; // Simulate beep color change
+                    display.style.background = "#d9f99d";
+                } else {
+                    display.innerText = "O.L";
+                    display.style.color = "#064e3b";
+                    display.style.background = "#a3e635";
+                }
+            } else {
+                display.innerText = "O.L";
+                display.style.color = "#064e3b";
+                display.style.background = "#a3e635";
+            }
+        }
+
+        // --- 2. SIMULATOR WIRING ---
+        let expectedNode = 'Fasa 220V';
+        let stepCount = 0;
+
+        function selectNode(nodeName, nextExpected, elId, nextElId) {
+            const log = document.getElementById('connLog');
+            const el = document.getElementById(elId);
+
+            if (el.classList.contains('connected')) return; // Already done
+
+            if (nodeName === expectedNode) {
+                el.classList.add('connected');
+                stepCount++;
+                
+                if (nextExpected === 'END') {
+                    log.innerHTML += `<br>>> [<span style="color:#fff">SUCCESS</span>] Menghubungkan ke ${nodeName}. Sirkuit Output Lengkap! Kontaktor siap beroperasi.`;
+                    expectedNode = '';
+                } else {
+                    log.innerHTML += `<br>>> Menghubungkan ke ${nodeName}... OK. Selanjutnya sambungkan ke ${nextExpected}.`;
+                    expectedNode = nextExpected;
+                }
+            } else {
+                log.innerHTML += `<br>>> [<span style="color:#ef4444">ERROR</span>] Salah alur! Seharusnya Anda menghubungkan ke ${expectedNode} terlebih dahulu.`;
+            }
+            
+            // Auto scroll log
+            log.scrollTop = log.scrollHeight;
+        }
+
+        // --- 3. EXPORT PDF ---
+        function validateAndPrint() {
+            const inputs = document.querySelectorAll('input[required], select[required], textarea[required]');
+            let isValid = true;
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#ef4444';
+                    input.style.backgroundColor = '#fef2f2';
+                } else {
+                    input.style.borderColor = '#cbd5e1';
+                    input.style.backgroundColor = '#ffffff';
+                }
+            });
+
+            if (!isValid) {
+                alert("Validasi Gagal: Mohon lengkapi seluruh form identitas dan kotak tugas analisis sebelum menyimpan PDF!");
+                return;
+            }
+
+            const btn = document.querySelector('.btn-print');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Memproses PDF...';
+            btn.disabled = true;
+
+            const element = document.querySelector('.wrapper');
+            
+            // Sembunyikan elemen simulator (no-print) saat cetak
+            const noPrintElements = element.querySelectorAll('.no-print');
+            const originalDisplays = [];
+            noPrintElements.forEach((el, index) => {
+                originalDisplays[index] = el.style.display;
+                el.style.display = 'none';
+            });
+
+            // Sesuaikan styling cetak
+            element.style.borderRadius = "0";
+            element.style.boxShadow = "none";
+
+            // Grab nama siswa untuk nama file
+            const nama = document.querySelector('input[type="text"]').value.replace(/[^a-zA-Z0-9]/g, '_');
+
+            const opt = {
+                margin:       0.3,
+                filename:     `Laporan_Praktik_PLC_${nama}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                
+                // Kembalikan styling normal
+                element.style.borderRadius = "12px";
+                element.style.boxShadow = "0 15px 35px rgba(0, 0, 0, 0.1)";
+                noPrintElements.forEach((el, index) => {
+                    el.style.display = originalDisplays[index];
+                });
+            });
+        }
+    </script>
+</body>
+</html>
