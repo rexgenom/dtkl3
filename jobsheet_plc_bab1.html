@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobsheet Praktik PLC Bab 1 (HOTS 6 Jam) - Inspeksi & Pengawatan</title>
+    <title>All-in-One Jobsheet Praktik PLC Bab 1 (HOTS 6 Jam)</title>
     <!-- HTML2PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <!-- MathJax -->
@@ -30,200 +30,157 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text-dark); line-height: 1.6; background-color: #e2e8f0; padding: 30px 15px;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text-dark); line-height: 1.6; background-color: #e2e8f0; padding: 30px 15px; }
 
         /* ==========================================================
            2. CONTAINER & LAYOUT
            ========================================================== */
-        .wrapper {
-            max-width: 1100px; margin: 0 auto; background-color: var(--white);
-            border-radius: 12px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); overflow: hidden;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
-            color: var(--white); padding: 40px 30px; text-align: center; border-bottom: 5px solid var(--accent-cyan);
-        }
-
+        .wrapper { max-width: 1100px; margin: 0 auto; background-color: var(--white); border-radius: 12px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); overflow: hidden; }
+        header { background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue)); color: var(--white); padding: 40px 30px; text-align: center; border-bottom: 5px solid var(--accent-cyan); }
         header h1 { font-size: 28px; margin-bottom: 10px; font-weight: 800; letter-spacing: -0.5px; }
         header p { font-size: 15px; opacity: 0.9; max-width: 800px; margin: 0 auto;}
         .badge-time { background: var(--warning-orange); color: var(--dark-blue); padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 13px; display: inline-block; margin-top: 15px;}
-
         .content { padding: 40px 30px; }
 
         /* ==========================================================
            3. FORM IDENTITAS
            ========================================================== */
-        .identity-box {
-            background-color: var(--light-blue); border: 1px solid #bae6fd;
-            border-radius: 10px; padding: 25px; margin-bottom: 40px; display: grid; gap: 20px;
-        }
-
-        .identity-header {
-            grid-column: 1 / -1; font-weight: 700; color: var(--primary-blue);
-            font-size: 18px; border-bottom: 2px solid #bae6fd; padding-bottom: 10px; margin-bottom: 5px;
-        }
-
+        .identity-box { background-color: var(--light-blue); border: 1px solid #bae6fd; border-radius: 10px; padding: 25px; margin-bottom: 40px; }
+        .identity-header { font-weight: 700; color: var(--primary-blue); font-size: 18px; border-bottom: 2px solid #bae6fd; padding-bottom: 10px; margin-bottom: 20px; }
         .grid-2-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .grid-3-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-
-        .form-group { display: flex; flex-direction: column; }
-        .form-group label {
-            font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;
-        }
-        
-        .form-control {
-            padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px;
-            font-size: 15px; font-family: inherit; transition: all 0.2s; background-color: var(--white);
-        }
+        .form-group { display: flex; flex-direction: column; margin-bottom: 15px;}
+        .form-group label { font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+        .form-control { padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; font-family: inherit; transition: all 0.2s; background-color: var(--white); width: 100%;}
         .form-control:focus { outline: none; border-color: var(--primary-blue); box-shadow: 0 0 0 3px var(--focus-ring); }
-        textarea.form-control { resize: vertical; min-height: 150px; font-family: 'Segoe UI', sans-serif; font-size: 14px;}
+        textarea.form-control { resize: vertical; min-height: 100px; font-family: inherit; }
+        .member-list input { margin-bottom: 10px; border-left: 3px solid var(--accent-cyan); }
 
         /* ==========================================================
            4. MODULE SECTIONS
            ========================================================== */
         .module-section { margin-bottom: 50px; position: relative; }
-        
-        .module-title {
-            display: flex; align-items: center; font-size: 22px; color: var(--dark-blue);
-            margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #e2e8f0; font-weight: 700;
-        }
-        
-        .module-number {
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
-            color: var(--white); width: 36px; height: 36px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 18px; font-weight: bold; margin-right: 15px; flex-shrink: 0;
-            box-shadow: 0 4px 6px rgba(6, 182, 212, 0.3);
-        }
-
+        .module-title { display: flex; align-items: center; font-size: 22px; color: var(--dark-blue); margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #e2e8f0; font-weight: 700; }
+        .module-number { background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan)); color: var(--white); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; margin-right: 15px; flex-shrink: 0; box-shadow: 0 4px 6px rgba(6, 182, 212, 0.3); }
         .instruction-text { font-size: 15px; margin-bottom: 25px; color: var(--text-dark); background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary-blue);}
-        .case-study-prompt { 
-            background-color: #fffbeb; border-left: 4px solid var(--warning-orange);
-            padding: 18px; margin-top: 15px; margin-bottom: 20px; font-weight: 500; font-size: 15px; color: #92400e;
-        }
+        .case-study-prompt { background-color: #fffbeb; border-left: 4px solid var(--warning-orange); padding: 18px; margin-top: 15px; margin-bottom: 20px; font-weight: 500; font-size: 15px; color: #92400e; }
         .dynamic-var { font-weight: bold; color: var(--primary-blue); background: #e0f2fe; padding: 2px 6px; border-radius: 4px; }
+
+        /* Table Styles */
+        .styled-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px; min-width: 600px;}
+        .styled-table th { background-color: var(--dark-blue); color: white; text-align: left; padding: 12px 15px; }
+        .styled-table td { background-color: white; border: 1px solid var(--border-color); padding: 10px 15px; }
+        .table-input { width: 100%; padding: 8px; border: none; border-bottom: 1px dashed var(--border-color); background: transparent; font-size: 13px; outline: none; }
+        .table-wrapper { overflow-x: auto; margin-bottom: 20px; border-radius: 8px; border: 1px solid var(--border-color);}
 
         /* ==========================================================
            5. INTERACTIVE SIMULATORS
            ========================================================== */
-        .interactive-tool-box {
-            background-color: #0f172a; border-radius: 12px; padding: 25px; margin-bottom: 25px; color: white;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        .tool-header {
-            font-weight: 700; font-size: 18px; margin-bottom: 20px;
-            display: flex; align-items: center; color: var(--accent-cyan);
-            border-bottom: 1px solid #334155; padding-bottom: 10px;
-        }
-
-        /* Multimeter Simulator */
-        .multimeter-display {
-            background-color: #a3e635; color: #064e3b; font-family: 'Courier New', Courier, monospace;
-            font-size: 32px; font-weight: bold; text-align: right; padding: 15px 20px;
-            border-radius: 8px; margin-bottom: 20px; border: 4px solid #334155;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
-        }
+        .interactive-tool-box { background-color: #0f172a; border-radius: 12px; padding: 25px; margin-bottom: 25px; color: white; box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); }
+        .tool-header { font-weight: 700; font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; color: var(--accent-cyan); border-bottom: 1px solid #334155; padding-bottom: 10px; }
         
-        .sim-btn {
-            background-color: #334155; color: white; border: 1px solid #475569; padding: 10px 15px;
-            border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s; width: 100%;
-            margin-bottom: 10px; display: flex; align-items: center; justify-content: center;
-        }
+        /* Multimeter Simulator */
+        .multimeter-display { background-color: #a3e635; color: #064e3b; font-family: 'Courier New', Courier, monospace; font-size: 32px; font-weight: bold; text-align: right; padding: 15px 20px; border-radius: 8px; margin-bottom: 20px; border: 4px solid #334155; box-shadow: inset 0 0 10px rgba(0,0,0,0.3); }
+        .sim-btn { background-color: #334155; color: white; border: 1px solid #475569; padding: 10px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s; width: 100%; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
         .sim-btn:hover { background-color: #475569; }
         .sim-btn.active { background-color: var(--primary-blue); border-color: var(--accent-cyan); box-shadow: 0 0 10px rgba(6, 182, 212, 0.5); }
         .sim-btn.btn-pb { background-color: #dc2626; border-color: #b91c1c; }
         .sim-btn.btn-pb:active { background-color: #991b1b; transform: scale(0.98); }
-        
         .polarity-switch { display: flex; gap: 10px; margin-bottom: 15px; background: #1e293b; padding: 10px; border-radius: 6px;}
         .polarity-btn { flex: 1; padding: 8px; border: 1px solid #475569; background: #334155; color: white; border-radius: 4px; cursor: pointer;}
         .polarity-btn.selected { background: var(--accent-purple); border-color: #c4b5fd; font-weight: bold;}
 
         /* Wiring Simulator */
         .wiring-box { background: #1e293b; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
-        .wire-node { 
-            background: #334155; padding: 10px; border-radius: 6px; text-align: center; 
-            margin-bottom: 10px; font-weight: bold; cursor: pointer; border: 2px solid transparent;
-            font-size: 14px;
-        }
+        .wire-node { background: #334155; padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 10px; font-weight: bold; cursor: pointer; border: 2px solid transparent; font-size: 14px; }
         .wire-node:hover { background: #475569; }
         .wire-node.connected { background: var(--success-green); color: white; border-color: #059669; }
         .connection-log { background: #000; font-family: monospace; padding: 15px; border-radius: 6px; color: #10b981; min-height: 100px; max-height: 150px; overflow-y: auto; font-size: 13px;}
 
         /* ==========================================================
-           6. PRINT BUTTON
+           6. IMAGE UPLOAD WIDGETS
            ========================================================== */
-        .print-toolbar {
-            text-align: center; margin-bottom: 25px; padding: 15px 25px;
-            background-color: var(--dark-blue); border-radius: 12px; display: flex;
-            justify-content: space-between; align-items: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-        }
+        .upload-card { border: 2px dashed #94a3b8; border-radius: 8px; padding: 25px 20px; text-align: center; background-color: #f8fafc; transition: all 0.2s; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 200px;}
+        .upload-card:hover { border-color: var(--primary-blue); background-color: #f1f5f9; }
+        .upload-icon { color: #94a3b8; margin-bottom: 15px; }
+        .upload-title { font-weight: bold; color: var(--text-dark); font-size: 15px; margin-bottom: 5px; }
+        .upload-desc { color: var(--text-muted); font-size: 13px; margin-bottom: 15px; }
+        .file-input { position: absolute; left: 0; top: 0; opacity: 0; cursor: pointer; height: 100%; width: 100%; z-index: 10; }
+        .img-preview { max-width: 100%; max-height: 250px; border-radius: 6px; display: none; object-fit: contain; z-index: 5; position: relative;}
+        .upload-placeholder { z-index: 1; pointer-events: none;}
+        .btn-upload { border: 1px solid var(--border-color); color: var(--text-dark); background-color: white; padding: 8px 20px; border-radius: 6px; font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; z-index: 1; pointer-events: none; }
 
-        .btn-print {
-            background: linear-gradient(135deg, var(--success-green), #059669); color: white; border: none; padding: 12px 25px;
-            font-size: 15px; font-weight: bold; border-radius: 8px; cursor: pointer;
-            display: inline-flex; align-items: center; transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
-        }
+        /* ==========================================================
+           7. THEORY & CHECKLIST
+           ========================================================== */
+        .theory-item { margin-bottom: 30px; padding-bottom: 25px; border-bottom: 1px dashed var(--border-color); }
+        .theory-question { font-weight: bold; font-size: 14px; color: var(--text-dark); margin-bottom: 12px; display: block; }
+        .check-list { list-style: none; padding: 0; margin: 0; }
+        .check-item { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; padding-bottom: 15px; border-bottom: 1px solid var(--bg-gray); }
+        .check-item input[type="checkbox"] { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--success-green); cursor: pointer; }
+        .check-item-text { font-size: 14px; color: var(--text-dark); }
+        .critical-check { color: var(--danger-red); font-weight: 600; }
+
+        /* ==========================================================
+           8. PRINT BUTTON
+           ========================================================== */
+        .print-toolbar { text-align: center; margin-bottom: 25px; padding: 15px 25px; background-color: var(--dark-blue); border-radius: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
+        .btn-print { background: linear-gradient(135deg, var(--success-green), #059669); color: white; border: none; padding: 12px 25px; font-size: 15px; font-weight: bold; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3); }
         .btn-print:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(16, 185, 129, 0.4); }
         .toolbar-text { color: var(--light-blue); font-size: 15px; font-weight: 600; }
 
         @media print {
             body { background-color: var(--white); padding: 0; }
             .wrapper { border: none; box-shadow: none; padding: 0; max-width: 100%; }
-            textarea.form-control { border: 1px solid #ccc; height: 150px; }
-            input.form-control, select.form-control { border: none; border-bottom: 1px solid #000; border-radius: 0; padding: 5px 0;}
+            textarea.form-control { border: 1px solid #ccc; min-height: 80px; }
+            input.form-control, select.form-control, .table-input { border: none; border-bottom: 1px solid #000; border-radius: 0; padding: 5px 0; background: transparent !important;}
             .module-section { page-break-inside: avoid; margin-bottom: 30px;}
             .print-toolbar, .no-print { display: none !important; }
             .dynamic-var { border: 1px solid #000; background: none !important; }
+            .upload-card { border: 1px solid #ccc; padding: 5px; min-height: auto;}
         }
     </style>
 </head>
 <body>
 
     <div class="print-toolbar no-print">
-        <span class="toolbar-text">⚡ Simulator Interaktif PLC Terintegrasi</span>
+        <span class="toolbar-text">⚡ All-in-One: Simulator + Lembar Laporan Praktik PLC</span>
         <button class="btn-print" onclick="validateAndPrint()">
             <svg style="width:20px; height:20px; margin-right:8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-            Simpan PDF / Cetak
+            Simpan PDF / Cetak Laporan
         </button>
     </div>
 
     <div class="wrapper">
         <header>
-            <h1>JOBSHEET PRAKTIK: PLC BAB 1</h1>
-            <p>Inspeksi Perangkat Keras dan Pengawatan (Wiring) PLC Tingkat Lanjut (HOTS)</p>
+            <h1>LEMBAR LAPORAN & JOBSHEET PRAKTIK: PLC BAB 1</h1>
+            <p>Inspeksi Perangkat Keras, Pengawatan (Wiring), & Troubleshooting Standar Industri</p>
             <div class="badge-time">Durasi Praktik: 6 x 45 Menit (4.5 Jam)</div>
         </header>
 
         <div class="content">
             <!-- IDENTITAS -->
             <div class="identity-box">
-                <div class="identity-header">Bagian A: Proyek Otomasi Kelompok</div>
+                <div class="identity-header">Bagian A: Identitas Kelompok & Proyek Otomasi</div>
                 <div class="grid-2-col">
                     <div class="form-group">
-                        <label>Nama Lengkap Peserta Didik</label>
-                        <input type="text" class="form-control" placeholder="Tuliskan nama lengkap..." required>
+                        <label>Nama Kelompok</label>
+                        <input type="text" class="form-control" placeholder="Misal: Kelompok 1 - Alpha" required>
                     </div>
                     <div class="form-group">
-                        <label>Kelas / Semester</label>
-                        <input type="text" class="form-control" placeholder="Contoh: XI TITL / Ganjil" required>
-                    </div>
-                </div>
-                <div class="grid-2-col">
-                    <div class="form-group">
-                        <label>Nomor Absen</label>
-                        <input type="number" class="form-control" placeholder="Nomor urut absensi" required>
+                        <label>Kelas / Program Keahlian</label>
+                        <input type="text" class="form-control" placeholder="Contoh: XI Otomasi Industri 1" required>
                     </div>
                     <div class="form-group">
-                        <label>Pilih Mesin Proyek (Kelompok)</label>
-                        <select class="form-control" id="kelompokSelect" required onchange="updateCaseStudies()">
+                        <label>Tanggal Praktik</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Guru Pembimbing</label>
+                        <input type="text" class="form-control" value="Muhamad Rendi Muhindo, S.Pd." readonly style="background-color: #e2e8f0; color: #475569;">
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1; background: #fffbeb; padding: 15px; border-radius: 8px; border-left: 4px solid var(--warning-orange);">
+                        <label style="color: #92400e; font-size: 15px;">⚠️ Pilih Mesin Proyek Industri (Menentukan Spesifikasi Tugas HOTS)</label>
+                        <select class="form-control" id="kelompokSelect" required onchange="updateCaseStudies()" style="border-color: var(--warning-orange); font-weight:bold;">
                             <option value="">-- Pilih Proyek Mesin Anda --</option>
                             <option value="1">Kelompok 1: Mesin Conveyor System</option>
                             <option value="2">Kelompok 2: Mesin Stamping Press</option>
@@ -233,24 +190,109 @@
                             <option value="6">Kelompok 6: Mesin Filling Station</option>
                         </select>
                     </div>
+                    <div class="form-group member-list" style="grid-column: 1 / -1;">
+                        <label>Nama Anggota Kelompok (Sesuai Urutan Absensi)</label>
+                        <input type="text" class="form-control" placeholder="1. Nama Lengkap Anggota 1" required>
+                        <input type="text" class="form-control" placeholder="2. Nama Lengkap Anggota 2" required>
+                        <input type="text" class="form-control" placeholder="3. Nama Lengkap Anggota 3" required>
+                        <input type="text" class="form-control" placeholder="4. Nama Lengkap Anggota 4" required>
+                        <input type="text" class="form-control" placeholder="5. Nama Lengkap Anggota 5">
+                        <input type="text" class="form-control" placeholder="6. Nama Lengkap Anggota 6 (Kosongkan jika tidak ada)">
+                    </div>
                 </div>
             </div>
 
-            <!-- MODUL 1: INPUT WIRING SIMULATOR -->
+            <!-- MODUL 1: OBSERVASI HARDWARE FISIK -->
             <div class="module-section">
-                <h2 class="module-title">
-                    <span class="module-number">1</span>
-                    Troubleshooting Sensor Input PLC (Sinking vs Sourcing)
-                </h2>
+                <h2 class="module-title"><span class="module-number">1</span>Observasi Komponen Hardware (Praktik Fisik)</h2>
+                <p class="instruction-text">Lakukan inspeksi visual pada panel latih aktual Anda. Catat spesifikasinya secara presisi dan lampirkan bukti foto (jepret langsung dari kamera HP Anda).</p>
                 
-                <p class="instruction-text">
-                    Tidak semua sensor menggunakan <i>Push Button</i> pasif. Sensor industri aktif (NPN atau PNP) membutuhkan suplai daya sendiri, dan penentuan terminal <b>COM (Common)</b> pada input PLC sangat menentukan apakah sinyal akan terbaca atau tidak (Logika Sinking/Sourcing).
-                </p>
+                <div class="table-wrapper">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%; text-align: center;">No</th>
+                                <th style="width: 25%;">Perangkat Utama</th>
+                                <th style="width: 35%;">Spesifikasi Fisik (Merk, Tipe, Rating)</th>
+                                <th style="width: 35%;">Fungsi di Panel Ini</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center;">1</td>
+                                <td><strong>PLC (Modul CPU)</strong></td>
+                                <td><input type="text" class="table-input" placeholder="Misal: OMRON CP1E-E20SDR-A"></td>
+                                <td><input type="text" class="table-input" placeholder="Sebagai kontroler utama"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">2</td>
+                                <td><strong>Power Supply (PSU)</strong></td>
+                                <td><input type="text" class="table-input" placeholder="Input AC 220V, Output DC 24V 5A"></td>
+                                <td><input type="text" class="table-input" placeholder="Catu daya untuk sensor/input"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">3</td>
+                                <td><strong>MCB (Circuit Breaker)</strong></td>
+                                <td><input type="text" class="table-input" placeholder="Schneider 1 Fasa, 6 Ampere"></td>
+                                <td><input type="text" class="table-input" placeholder="Pengaman beban lebih"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">4</td>
+                                <td><strong>Push Button (Start/Stop)</strong></td>
+                                <td><input type="text" class="table-input" placeholder="Warna Hijau (NO), Merah (NC)"></td>
+                                <td><input type="text" class="table-input" placeholder="Tombol input sinyal manual"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">5</td>
+                                <td><strong>Kontaktor Magnet</strong></td>
+                                <td><input type="text" class="table-input" placeholder="Koil 220VAC, Mitsubishi S-T10"></td>
+                                <td><input type="text" class="table-input" placeholder="Aktuator beban daya besar"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">6</td>
+                                <td><strong>Relay Bantuan (MY/LY)</strong></td>
+                                <td><input type="text" class="table-input" placeholder="MY4N Koil 24VDC, 4 Kontak"></td>
+                                <td><input type="text" class="table-input" placeholder="Isolasi dan perantara sinyal"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <!-- Simulator Input -->
+                <div class="grid-2-col">
+                    <label class="upload-card">
+                        <input type="file" class="file-input no-print" accept="image/*" onchange="previewImage(event, 'img1', 'ph1')">
+                        <img id="img1" class="img-preview" src="" alt="Preview Nameplate">
+                        <div id="ph1" class="upload-placeholder">
+                            <div class="upload-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            </div>
+                            <div class="upload-title">Dokumentasi Nameplate PLC</div>
+                            <div class="upload-desc">Foto label spesifikasi di bodi PLC aktual</div>
+                            <div class="btn-upload">Pilih Foto Kamera</div>
+                        </div>
+                    </label>
+                    <label class="upload-card">
+                        <input type="file" class="file-input no-print" accept="image/*" onchange="previewImage(event, 'img2', 'ph2')">
+                        <img id="img2" class="img-preview" src="" alt="Preview Panel">
+                        <div id="ph2" class="upload-placeholder">
+                            <div class="upload-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            </div>
+                            <div class="upload-title">Dokumentasi Tata Letak Panel</div>
+                            <div class="upload-desc">Foto keseluruhan panel kontrol aktual</div>
+                            <div class="btn-upload">Pilih Foto Kamera</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- MODUL 2: INPUT WIRING SIMULATOR -->
+            <div class="module-section">
+                <h2 class="module-title"><span class="module-number">2</span>Troubleshooting Input & Sinking/Sourcing (Simulator)</h2>
+                <p class="instruction-text">Sensor industri (NPN/PNP) membutuhkan logika COM PLC yang spesifik. Lakukan simulasi virtual multimeter di bawah ini berdasarkan tipe sensor mesin proyek kelompok Anda.</p>
+                
                 <div class="interactive-tool-box no-print">
-                    <div class="tool-header">⚡ Simulator Multimeter: Analisis Polaritas Sensor</div>
-                    
+                    <div class="tool-header">⚡ Simulator Multimeter: Analisis Polaritas Sensor Input</div>
                     <div class="grid-2-col">
                         <div>
                             <div class="polarity-switch">
@@ -265,43 +307,28 @@
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; background:#1e293b; border-radius:8px; padding:15px;">
-                            <p style="margin-bottom: 15px; font-size: 14px; color: var(--accent-cyan); text-align:center;">
-                                Tipe Sensor Mesin Anda: <br>
-                                <strong id="sim1_sensor_type" style="font-size:18px;">[PILIH KELOMPOK]</strong>
-                            </p>
+                            <p style="margin-bottom: 15px; font-size: 14px; color: var(--accent-cyan); text-align:center;">Tipe Sensor Mesin Anda: <br><strong id="sim1_sensor_type" style="font-size:18px;">[PILIH KELOMPOK DULU]</strong></p>
                             <button class="sim-btn btn-pb" style="height:80px; width:150px; font-size: 16px; border-radius: 50%;" onmousedown="pressPb(true)" onmouseup="pressPb(false)" onmouseleave="pressPb(false)" ontouchstart="pressPb(true)" ontouchend="pressPb(false)">TRIGGER SENSOR</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="case-study-prompt">
-                    <strong>Studi Kasus 1: Proyek <span class="dynamic-var" id="cs1_mesin">[?]</span></strong><br>
-                    Mesin Anda menggunakan komponen input berupa <strong><span class="dynamic-var" id="cs1_sensor">[?]</span></strong>. Saat diinspeksi, mekanik kebingungan menghubungkan terminal COM PLC. <br><br>
-                    Tugas Anda: Berdasarkan karakteristik tipe sensor tersebut, apakah terminal COM pada blok input PLC harus dihubungkan ke sumber 0VDC atau +24VDC? Jelaskan alasannya (Sinking/Sourcing)!
+                    <strong>Studi Kasus 2: Proyek <span class="dynamic-var" id="cs1_mesin">[?]</span></strong><br>
+                    Mesin Anda memakai input <strong><span class="dynamic-var" id="cs1_sensor">[?]</span></strong>. Saat diinspeksi, mekanik kebingungan menghubungkan terminal COM PLC. <br><br>
+                    Tugas Anda: Analisis tipe Sinking/Sourcing dan putuskan sumber COM yang tepat! Uraikan pula hasil penelusuran jalur Continuity fisik di panel Anda!
                 </div>
-
-                <div class="form-group">
-                    <label>Penjabaran Logika Analisis Modul 1:</label>
-                    <textarea class="form-control" placeholder="Tuliskan analisis Sinking/Sourcing dan alasan pemilihan COM berdasarkan tipe sensor yang didapatkan..." required></textarea>
-                </div>
+                <textarea class="form-control" placeholder="Tuliskan alasan pemilihan polaritas Sinking/Sourcing dan jabarkan langkah pengujian kontinuitas kabel input secara fisik di panel..." required></textarea>
             </div>
 
-            <!-- MODUL 2: OUTPUT WIRING SIMULATOR -->
+            <!-- MODUL 3: OUTPUT WIRING SIMULATOR -->
             <div class="module-section">
-                <h2 class="module-title">
-                    <span class="module-number">2</span>
-                    Pengawatan Multi-Aktuator (Wiring Trace)
-                </h2>
+                <h2 class="module-title"><span class="module-number">3</span>Pengawatan Multi-Aktuator (Simulator Wiring Trace)</h2>
+                <p class="instruction-text">Rangkaian industri menggerakkan banyak beban. Uji logika paralel Anda secara virtual sebelum menyentuh kabel 220VAC di panel fisik.</p>
                 
-                <p class="instruction-text">
-                    Rangkaian industri tidak hanya memiliki 1 beban. Pahami jalur kelistrikan dari PLC menuju 2 aktuator terpisah secara berurutan. Uji logika pengawatan Anda pada panel virtual (Wiring Trace) di bawah ini tanpa menyebabkan korsleting.
-                </p>
-
-                <!-- Simulator Output -->
                 <div class="interactive-tool-box no-print">
                     <div class="tool-header">🔗 Simulator Interaktif: Multi-Load Wiring Trace</div>
-                    <p style="font-size: 13px; margin-bottom: 15px;">Misi: Rangkai kabel 220VAC untuk menyalakan 2 beban paralel (<strong><span id="sim2_load1">Beban 1</span></strong> dan <strong><span id="sim2_load2">Beban 2</span></strong>). Klik terminal secara berurutan sesuai kaidah aliran listrik Fasa ke Netral!</p>
-                    
+                    <p style="font-size: 13px; margin-bottom: 15px;">Misi: Rangkai kabel paralel (220VAC) untuk <strong><span id="sim2_load1">Beban 1</span></strong> dan <strong><span id="sim2_load2">Beban 2</span></strong>. Klik terminal berurutan!</p>
                     <div class="grid-4-col wiring-box" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                         <div class="wire-node" id="wn_1" onclick="checkNode(1)">1. Fasa 220V (L)</div>
                         <div class="wire-node" id="wn_2" onclick="checkNode(2)">2. COM Output PLC</div>
@@ -312,52 +339,128 @@
                         <div class="wire-node" id="wn_7" onclick="checkNode(7)">7. A2 (Gabungan Beban)</div>
                         <div class="wire-node" id="wn_8" onclick="checkNode(8)">8. Netral 220V (N)</div>
                     </div>
-                    <div class="connection-log" id="connLog">
-                        >> Sistem Siap. Silakan klik node "1. Fasa 220V (L)" untuk memulai tarikan kabel...
-                    </div>
-                    <button onclick="resetWiring()" style="margin-top:10px; background:#dc2626; color:white; border:none; padding:5px 15px; border-radius:4px; cursor:pointer;">Reset Wiring Simulator</button>
+                    <div class="connection-log" id="connLog">>> Sistem Siap. Silakan klik node "1. Fasa 220V (L)" untuk memulai tarikan kabel...</div>
+                    <button onclick="resetWiring()" style="margin-top:10px; background:#dc2626; color:white; border:none; padding:5px 15px; border-radius:4px; cursor:pointer;">Reset Wiring</button>
                 </div>
 
                 <div class="case-study-prompt">
-                    <strong>Studi Kasus 2: Multi-Aktuator</strong><br>
-                    Mesin Anda dirancang untuk menggerakkan dua komponen aktuator secara simultan/bergantian: <strong><span class="dynamic-var" id="cs2_beban1">[?]</span></strong> dan <strong><span class="dynamic-var" id="cs2_beban2">[?]</span></strong>. <br><br>
-                    Tugas Anda: Jabarkan alur penarikan kabel dari MCB 220VAC, melewati modul Output PLC, hingga menyalakan kedua beban tersebut dan kembali ke saluran Netral.
+                    <strong>Studi Kasus 3: Multi-Aktuator Listrik Arus Kuat</strong><br>
+                    Tugas Anda: Tuliskan secara deskriptif urutan pengkabelan untuk menyalakan <strong><span class="dynamic-var" id="cs2_beban1">[?]</span></strong> dan <strong><span class="dynamic-var" id="cs2_beban2">[?]</span></strong>. Juga petakan alamat output aktual yang ada di panel fisik Anda!
+                </div>
+                <textarea class="form-control" placeholder="Jabarkan urutan kabel (Fasa -> COM -> dst) dan isikan tabel pemetaan alamat PLC Output..." required></textarea>
+                
+                <label class="upload-card" style="margin-top:20px;">
+                    <input type="file" class="file-input no-print" accept="image/*" onchange="previewImage(event, 'img3', 'ph3')">
+                    <img id="img3" class="img-preview" src="" alt="Preview Output">
+                    <div id="ph3" class="upload-placeholder">
+                        <div class="upload-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div>
+                        <div class="upload-title">Dokumentasi Terminasi Beban (Output)</div>
+                        <div class="upload-desc">Foto area sekrup Kontaktor Magnet pada panel fisik</div>
+                        <div class="btn-upload">Pilih Foto Kamera</div>
+                    </div>
+                </label>
+            </div>
+
+            <!-- MODUL 4: MCB CALCULATION -->
+            <div class="module-section">
+                <h2 class="module-title"><span class="module-number">4</span>Analisis Beban Arus & Proteksi MCB (Hukum Ohm)</h2>
+                <div class="case-study-prompt">
+                    <strong>Studi Kasus 4: Hitung Arus Mesin & Tentukan Kapasitas MCB Panel</strong><br>
+                    Total daya dari Proyek Kelompok Anda adalah gabungan dari: PLC <strong><span id="cs3_P_plc">[?]</span>W</strong>, Sensor <strong><span id="cs3_P_sensor">[?]</span>W</strong>, Beban1 <strong><span id="cs3_P_load1">[?]</span>W</strong>, dan Beban2 <strong><span id="cs3_P_load2">[?]</span>W</strong>.<br>
+                    Tegangan suplai Jala-jala <strong>\( V = 220\ Volt \)</strong> AC.<br><br>
+                    Gunakan Rumus \( I = \frac{P_{total}}{V} \) untuk mencari Kuat Arus, lalu tentukan rating MCB aman di pasaran (2A, 4A, 6A, 10A, 16A)!
+                </div>
+                <textarea class="form-control" placeholder="Tuliskan perhitungan matematika lengkap P_total, hasil I (Ampere), dan keputusan MCB..." required></textarea>
+            </div>
+
+            <!-- MODUL 5: COMMISSIONING FISIK -->
+            <div class="module-section">
+                <h2 class="module-title"><span class="module-number">5</span>Commissioning Panel Aktual (Power ON)</h2>
+                <p class="instruction-text">Tahap kritis! Pastikan seluruh ceklis terpenuhi sebelum menaikkan MCB di panel nyata.</p>
+                
+                <div style="margin-bottom: 25px;">
+                    <ul class="check-list">
+                        <li class="check-item"><input type="checkbox" required><div class="check-item-text"><strong>Uji Visual Internal Panel:</strong> Tidak ada kabel kendor, terminasi serabut tidak mencuat keluar sekun.</div></li>
+                        <li class="check-item"><input type="checkbox" required><div class="check-item-text"><strong>Multimeter Short-Circuit Check:</strong> Terminal Fasa & Netral diukur Resistance = Infinity/O.L (Aman Korsleting).</div></li>
+                        <li class="check-item"><input type="checkbox" required><div class="check-item-text critical-check"><strong>Izin Instruktur (CRITICAL):</strong> Guru pembimbing telah memeriksa dan memberi izin lisan untuk Power ON.</div></li>
+                    </ul>
                 </div>
 
-                <div class="form-group">
-                    <label>Penjabaran Logika Analisis Modul 2:</label>
-                    <textarea class="form-control" placeholder="Tuliskan secara runut (step-by-step) penarikan kabel dari Fasa 220V hingga Netral untuk kedua beban paralel tersebut..." required></textarea>
+                <label class="upload-card">
+                    <input type="file" class="file-input no-print" accept="image/*" onchange="previewImage(event, 'img4', 'ph4')">
+                    <img id="img4" class="img-preview" src="" alt="Preview Live">
+                    <div id="ph4" class="upload-placeholder">
+                        <div class="upload-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div>
+                        <div class="upload-title">Dokumentasi Panel Menyala (LIVE)</div>
+                        <div class="upload-desc">Foto panel dengan LED Indikator POWER PLC menyala</div>
+                        <div class="btn-upload">Pilih Foto Kamera</div>
+                    </div>
+                </label>
+            </div>
+
+            <!-- MODUL 6: EVALUASI TEORI -->
+            <div class="module-section">
+                <h2 class="module-title"><span class="module-number">6</span>Evaluasi Teori Komprehensif</h2>
+                
+                <div class="theory-item">
+                    <span class="theory-question">1. Apa fungsi esensial dari PLC di dalam panel kendali otomasi industri jika dibandingkan dengan sistem Relay Logic tradisional?</span>
+                    <textarea class="form-control" required></textarea>
+                </div>
+                <div class="theory-item">
+                    <span class="theory-question">2. Mengapa peraturan PUIL sangat mewajibkan penggunaan terminasi/sekun kabel (Y/O/Pin) dibandingkan melilit serabut tembaga secara langsung ke sekrup?</span>
+                    <textarea class="form-control" required></textarea>
+                </div>
+                <div class="theory-item">
+                    <span class="theory-question">3. Deskripsikan secara teknis perbedaan sifat aliran arus antara kotak Normally Open (NO) dan Normally Closed (NC) sebelum dan sesudah ditekan!</span>
+                    <textarea class="form-control" required></textarea>
+                </div>
+                <div class="theory-item">
+                    <span class="theory-question">4. Pada infrastruktur I/O PLC, apa peran dan tujuan terminal "COM" (Common) diciptakan?</span>
+                    <textarea class="form-control" required></textarea>
+                </div>
+                <div class="theory-item">
+                    <span class="theory-question">5. Sebutkan standar tegangan koil yang paling umum digunakan untuk memicu Magnetic Contactor (di terminal A1 dan A2) pada mesin industri!</span>
+                    <textarea class="form-control" required></textarea>
+                </div>
+                <div class="theory-item">
+                    <span class="theory-question">6. Analisis Potensi Bahaya: Apa risiko ekstrem apabila teknisi lalai melakukan pengupasan isolasi kabel terlalu panjang, sehingga serabut tembaga mencuat bebas bersentuhan di area blok terminal?</span>
+                    <textarea class="form-control" required></textarea>
+                </div>
+                <div class="theory-item">
+                    <span class="theory-question">7. Sebuah lampu indikator AC 220V akan diaktifkan oleh output PLC tipe Relay. Uraikan rute pengkabelan yang benar dari sumber fasa (L), melewati PLC, masuk ke lampu, hingga titik Netral (N)!</span>
+                    <textarea class="form-control" required></textarea>
+                </div>
+                <div class="theory-item">
+                    <span class="theory-question">8. Identifikasi minimal 3 SOP mutlak K3 Kelistrikan yang TIDAK BOLEH DITAWAR saat Anda mengecek instalasi jalur output bertegangan bahaya 220VAC!</span>
+                    <textarea class="form-control" required></textarea>
+                </div>
+                <div class="theory-item">
+                    <span class="theory-question">9. Uraikan teknik selangkah demi selangkah pengujian Continuity menggunakan Multimeter untuk memastikan tidak ada kabel yang putus dari Push Button hingga ke sekrup Input PLC!</span>
+                    <textarea class="form-control" required></textarea>
+                </div>
+                <div class="theory-item" style="margin-bottom:0; border-bottom:none; padding-bottom:0;">
+                    <span class="theory-question">10. Apa implikasi teknis paling vital terhadap pemasangan polaritas tegangan pada pin terminal COM jika buku manual PLC menyatakan "Sinking Input Type" dibandingkan "Sourcing"?</span>
+                    <textarea class="form-control" required></textarea>
                 </div>
             </div>
 
-            <!-- MODUL 3: MCB CALCULATION -->
+            <!-- MODUL 7: TROUBLESHOOTING FISIK -->
             <div class="module-section">
-                <h2 class="module-title">
-                    <span class="module-number">3</span>
-                    Analisis Beban Arus & Penentuan MCB (Safety Engineering)
-                </h2>
-                
-                <p class="instruction-text">
-                    Sebuah panel kontrol yang baik harus memiliki perlindungan (Proteksi) daya yang presisi. Kapasitas MCB (Miniature Circuit Breaker) tidak boleh terlalu besar (bisa gagal trip saat korslet) dan tidak boleh terlalu kecil (sering trip saat operasi normal).
-                </p>
-
-                <div class="case-study-prompt">
-                    <strong>Studi Kasus 3: Perancangan Kelistrikan Mesin</strong><br>
-                    Berdasarkan spesifikasi kelistrikan Proyek Mesin Anda, diketahui rincian konsumsi daya sebagai berikut:<br>
-                    - Konsumsi Daya CPU PLC: <strong><span id="cs3_P_plc">[?]</span> Watt</strong><br>
-                    - Konsumsi Daya Total Sensor: <strong><span id="cs3_P_sensor">[?]</span> Watt</strong><br>
-                    - Konsumsi Beban Aktuator 1: <strong><span id="cs3_P_load1">[?]</span> Watt</strong><br>
-                    - Konsumsi Beban Aktuator 2/Motor: <strong><span id="cs3_P_load2">[?]</span> Watt</strong><br><br>
-                    Semua komponen disuplai (secara langsung maupun melalui Power Supply) dari jaringan listrik jala-jala <strong>\( V = 220\ Volt \)</strong> AC.<br><br>
-                    Tugas Anda:<br>
-                    a) Hitung Total Daya Keseluruhan Panel ( \( P_{total} \) ).<br>
-                    b) Gunakan Hukum Ohm \( I = \frac{P_{total}}{V} \) untuk mencari Total Arus Beban Penuh.<br>
-                    c) Tentukan Rating MCB (Ampere) yang harus dibeli di pasaran (Pilihan pasaran: 2A, 4A, 6A, 10A, 16A) yang mengakomodir beban tersebut secara aman.
-                </div>
-
-                <div class="form-group">
-                    <label>Penjabaran Perhitungan Matematis (Modul 3):</label>
-                    <textarea class="form-control" placeholder="Tuliskan proses perhitungan P total, pencarian kuat arus (Ampere), dan keputusan spesifikasi MCB Anda..." required></textarea>
+                <h2 class="module-title"><span class="module-number">7</span>Laporan Analisis Gangguan (Troubleshooting)</h2>
+                <div style="background-color: #fff1f2; padding: 25px; border-radius: 8px; border: 1px solid #fda4af;">
+                    <p style="font-size: 13px; color: #9f1239; margin-bottom: 15px;">Tuliskan masalah nyata (kendala wiring, baut dol, kabel terkelupas, MCB Trip, alat ukur rusak, atau program error) yang kelompok Anda hadapi, dan langkah mengatasinya!</p>
+                    <textarea class="form-control" placeholder="Contoh: Baut terminal koil A2 loss sehingga kontaktor tidak menyala. Solusi: Mengganti kontaktor dari panel cadangan..." style="border-color: #fda4af;"></textarea>
+                    
+                    <label class="upload-card" style="margin-top:20px; border-color: #fda4af; background:#fff;">
+                        <input type="file" class="file-input no-print" accept="image/*" onchange="previewImage(event, 'img5', 'ph5')">
+                        <img id="img5" class="img-preview" src="" alt="Preview Trouble">
+                        <div id="ph5" class="upload-placeholder">
+                            <div class="upload-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#be123c" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div>
+                            <div class="upload-title" style="color:#be123c;">Bukti Titik Gangguan (Opsional)</div>
+                            <div class="upload-desc">Foto bagian yang bermasalah/rusak pada panel</div>
+                            <div class="btn-upload" style="color:#be123c; border-color:#fda4af;">Pilih Foto Kamera</div>
+                        </div>
+                    </label>
                 </div>
             </div>
 
@@ -367,228 +470,148 @@
     <script>
         // --- DATA VARIASI KELOMPOK (Proyek Mesin Industri) ---
         const groupData = {
-            "1": { 
-                mesin: "Conveyor System", 
-                sensor: "Proximity Sensor NPN (Active Low)", sensorPolarity: "NPN",
-                beban1: "Kontaktor K1 (Motor Conveyor)", beban2: "Relay R1 (Alarm Buzzer)",
-                p_plc: 45, p_sensor: 12, p_load1: 15, p_load2: 5 
-            },
-            "2": { 
-                mesin: "Stamping Press", 
-                sensor: "Optik Sensor PNP (Active High)", sensorPolarity: "PNP",
-                beban1: "Solenoid Valve Y1 (Turun)", beban2: "Solenoid Valve Y2 (Naik)",
-                p_plc: 50, p_sensor: 15, p_load1: 30, p_load2: 30 
-            },
-            "3": { 
-                mesin: "Mixing Tank Liquid", 
-                sensor: "Flow Switch NPN", sensorPolarity: "NPN",
-                beban1: "Kontaktor K1 (Heater Tank)", beban2: "Kontaktor K2 (Pump Motor)",
-                p_plc: 45, p_sensor: 10, p_load1: 1000, p_load2: 500 
-            },
-            "4": { 
-                mesin: "Packaging Automasi", 
-                sensor: "Limit Switch NC", sensorPolarity: "PNP", // treated as PNP for sourcing logic
-                beban1: "Kontaktor K1 (Sealer)", beban2: "Lampu Indikator L1",
-                p_plc: 50, p_sensor: 0, p_load1: 15, p_load2: 100 
-            },
-            "5": { 
-                mesin: "Robot Sorting Arm", 
-                sensor: "Vision Camera NPN", sensorPolarity: "NPN",
-                beban1: "Servo Controller Axis-X", beban2: "Servo Controller Axis-Y",
-                p_plc: 60, p_sensor: 25, p_load1: 400, p_load2: 400 
-            },
-            "6": { 
-                mesin: "Filling Station Botol", 
-                sensor: "Proximity Capacitive PNP", sensorPolarity: "PNP",
-                beban1: "Valve Relays (V1 & V2)", beban2: "Kontaktor Pump (P1)",
-                p_plc: 45, p_sensor: 8, p_load1: 10, p_load2: 250 
-            }
+            "1": { mesin: "Conveyor System", sensor: "Proximity Sensor NPN (Active Low)", sensorPolarity: "NPN", beban1: "Kontaktor K1 (Motor Conveyor)", beban2: "Relay R1 (Alarm Buzzer)", p_plc: 45, p_sensor: 12, p_load1: 15, p_load2: 5 },
+            "2": { mesin: "Stamping Press", sensor: "Optik Sensor PNP (Active High)", sensorPolarity: "PNP", beban1: "Solenoid Valve Y1 (Turun)", beban2: "Solenoid Valve Y2 (Naik)", p_plc: 50, p_sensor: 15, p_load1: 30, p_load2: 30 },
+            "3": { mesin: "Mixing Tank Liquid", sensor: "Flow Switch NPN", sensorPolarity: "NPN", beban1: "Kontaktor K1 (Heater)", beban2: "Kontaktor K2 (Pump)", p_plc: 45, p_sensor: 10, p_load1: 1000, p_load2: 500 },
+            "4": { mesin: "Packaging Automasi", sensor: "Limit Switch NC", sensorPolarity: "PNP", beban1: "Kontaktor K1 (Sealer)", beban2: "Lampu Indikator L1", p_plc: 50, p_sensor: 0, p_load1: 15, p_load2: 100 },
+            "5": { mesin: "Robot Sorting Arm", sensor: "Vision Camera NPN", sensorPolarity: "NPN", beban1: "Servo Controller Axis-X", beban2: "Servo Controller Axis-Y", p_plc: 60, p_sensor: 25, p_load1: 400, p_load2: 400 },
+            "6": { mesin: "Filling Station Botol", sensor: "Proximity Capacitive PNP", sensorPolarity: "PNP", beban1: "Valve Relays (V1/V2)", beban2: "Kontaktor Pump (P1)", p_plc: 45, p_sensor: 8, p_load1: 10, p_load2: 250 }
         };
 
-        let currentSensorPolarity = ""; // NPN or PNP
+        let currentSensorPolarity = ""; 
 
         function updateCaseStudies() {
             const klp = document.getElementById('kelompokSelect').value;
             if (!klp) return;
-
             const d = groupData[klp];
-
-            // Update UI Texts
             document.getElementById('sim1_sensor_type').innerText = d.sensor;
             currentSensorPolarity = d.sensorPolarity;
-
             document.getElementById('cs1_mesin').innerText = d.mesin;
             document.getElementById('cs1_sensor').innerText = d.sensor;
-
             document.getElementById('sim2_L1').innerText = d.beban1;
             document.getElementById('sim2_L2').innerText = d.beban2;
             document.getElementById('sim2_load1').innerText = d.beban1;
             document.getElementById('sim2_load2').innerText = d.beban2;
             document.getElementById('cs2_beban1').innerText = d.beban1;
             document.getElementById('cs2_beban2').innerText = d.beban2;
-
             document.getElementById('cs3_P_plc').innerText = d.p_plc;
             document.getElementById('cs3_P_sensor').innerText = d.p_sensor;
             document.getElementById('cs3_P_load1').innerText = d.p_load1;
             document.getElementById('cs3_P_load2').innerText = d.p_load2;
-
             resetWiring();
         }
 
-        // --- 1. SIMULATOR MULTIMETER (NPN/PNP Logic) ---
-        let comVoltage = 0; // 0 or 24
-        let probeHitam = false;
-        let probeMerah = false;
-
+        // --- 1. SIMULATOR MULTIMETER ---
+        let comVoltage = 0, probeHitam = false, probeMerah = false;
         function setCom(val) {
             comVoltage = val;
-            if(val === 0) {
-                document.getElementById('btnCom0V').classList.add('selected');
-                document.getElementById('btnCom24V').classList.remove('selected');
-            } else {
-                document.getElementById('btnCom24V').classList.add('selected');
-                document.getElementById('btnCom0V').classList.remove('selected');
-            }
+            if(val === 0) { document.getElementById('btnCom0V').classList.add('selected'); document.getElementById('btnCom24V').classList.remove('selected'); } 
+            else { document.getElementById('btnCom24V').classList.add('selected'); document.getElementById('btnCom0V').classList.remove('selected'); }
             updateMultimeter(false);
         }
-
         function toggleProbe(warna) {
-            if (warna === 'hitam') {
-                probeHitam = !probeHitam;
-                document.getElementById('btnProbeHitam').classList.toggle('active');
-            } else {
-                probeMerah = !probeMerah;
-                document.getElementById('btnProbeMerah').classList.toggle('active');
-            }
+            if (warna === 'hitam') { probeHitam = !probeHitam; document.getElementById('btnProbeHitam').classList.toggle('active'); } 
+            else { probeMerah = !probeMerah; document.getElementById('btnProbeMerah').classList.toggle('active'); }
             updateMultimeter(false);
         }
-
-        function pressPb(isPressed) {
-            updateMultimeter(isPressed);
-        }
-
+        function pressPb(isPressed) { updateMultimeter(isPressed); }
         function updateMultimeter(isPbPressed) {
             const display = document.getElementById('mmDisplay');
-            if(!currentSensorPolarity) {
-                display.innerText = "PILIH KELP.";
-                return;
-            }
-
+            if(!currentSensorPolarity) { display.innerText = "PILIH KELP."; return; }
             if (probeHitam && probeMerah) {
                 if (isPbPressed) {
-                    // Logic check: NPN needs 24V COM, PNP needs 0V COM
-                    if ((currentSensorPolarity === "NPN" && comVoltage === 24) || 
-                        (currentSensorPolarity === "PNP" && comVoltage === 0)) {
-                        display.innerText = "00.0 Ω";
-                        display.style.color = "#ef4444"; 
-                        display.style.background = "#d9f99d";
+                    if ((currentSensorPolarity === "NPN" && comVoltage === 24) || (currentSensorPolarity === "PNP" && comVoltage === 0)) {
+                        display.innerText = "00.0 Ω"; display.style.color = "#ef4444"; display.style.background = "#d9f99d";
                     } else {
-                        display.innerText = "ERR. POL"; // Error Polarity
-                        display.style.color = "#dc2626";
-                        display.style.background = "#fecaca";
+                        display.innerText = "ERR. POL"; display.style.color = "#dc2626"; display.style.background = "#fecaca";
                     }
-                } else {
-                    display.innerText = "O.L";
-                    display.style.color = "#064e3b";
-                    display.style.background = "#a3e635";
-                }
-            } else {
-                display.innerText = "O.L";
-                display.style.color = "#064e3b";
-                display.style.background = "#a3e635";
-            }
+                } else { display.innerText = "O.L"; display.style.color = "#064e3b"; display.style.background = "#a3e635"; }
+            } else { display.innerText = "O.L"; display.style.color = "#064e3b"; display.style.background = "#a3e635"; }
         }
 
-        // --- 2. SIMULATOR WIRING TRACE (Multi-Load) ---
+        // --- 2. SIMULATOR WIRING TRACE ---
         let expectedNodeNum = 1;
-
         function checkNode(nodeNum) {
             const log = document.getElementById('connLog');
             const el = document.getElementById('wn_' + nodeNum);
-
             if (el.classList.contains('connected')) return; 
-
             if (nodeNum === expectedNodeNum) {
                 el.classList.add('connected');
-                
-                if (nodeNum === 8) {
-                    log.innerHTML += `<br>>> [<span style="color:#fff">Sistem Berhasil Aktif</span>] Pengawatan Fasa hingga Netral Sempurna. Kedua aktuator beroperasi.`;
-                } else {
-                    log.innerHTML += `<br>>> Terminal ${nodeNum} tersambung... Lanjutkan ke Node ${nodeNum + 1}.`;
-                    expectedNodeNum++;
-                }
+                if (nodeNum === 8) log.innerHTML += `<br>>> [<span style="color:#fff">Sistem Berhasil Aktif</span>] Pengawatan Fasa hingga Netral Sempurna. Aktuator beroperasi.`;
+                else { log.innerHTML += `<br>>> Terminal ${nodeNum} tersambung... Lanjutkan ke Node ${nodeNum + 1}.`; expectedNodeNum++; }
             } else {
-                log.innerHTML += `<br>>> [<span style="color:#ef4444">KORSLETING / ERROR</span>] Salah alur pengawatan! Seharusnya menuju Terminal ${expectedNodeNum}. Mulai dari awal...`;
+                log.innerHTML += `<br>>> [<span style="color:#ef4444">KORSLETING / ERROR</span>] Salah alur pengawatan! Seharusnya Terminal ${expectedNodeNum}. Mulai ulang...`;
                 setTimeout(() => resetWiring(), 2500);
             }
             log.scrollTop = log.scrollHeight;
         }
-
         function resetWiring() {
             expectedNodeNum = 1;
-            for(let i=1; i<=8; i++) {
-                document.getElementById('wn_'+i).classList.remove('connected');
-            }
+            for(let i=1; i<=8; i++) document.getElementById('wn_'+i).classList.remove('connected');
             document.getElementById('connLog').innerHTML = '>> Sistem Siap. Silakan klik node "1. Fasa 220V (L)" untuk memulai tarikan kabel...';
         }
 
-        // --- 3. EXPORT PDF ---
+        // --- 3. IMAGE UPLOAD PREVIEW ---
+        function previewImage(event, imgId, phId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById(imgId);
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    document.getElementById(phId).style.display = 'none';
+                    event.target.parentElement.style.padding = '5px';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // --- 4. EXPORT PDF ---
         function validateAndPrint() {
             const inputs = document.querySelectorAll('input[required], select[required], textarea[required]');
             let isValid = true;
             inputs.forEach(input => {
-                if (!input.value.trim()) {
+                if (input.type === 'checkbox') {
+                    if (!input.checked) isValid = false;
+                } else if (!input.value.trim()) {
                     isValid = false;
-                    input.style.borderColor = '#ef4444';
-                    input.style.backgroundColor = '#fef2f2';
+                    input.style.borderColor = '#ef4444'; input.style.backgroundColor = '#fef2f2';
                 } else {
-                    input.style.borderColor = '#cbd5e1';
-                    input.style.backgroundColor = '#ffffff';
+                    input.style.borderColor = '#cbd5e1'; input.style.backgroundColor = 'transparent';
                 }
             });
 
             if (!isValid) {
-                alert("Validasi Gagal: Mohon lengkapi form identitas dan seluruh kotak analisis HOTS sebelum mengunduh PDF!");
+                alert("Validasi Gagal: Harap lengkapi semua isian teks, identitas, dan Checklist Commissioning yang berstatus Wajib (Required)!");
                 return;
             }
 
             const btn = document.querySelector('.btn-print');
             const originalText = btn.innerHTML;
-            btn.innerHTML = 'Memproses PDF...';
+            btn.innerHTML = 'Memproses Laporan Lengkap PDF...';
             btn.disabled = true;
 
             const element = document.querySelector('.wrapper');
-            
             const noPrintElements = element.querySelectorAll('.no-print');
             const originalDisplays = [];
-            noPrintElements.forEach((el, index) => {
-                originalDisplays[index] = el.style.display;
-                el.style.display = 'none';
-            });
+            noPrintElements.forEach((el, index) => { originalDisplays[index] = el.style.display; el.style.display = 'none'; });
+            
+            element.style.borderRadius = "0"; element.style.boxShadow = "none";
 
-            element.style.borderRadius = "0";
-            element.style.boxShadow = "none";
-
-            const nama = document.querySelector('input[type="text"]').value.replace(/[^a-zA-Z0-9]/g, '_');
-            const klp = document.getElementById('kelompokSelect').value;
-
+            const klp = document.getElementById('kelompokSelect').value || 'X';
             const opt = {
                 margin:       0.3,
-                filename:     `Laporan_HOTS_PLC_Bab1_Kelompok${klp}_${nama}.pdf`,
-                image:        { type: 'jpeg', quality: 0.98 },
+                filename:     `Laporan_AllInOne_PLC_Kelompok_${klp}.pdf`,
+                image:        { type: 'jpeg', quality: 0.95 },
                 html2canvas:  { scale: 2, useCORS: true },
                 jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
             };
 
             html2pdf().set(opt).from(element).save().then(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                
-                element.style.borderRadius = "12px";
-                element.style.boxShadow = "0 15px 35px rgba(0, 0, 0, 0.1)";
-                noPrintElements.forEach((el, index) => {
-                    el.style.display = originalDisplays[index];
-                });
+                btn.innerHTML = originalText; btn.disabled = false;
+                element.style.borderRadius = "12px"; element.style.boxShadow = "0 15px 35px rgba(0, 0, 0, 0.1)";
+                noPrintElements.forEach((el, index) => { el.style.display = originalDisplays[index]; });
             });
         }
     </script>
