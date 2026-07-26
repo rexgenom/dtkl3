@@ -103,6 +103,9 @@
             padding: 15px; margin-top: 15px; margin-bottom: 15px; font-weight: 500; font-size: 15px; color: #991b1b;
         }
 
+        /* Var highlighting */
+        .dynamic-var { font-weight: bold; color: var(--primary-blue); background: #e0f2fe; padding: 2px 6px; border-radius: 4px; }
+
         /* ==========================================================
            5. INTERACTIVE TOOLS
            ========================================================== */
@@ -152,6 +155,7 @@
             input.form-control, select.form-control { border: none; border-bottom: 1px solid #000; border-radius: 0; padding: 5px 0;}
             .module-section { page-break-inside: avoid; }
             .print-toolbar { display: none !important; }
+            .dynamic-var { border: 1px solid #000; background: none !important; }
         }
     </style>
 </head>
@@ -192,8 +196,8 @@
                     </div>
                     <div class="form-group">
                         <label>Kelompok Kerja</label>
-                        <select class="form-control" id="kelompokSelect" required>
-                            <option value="">-- Pilih Kelompok --</option>
+                        <select class="form-control" id="kelompokSelect" required onchange="updateCaseStudies()">
+                            <option value="">-- Pilih Kelompok Terlebih Dahulu --</option>
                             <option value="A">Kelompok A</option>
                             <option value="B">Kelompok B</option>
                             <option value="C">Kelompok C</option>
@@ -226,9 +230,9 @@
                         <div class="form-group">
                             <label>Bahan Kawat</label>
                             <select id="condMat" class="form-control" onchange="calcCond()">
-                                <option value="1.68e-8,0.0039">Tembaga (Cu)</option>
-                                <option value="2.82e-8,0.0039">Aluminium (Al)</option>
-                                <option value="1.59e-8,0.0038">Perak (Ag)</option>
+                                <option value="1.68e-8,0.0039,Tembaga">Tembaga (Cu)</option>
+                                <option value="2.82e-8,0.0039,Aluminium">Aluminium (Al)</option>
+                                <option value="1.59e-8,0.0038,Perak">Perak (Ag)</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -249,11 +253,11 @@
 
                 <div class="case-study-prompt">
                     <strong>Studi Kasus 1:</strong><br>
-                    Sebuah kabel transmisi tembaga (ρ = 1.68 × 10⁻⁸ Ω·m, α = 0.0039 /°C) sepanjang 5 km memiliki luas penampang 50 mm². Suhu lingkungan naik dari suhu referensi (20°C) menjadi sangat terik (55°C). 
+                    Sebuah kabel transmisi <span class="dynamic-var" id="cs1_mat">[PILIH KELOMPOK]</span> (<span id="cs1_rho">[?]</span> Ω·m, α = <span id="cs1_alpha">[?]</span> /°C) sepanjang <span class="dynamic-var" id="cs1_L">[?]</span> km memiliki luas penampang <span class="dynamic-var" id="cs1_A">[?]</span> mm². Suhu lingkungan naik dari suhu referensi (20°C) menjadi <span class="dynamic-var" id="cs1_T">[?]</span>°C. 
                     <br><br>
                     a) Hitung resistansi awal pada suhu 20°C (\( R_{20} \)).<br>
-                    b) Hitung resistansi akhir pada suhu 55°C (\( R_t \)).<br>
-                    c) Berapa Watt daya yang terbuang menjadi panas (Power Losses) pada kabel tersebut jika arus yang dialirkan secara konstan sebesar 200 Ampere pada suhu 55°C?
+                    b) Hitung resistansi akhir pada suhu <span id="cs1_T2">[?]</span>°C (\( R_t \)).<br>
+                    c) Berapa Watt daya yang terbuang menjadi panas (Power Losses) pada kabel tersebut jika arus yang dialirkan secara konstan sebesar <span class="dynamic-var" id="cs1_I">[?]</span> Ampere pada suhu tersebut?
                 </div>
 
                 <div class="form-group">
@@ -283,10 +287,9 @@
                         <div class="form-group">
                             <label>Bahan Isolator</label>
                             <select id="isoMat" class="form-control" onchange="calcIso()">
-                                <option value="22">Polyethylene (22 kV/mm)</option>
-                                <option value="25">Karet (25 kV/mm)</option>
-                                <option value="14">Kaca (14 kV/mm)</option>
-                                <option value="3">Udara (3 kV/mm)</option>
+                                <option value="22,Polyethylene">Polyethylene (22 kV/mm)</option>
+                                <option value="25,Karet">Karet (25 kV/mm)</option>
+                                <option value="14,Kaca">Kaca (14 kV/mm)</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -303,10 +306,10 @@
 
                 <div class="case-study-prompt">
                     <strong>Studi Kasus 2:</strong><br>
-                    Kabel listrik bawah tanah bertegangan 150 kV menggunakan material isolator Polyethylene (Kekuatan Dielektrik = 22 kV/mm). Regulasi (PUIL) mensyaratkan <em>Faktor Keamanan (Safety Margin)</em> minimal 2.5 kali dari tegangan operasinya.<br><br>
+                    Kabel listrik bawah tanah bertegangan transmisi <span class="dynamic-var" id="cs2_Vop">[PILIH KELOMPOK]</span> kV menggunakan material isolator <span class="dynamic-var" id="cs2_mat">[?]</span> (Kekuatan Dielektrik = <span id="cs2_dielectric">[?]</span> kV/mm). Regulasi mensyaratkan <em>Faktor Keamanan (Safety Margin)</em> minimal <span class="dynamic-var" id="cs2_margin">[?]</span> kali dari tegangan operasinya.<br><br>
                     a) Hitung Tegangan Tembus Desain minimum yang wajib mampu ditahan oleh isolator.<br>
-                    b) Berapa milimeter (mm) ketebalan minimum isolator Polyethylene yang harus dibalutkan ke tembaga?<br>
-                    c) Jika saat pemasangan terjadi cacat sobekan sehingga ketebalan berkurang 20%, berapakah sisa Safety Margin kabel tersebut? Apakah masih layak pakai (Aman)?
+                    b) Berapa milimeter (mm) ketebalan minimum isolator yang harus dibalutkan ke tembaga?<br>
+                    c) Jika saat pemasangan terjadi cacat sobekan sehingga ketebalan berkurang <span class="dynamic-var" id="cs2_cacat">[?]</span>%, berapakah sisa Safety Margin kabel tersebut? Apakah masih memenuhi regulasi?
                 </div>
 
                 <div class="form-group">
@@ -351,10 +354,10 @@
 
                 <div class="case-study-prompt">
                     <strong>Studi Kasus 3:</strong><br>
-                    Anda merancang sensor panas pemutus arus pada oven pengering kumparan motor listrik. Anda memakai Thermistor NTC (Semikonduktor). Spesifikasi pabrik: Resistansi awal <strong>R0 = 10,000 Ω</strong> pada suhu kamar <strong>T0 = 25°C</strong>. Nilai Konstanta Bahan Semikonduktor <strong>B = 3950 K</strong>.<br><br>
+                    Anda merancang sensor termal pemutus arus. Anda memakai Thermistor NTC (Semikonduktor). Spesifikasi pabrik: Resistansi awal <strong>R0 = <span class="dynamic-var" id="cs3_R0">[PILIH KELOMPOK]</span> Ω</strong> pada suhu kamar <strong>T0 = 25°C</strong>. Nilai Konstanta Bahan <strong>B = <span class="dynamic-var" id="cs3_B">[?]</span> K</strong>.<br><br>
                     a) Ubah satuan suhu Celsius menjadi mutlak Kelvin (K).<br>
-                    b) Hitung resistansi sensor (\( R_t \)) saat suhu oven mendidih mencapai <strong>100°C</strong> menggunakan rumus logaritma alami / eksponensial: <strong>\( R_t = R_0 \cdot e^{B \left(\frac{1}{T} - \frac{1}{T_0}\right)} \)</strong>.<br>
-                    c) Jika saat itu sensor dialiri tegangan sebesar 5V DC, hitung lonjakan arus listrik (dalam miliAmpere) yang dikirim masuk ke mikrokontroler!
+                    b) Hitung resistansi sensor (\( R_t \)) saat mesin mendidih mencapai suhu <strong><span class="dynamic-var" id="cs3_T">[?]</span>°C</strong> menggunakan rumus eksponensial: <strong>\( R_t = R_0 \cdot e^{B \left(\frac{1}{T} - \frac{1}{T_0}\right)} \)</strong>.<br>
+                    c) Jika saat itu sensor dialiri tegangan deteksi sebesar <span class="dynamic-var" id="cs3_V">[?]</span>V DC, hitung lonjakan arus listrik (dalam miliAmpere) yang dikirim masuk ke mikrokontroler!
                 </div>
 
                 <div class="form-group">
@@ -367,6 +370,70 @@
     </div> <!-- End Wrapper -->
 
     <script>
+        // --- DATA VARIASI KELOMPOK ---
+        const groupData = {
+            A: {
+                c1_mat: "Tembaga", c1_rho: "1.68 × 10⁻⁸", c1_alpha: "0.0039", c1_L: "5", c1_A: "50", c1_T: "55", c1_I: "200",
+                c2_mat: "Polyethylene", c2_die: "22", c2_Vop: "150", c2_mar: "2.5", c2_cacat: "20",
+                c3_R0: "10,000", c3_B: "3950", c3_T: "100", c3_V: "5"
+            },
+            B: {
+                c1_mat: "Aluminium", c1_rho: "2.82 × 10⁻⁸", c1_alpha: "0.0039", c1_L: "8", c1_A: "35", c1_T: "60", c1_I: "150",
+                c2_mat: "Karet", c2_die: "25", c2_Vop: "70", c2_mar: "3.0", c2_cacat: "15",
+                c3_R0: "20,000", c3_B: "4100", c3_T: "150", c3_V: "12"
+            },
+            C: {
+                c1_mat: "Tembaga", c1_rho: "1.68 × 10⁻⁸", c1_alpha: "0.0039", c1_L: "10", c1_A: "70", c1_T: "50", c1_I: "300",
+                c2_mat: "Polyethylene", c2_die: "22", c2_Vop: "275", c2_mar: "2.0", c2_cacat: "25",
+                c3_R0: "50,000", c3_B: "3900", c3_T: "80", c3_V: "3.3"
+            },
+            D: {
+                c1_mat: "Aluminium", c1_rho: "2.82 × 10⁻⁸", c1_alpha: "0.0039", c1_L: "15", c1_A: "95", c1_T: "65", c1_I: "400",
+                c2_mat: "Kaca", c2_die: "14", c2_Vop: "20", c2_mar: "4.0", c2_cacat: "10",
+                c3_R0: "5,000", c3_B: "3800", c3_T: "120", c3_V: "24"
+            },
+            E: {
+                c1_mat: "Perak", c1_rho: "1.59 × 10⁻⁸", c1_alpha: "0.0038", c1_L: "12", c1_A: "50", c1_T: "45", c1_I: "250",
+                c2_mat: "Polyethylene", c2_die: "22", c2_Vop: "500", c2_mar: "2.5", c2_cacat: "30",
+                c3_R0: "15,000", c3_B: "4000", c3_T: "200", c3_V: "9"
+            },
+            F: {
+                c1_mat: "Tembaga", c1_rho: "1.68 × 10⁻⁸", c1_alpha: "0.0039", c1_L: "20", c1_A: "120", c1_T: "70", c1_I: "500",
+                c2_mat: "Karet", c2_die: "25", c2_Vop: "380", c2_mar: "2.2", c2_cacat: "18",
+                c3_R0: "100,000", c3_B: "4200", c3_T: "90", c3_V: "5"
+            }
+        };
+
+        function updateCaseStudies() {
+            const klp = document.getElementById('kelompokSelect').value;
+            if (!klp) return;
+
+            const d = groupData[klp];
+
+            // Modul 1
+            document.getElementById('cs1_mat').innerText = d.c1_mat;
+            document.getElementById('cs1_rho').innerText = d.c1_rho;
+            document.getElementById('cs1_alpha').innerText = d.c1_alpha;
+            document.getElementById('cs1_L').innerText = d.c1_L;
+            document.getElementById('cs1_A').innerText = d.c1_A;
+            document.getElementById('cs1_T').innerText = d.c1_T;
+            document.getElementById('cs1_T2').innerText = d.c1_T;
+            document.getElementById('cs1_I').innerText = d.c1_I;
+
+            // Modul 2
+            document.getElementById('cs2_Vop').innerText = d.c2_Vop;
+            document.getElementById('cs2_mat').innerText = d.c2_mat;
+            document.getElementById('cs2_dielectric').innerText = d.c2_die;
+            document.getElementById('cs2_margin').innerText = d.c2_mar;
+            document.getElementById('cs2_cacat').innerText = d.c2_cacat;
+
+            // Modul 3
+            document.getElementById('cs3_R0').innerText = d.c3_R0;
+            document.getElementById('cs3_B').innerText = d.c3_B;
+            document.getElementById('cs3_T').innerText = d.c3_T;
+            document.getElementById('cs3_V').innerText = d.c3_V;
+        }
+
         // --- 1. MODUL KONDUKTOR ---
         function calcCond() {
             const matVals = document.getElementById('condMat').value.split(',');
@@ -380,19 +447,19 @@
             const R20 = rho * L / A_m2;
             const Rt = R20 * (1 + alpha * (T - 20));
             
-            // Assume 200A load for power loss
             const Ploss = 200 * 200 * Rt;
             const Ploss_kW = Ploss / 1000;
 
             const html = `Resistansi Standar (20°C): ${R20.toFixed(4)} Ohm<br>` +
                          `Resistansi Panas (${T}°C): <span style="color:#fbbf24">${Rt.toFixed(4)} Ohm</span><br>` +
-                         `Daya Hilang (pada 200A): <span style="color:#ef4444">${Ploss_kW.toFixed(2)} kW (Kilowatt)</span>`;
+                         `Daya Hilang (Asumsi I=200A): <span style="color:#ef4444">${Ploss_kW.toFixed(2)} kW (Kilowatt)</span>`;
             document.getElementById('resCond').innerHTML = html;
         }
 
         // --- 2. MODUL ISOLATOR ---
         function calcIso() {
-            const strength = parseFloat(document.getElementById('isoMat').value);
+            const matVals = document.getElementById('isoMat').value.split(',');
+            const strength = parseFloat(matVals[0]);
             const thick = parseFloat(document.getElementById('isoThick').value) || 0;
             const vOp = parseFloat(document.getElementById('isoVolt').value) || 1;
 
@@ -450,7 +517,7 @@
             });
 
             if (!isValid) {
-                alert("Mohon lengkapi semua isian identitas dan soal studi kasus terlebih dahulu sebelum mencetak!");
+                alert("Mohon lengkapi semua isian identitas (termasuk memilih kelompok) dan soal studi kasus terlebih dahulu sebelum mencetak!");
                 return;
             }
 
