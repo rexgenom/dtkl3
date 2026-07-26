@@ -1,0 +1,225 @@
+<div style="font-family: Arial, Helvetica, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; padding: 10px; width: 100%; max-width: 100%; overflow-x: auto; box-sizing: border-box;">
+<div style="max-width: 100%; margin: 0 auto; background: #ffffff; border-top: 8px solid #1e3a8a; border-radius: 8px; border: 1px solid #cbd5e1;">
+        <!-- HEADER -->
+<div style="padding: 20px; border-bottom: 2px solid #f1f5f9; text-align: center;">
+            <h1 style="font-size: 24px; color: #1e3a8a; font-weight: bold; margin: 0 0 10px 0;">JOBSHEET PRAKTIK</h1>
+            <h2 style="font-size: 18px; color: #334155; margin: 0 0 12px 0;">BAB 1: Inspeksi Perangkat Keras dan Pengawatan PLC Standar Industri</h2>
+            <p style="color: #64748b; font-size: 14px; margin: 0; padding: 0 20px;">
+                Lembar instruksi ini berfokus pada pembiasaan teknis: identifikasi komponen pada panel box yang telah dirakit, membaca <i>wiring diagram</i> secara presisi, serta melakukan inspeksi jalur (Continuity Test). Pemahaman alur <i>wiring</i> (pengawatan) dan penerapan Keselamatan dan Kesehatan Kerja (K3) adalah poin krusial dalam standar industri.
+            </p>
+</div>
+<div style="padding: 15px;">
+            <!-- INFORMASI UMUM -->
+<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
+<div style="background-color: #1e3a8a; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
+                    <h2 style="font-size: 16px; font-weight: bold; margin: 0; display: inline-block;">Informasi Umum Praktik</h2>
+</div>
+<div style="padding: 15px;">
+                    <h3 style="color: #1e3a8a; margin: 0 0 8px 0; font-size: 14px;">A. Tujuan Pembelajaran Praktik</h3>
+                    <ul style="color: #334155; margin-top: 0; margin-bottom: 15px; font-size: 13px; padding-left: 20px;">
+                        <li style="margin-bottom: 4px;">Siswa mampu mengidentifikasi spesifikasi I/O, jenis tegangan, dan komponen fisik pada panel kelistrikan yang sudah terpasang dengan akurat.</li>
+                        <li style="margin-bottom: 4px;">Siswa dapat menguji kesinambungan sirkuit (Continuity Test) menggunakan Multimeter untuk memahami jalur kabel.</li>
+                        <li style="margin-bottom: 4px;">Siswa mampu membiasakan diri membaca diagram sirkuit kontrol PLC <i>(Wiring Diagram)</i> dan mencocokkannya dengan kondisi panel aktual.</li>
+                        <li style="margin-bottom: 4px;">Siswa memahami prinsip kerja komponen input dan output tanpa harus melakukan perakitan dari awal.</li>
+                    </ul>
+                    <h3 style="color: #1e3a8a; margin: 0 0 8px 0; font-size: 14px;">B. Teori Pendukung (Wajib Baca)</h3>
+                    <p style="color: #475569; margin-top: 0; margin-bottom: 15px; text-align: justify; font-size: 13px;">
+                        Pengawatan (wiring) perangkat keras merupakan fondasi paling krusial dalam sistem otomasi industri. Komponen input (sensor, push button, limit switch) bertugas memberikan sinyal informasi mentah. PLC kemudian memproses sinyal ini, dan komponen output (kontaktor, relay, solenoid, lampu) bertugas mengeksekusi instruksi akhir.
+                        <br><br>
+                        Pada praktik ini, panel kontrol telah dirakit sesuai standar industri. Tugas Anda adalah melakukan <i>reverse engineering</i> (menganalisis sistem yang sudah jadi) untuk memahami bagaimana jalur listrik ditarik dari sumber, melewati komponen kendali, masuk ke PLC, dan diteruskan ke aktuator, sambil tetap memperhatikan prosedur keamanan (safety).
+                    </p>
+                    <h3 style="color: #1e3a8a; margin: 0 0 12px 0; font-size: 14px;">C. Daftar Alat (Inventaris Kelompok)</h3>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="table-layout: fixed;">
+    <tr>
+        <td width="50%" style="padding-right: 5px; vertical-align: top;">
+<div style="background-color: #f8fafc; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px;">
+                                    <h4 style="margin: 0 0 8px 0; font-size: 13px; color: #1e3a8a;">Daftar Alat Kerja (Toolbox)</h4>
+                                    <ul style="margin: 0; color: #475569; font-size: 13px; padding-left: 20px;">
+                                        <li style="margin-bottom: 4px;">Multimeter (Digital/Analog)</li>
+                                        <li style="margin-bottom: 4px;">Test Pen</li>
+                                        <li style="margin-bottom: 4px;">Obeng Plus (+) dan Min (-) untuk mengecek kekencangan baut terminal</li>
+                                    </ul>
+</div>
+                            </td>
+        <td width="50%" style="padding-left: 5px; vertical-align: top;">
+<div style="background-color: #f8fafc; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px;">
+                                    <h4 style="margin: 0 0 8px 0; font-size: 13px; color: #1e3a8a;">Fasilitas Praktik</h4>
+                                    <ul style="margin: 0; color: #475569; font-size: 13px; padding-left: 20px;">
+                                        <li style="margin-bottom: 4px;">Panel Box Modul PLC Terangkai</li>
+                                        <li style="margin-bottom: 4px;">Buku Manual PLC / Datasheet</li>
+                                        <li style="margin-bottom: 4px;">Lembar Laporan Praktik Siswa (File Terpisah)</li>
+                                    </ul>
+</div>
+                            </td>
+    </tr>
+                    </table>
+</div>
+</div>
+            <!-- STANDAR K3 & KABEL -->
+<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
+<div style="background-color: #047857; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
+                    <h2 style="font-size: 16px; font-weight: bold; margin: 0; display: inline-block;">K3 Kelistrikan & Standar Warna Kabel</h2>
+</div>
+<div style="padding: 15px;">
+                    <p style="font-size: 13px; color: #334155; margin-top: 0; margin-bottom: 12px;">
+                        Standar warna kabel pada panel kontrol penting untuk diketahui agar inspeksi jalur aman dan mencegah korsleting.
+                    </p>
+<div style="overflow-x: auto; max-width: 100%; margin-bottom: 15px;">
+                        <table width="100%" cellpadding="6" cellspacing="0" style="border-collapse: collapse; min-width: 500px; font-size: 13px;">
+                            <thead>
+    <tr>
+<th style="border: 1px solid #cbd5e1; background-color: #f1f5f9; text-align: left; width: 25%;">Jalur Kelistrikan</th>
+<th style="border: 1px solid #cbd5e1; background-color: #f1f5f9; text-align: left; width: 35%;">Warna Kabel Disarankan</th>
+<th style="border: 1px solid #cbd5e1; background-color: #f1f5f9; text-align: left; width: 40%;">Keterangan Penggunaan</th>
+    </tr>
+                            </thead>
+                            <tbody>
+    <tr>
+        <td style="border: 1px solid #cbd5e1; font-weight: bold;">Tegangan Utama (Fasa / L)</td>
+        <td style="border: 1px solid #cbd5e1;">Hitam / Merah / Coklat</td>
+        <td style="border: 1px solid #cbd5e1;">Dari MCB menuju COM Output atau Beban AC.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #cbd5e1; font-weight: bold;">Netral (N)</td>
+        <td style="border: 1px solid #cbd5e1;">Biru</td>
+        <td style="border: 1px solid #cbd5e1;">Kembalian beban AC (Lampu, Kontaktor).</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #cbd5e1; font-weight: bold;">Ground / Arde (PE)</td>
+        <td style="border: 1px solid #cbd5e1;">Kuning setrip Hijau</td>
+        <td style="border: 1px solid #cbd5e1;">Menghubungkan badan panel logam ke bumi.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #cbd5e1; font-weight: bold;">DC Positif (+24VDC)</td>
+        <td style="border: 1px solid #cbd5e1;">Merah / Biru Tua</td>
+        <td style="border: 1px solid #cbd5e1;">Power suplai ke sensor / input modul.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #cbd5e1; font-weight: bold;">DC Negatif (0VDC)</td>
+        <td style="border: 1px solid #cbd5e1;">Hitam / Biru Muda</td>
+        <td style="border: 1px solid #cbd5e1;">Ground referensi untuk DC power suplai.</td>
+    </tr>
+                            </tbody>
+                        </table>
+</div>
+<div style="background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 10px; border-radius: 4px;">
+                        <h4 style="margin: 0 0 8px 0; font-size: 13px; color: #b45309;">Checklist Wajib Sebelum Membuka Panel:</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #78350f;">
+                            <li style="margin-bottom: 6px;">Pastikan sumber utama kelistrikan (Steker/Colokan PLN) dalam keadaan <strong>DICABUT</strong> sebelum pengujian multimeter.</li>
+                            <li style="margin-bottom: 6px;">MCB pada panel dalam posisi <strong>OFF (Turun)</strong>.</li>
+                            <li style="margin-bottom: 6px;">Pakai sepatu standar sekolah atau sepatu <i>safety</i> ber-sol karet (Isolator).</li>
+                            <li style="margin-bottom: 0;">Area meja kerja bebas dari benda cair (air minum) untuk menghindari kejut listrik tak terduga.</li>
+                        </ul>
+</div>
+</div>
+</div>
+            <!-- MINGGU 1 -->
+<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
+<div style="background-color: #1e3a8a; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
+                    <h2 style="font-size: 16px; font-weight: bold; margin: 0;">Bagian 1: Pengenalan & Identifikasi Komponen</h2>
+</div>
+<div style="padding: 15px;">
+<div style="background: #eff6ff; color: #1e3a8a; padding: 10px; margin-bottom: 15px; border-left: 3px solid #3b82f6; font-size: 13px;">
+                        <strong>Instruksi Praktik:</strong> Buka pintu panel latih Anda. Telusuri setiap komponen yang menempel di <i>DIN Rail</i> (Rel besi) maupun pintu panel. Gunakan lembar Laporan Praktik untuk mencatat plat identitas komponen (Nameplate) dan mengenali spesifikasinya.
+</div>
+                    <ul style="font-size: 13px; color: #475569; padding-left: 20px;">
+                        <li>Identifikasi Modul CPU PLC beserta tegangan kerjanya.</li>
+                        <li>Identifikasi Power Supply (PSU), perhatikan input AC dan output DC-nya.</li>
+                        <li>Amati tipe dan rating Miniature Circuit Breaker (MCB).</li>
+                        <li>Cek jumlah dan jenis Push Button yang terpasang pada panel.</li>
+                        <li>Periksa Kontaktor Magnet beserta tegangan koilnya.</li>
+                        <li>Catat jumlah Relay bantuan dan indikator panel yang ada.</li>
+                    </ul>
+</div>
+</div>
+            <!-- MINGGU 2 -->
+<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
+<div style="background-color: #1e3a8a; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
+                    <h2 style="font-size: 16px; font-weight: bold; margin: 0;">Bagian 2: Inspeksi Wiring Input PLC</h2>
+</div>
+<div style="padding: 15px;">
+<div style="background: #eff6ff; color: #1e3a8a; padding: 10px; margin-bottom: 15px; border-left: 3px solid #3b82f6; font-size: 13px;">
+                        <strong>Instruksi Praktik:</strong> Pahami jalur kabel dari sumber tegangan menuju terminal input PLC. Lakukan uji kesinambungan (Continuity Test) dengan multimeter pada kondisi panel tak bertegangan (OFF), dan catat hasilnya pada Lembar Laporan.
+</div>
+<div style="margin: 15px 0; padding: 15px; background-color: #f8fafc; border: 2px dashed #cbd5e1; text-align: center; border-radius: 4px;">
+                        <h4 style="color: #1e3a8a; margin: 0 0 8px 0; font-size: 14px;">Ilustrasi Logika Pengawatan Input</h4>
+                        <p style="color: #64748b; margin: 0; font-size: 13px; font-family: monospace;">[+24VDC] ------> [Push Button NO] ------> [Terminal Input PLC: misal 0.00]<br>[ 0VDC ] --------------------------------> [Terminal COM Input PLC]</p>
+                        <i style="font-size: 11px; color: #94a3b8; display: block; margin-top: 5px;">*Contoh untuk sistem PLC Tipe Sinking. Jika Sourcing, kutub +/- dibalik.</i>
+</div>
+                    <p style="font-size: 13px; font-weight: bold; margin-bottom: 8px;">Langkah Inspeksi:</p>
+                    <ul style="color: #475569; padding-left: 20px; font-size: 13px;">
+                        <li>Pastikan panel tidak terhubung ke listrik PLN.</li>
+                        <li>Gunakan Multimeter mode Ohm/Buzzer.</li>
+                        <li>Hubungkan probe pertama ke terminal +24VDC dan probe kedua ke terminal Input PLC (Misal 0.00).</li>
+                        <li>Tekan Push Button yang sesuai, amati apakah multimeter berbunyi/menunjuk 0 Ohm.</li>
+                        <li>Lakukan untuk seluruh input dan catat pemetaan I/O di lembar laporan.</li>
+                    </ul>
+</div>
+</div>
+            <!-- MINGGU 3 -->
+<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
+<div style="background-color: #1e3a8a; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
+                    <h2 style="font-size: 16px; font-weight: bold; margin: 0;">Bagian 3: Inspeksi Wiring Output PLC & Beban</h2>
+</div>
+<div style="padding: 15px;">
+<div style="background: #eff6ff; color: #1e3a8a; padding: 10px; margin-bottom: 15px; border-left: 3px solid #3b82f6; font-size: 13px;">
+                        <strong>Instruksi Praktik:</strong> Pahami jalur kelistrikan dari PLC menuju beban aktuator (Kontaktor/Lampu). Telusuri rute kabel Fasa (L) hingga Netral (N). Catat pemetaan output di Lembar Laporan.
+</div>
+<div style="margin: 15px 0; padding: 15px; background-color: #f8fafc; border: 2px dashed #cbd5e1; text-align: center; border-radius: 4px;">
+                        <h4 style="color: #1e3a8a; margin: 0 0 8px 0; font-size: 14px;">Ilustrasi Logika Pengawatan Output (PLC Relay)</h4>
+                        <p style="color: #64748b; margin: 0; font-size: 13px; font-family: monospace;">[Fasa 220VAC] -----> [Terminal COM Output PLC]<br>[Terminal Output PLC: misal 100.00] -----> [Terminal A1 Kontaktor Magnet]<br>[Terminal A2 Kontaktor Magnet] --------------------------------> [Netral]</p>
+</div>
+                    <p style="font-size: 13px; font-weight: bold; margin-bottom: 8px;">Langkah Inspeksi:</p>
+                    <ul style="color: #475569; padding-left: 20px; font-size: 13px;">
+                        <li>Konfirmasi MCB utama dalam posisi MATI (OFF) (Tingkat Kritis K3).</li>
+                        <li>Amati sambungan dari Fasa menuju COM Output PLC.</li>
+                        <li>Telusuri kabel dari terminal Output PLC (misal 100.00) ke terminal koil beban (misal A1 Kontaktor).</li>
+                        <li>Pastikan kabel netral beban (misal A2) sudah tersambung dengan benar ke terminal blok netral.</li>
+                        <li>Catat semua hubungan ini ke dalam form Pemetaan Tabel Alamat (I/O Allocation) di laporan.</li>
+                    </ul>
+</div>
+</div>
+            <!-- MINGGU 4: COMMISSIONING & EVALUASI -->
+<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
+<div style="background-color: #1e3a8a; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
+                    <h2 style="font-size: 16px; font-weight: bold; margin: 0;">Bagian 4: Commissioning & Pengujian Indikator</h2>
+</div>
+<div style="padding: 15px;">
+<div style="background: #eff6ff; color: #1e3a8a; padding: 10px; margin-bottom: 15px; border-left: 3px solid #3b82f6; font-size: 13px;">
+                        <strong>Instruksi Praktik:</strong> Bersama guru pembimbing, lakukan pengujian indikator daya dengan menghidupkan panel secara berurutan. Laporkan hasilnya pada Laporan Praktik.
+</div>
+                    <p style="font-size: 13px; font-weight: bold; margin-bottom: 8px;">Prosedur Pengaktifan Panel:</p>
+                    <ul style="color: #475569; padding-left: 20px; font-size: 13px;">
+                        <li>Uji tarik ringan: pastikan secara visual tidak ada kabel yang terlepas di dalam panel.</li>
+                        <li>Laporkan kepada Guru Pembimbing bahwa Anda siap melakukan Power-ON.</li>
+                        <li>Hubungkan steker ke sumber PLN.</li>
+                        <li>Naikkan MCB (Posisi ON).</li>
+                        <li>Amati indikator "POWER" pada CPU PLC dan indikator Power Supply. Catat kondisi tersebut di Laporan.</li>
+                    </ul>
+</div>
+</div>
+            <!-- GLOSARIUM / DAFTAR ISTILAH -->
+<div style="margin-bottom: 25px; border: 1px solid #cbd5e1; border-radius: 8px;">
+<div style="background-color: #475569; color: white; padding: 12px 15px; border-radius: 8px 8px 0 0;">
+                    <h2 style="font-size: 16px; font-weight: bold; margin: 0;">Glosarium & Daftar Istilah Industri</h2>
+</div>
+<div style="padding: 15px;">
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #334155;">
+                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>PLC:</strong> Programmable Logic Controller. Komputer industri yang tangguh untuk mengontrol proses manufaktur.</li>
+                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>I/O (Input/Output):</strong> Jalur masuk (sensor/tombol) dan jalur keluar (aktuator/lampu) pada PLC.</li>
+                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>NO (Normally Open):</strong> Kondisi saklar terbuka (arus putus) saat normal. Menutup (arus mengalir) saat ditekan.</li>
+                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>NC (Normally Closed):</strong> Kondisi saklar tertutup (arus mengalir) saat normal. Terbuka (arus putus) saat ditekan.</li>
+                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>Continuity:</strong> Kesinambungan jalur listrik. Kondisi di mana arus bisa mengalir dari titik A ke titik B tanpa hambatan.</li>
+                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>Sinking:</strong> Tipe input PLC di mana terminal COM dihubungkan ke Negatif (0V). Input menerima sinyal Positif (+24V).</li>
+                        <li style="margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;"><strong>Sourcing:</strong> Tipe input PLC di mana terminal COM dihubungkan ke Positif (+24V). Input menerima sinyal Negatif (0V).</li>
+                        <li style="margin-bottom: 8px;"><strong>Crimping:</strong> Proses menekan secara paksa sekun logam agar menyatu permanen dengan serabut tembaga kabel.</li>
+                    </ul>
+</div>
+</div>
+<!-- FOOTER INFO -->
+<div style="text-align: center; margin-top: 20px; color: #94a3b8; font-size: 11px;">
+                <p>Dokumen Jobsheet Otomasi Industri Terstandar • Praktik PLC Dasar (Versi Inspeksi Panel Terakit)</p>
+</div>
+</div>
+</div>
+</div>
