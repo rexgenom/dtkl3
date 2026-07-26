@@ -4,62 +4,386 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jobsheet Praktik - Dasar Kelistrikan</title>
-</head>
-<body style="margin: 0; padding: 0; background-color: #f1f5f9;">
-
-<div id="titl-jobsheet-app" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #334155; line-height: 1.6; padding: 15px; box-sizing: border-box; width: 100%;">
     
-    <div style="max-width: 900px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 25px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); box-sizing: border-box;">
-        
-        <!-- Header -->
-        <div style="text-align: center; background-color: #eff6ff; border-left: 5px solid #1e3a8a; padding: 20px; margin-bottom: 25px; border-radius: 0 6px 6px 0;">
-            <h3 style="margin: 0; font-size: 20px; color: #1e3a8a; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">
-                Lembar Kerja MURID (Tugas Individu)
-            </h3>
-            <p style="margin: 8px 0 0 0; font-size: 13px; color: #64748b; font-weight: bold;">
-                Materi: Dasar-Dasar Kelistrikan (Arus, Tegangan, Hambatan) | SMK Negeri Karangpucung
-            </p>
-        </div>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        <!-- Identitas Siswa (Responsive Flexbox) -->
-        <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 15px; margin-bottom: 15px; box-sizing: border-box; border-left: 5px solid #ea580c; border-radius: 0 6px 6px 0;">
-            <div style="font-weight: bold; color: #c2410c; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">📝 Identitas Siswa</div>
-            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                <div style="flex: 1 1 250px; box-sizing: border-box;">
-                    <label style="font-size:13px; font-weight:bold; color: #475569; display: block; margin-bottom: 5px;">Nama Lengkap</label>
-                    <input type="text" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" placeholder="Masukkan Nama Anda..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required>
+    <style>
+        :root {
+            /* Color Palette */
+            --primary: #2563eb;       /* Blue 600 */
+            --primary-dark: #1e40af;  /* Blue 800 */
+            --primary-light: #eff6ff; /* Blue 50 */
+            
+            --success: #10b981;       /* Emerald 500 */
+            --success-dark: #059669;  /* Emerald 600 */
+            --success-light: #ecfdf5; /* Emerald 50 */
+            
+            --warning: #f59e0b;       /* Amber 500 */
+            --warning-light: #fffbeb; /* Amber 50 */
+            
+            --danger: #ef4444;        /* Red 500 */
+            
+            --dark: #0f172a;          /* Slate 900 */
+            --text-main: #334155;     /* Slate 700 */
+            --text-muted: #64748b;    /* Slate 500 */
+            
+            --bg-body: #f8fafc;       /* Slate 50 */
+            --bg-surface: #ffffff;
+            
+            --border: #e2e8f0;        /* Slate 200 */
+            --border-focus: #94a3b8;  /* Slate 400 */
+            
+            /* Shadows & Radii */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            
+            /* Transitions */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .page-header {
+            background-color: var(--primary-light);
+            border-left: 6px solid var(--primary);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .page-header h1 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-header p {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .content-wrapper {
+            padding: 2rem;
+        }
+
+        /* Sections & Cards */
+        .section-block {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary-dark);
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--primary-dark);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title .badge {
+            background-color: var(--primary-dark);
+            color: white;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .card {
+            background-color: var(--bg-body);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-focus);
+        }
+
+        .card.highlight {
+            border-left: 5px solid var(--warning);
+            background-color: var(--bg-surface);
+        }
+
+        .alert-box {
+            background-color: var(--success-light);
+            border: 1px solid #bbf7d0;
+            border-left: 5px solid var(--success);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-title {
+            color: var(--success-dark);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #bbf7d0;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Layout & Grids */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+
+        /* Forms */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: var(--dark);
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            background-color: #f8faff;
+        }
+
+        .form-control:disabled {
+            background-color: #f1f5f9;
+            cursor: not-allowed;
+            color: var(--text-muted);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        .btn-success:hover { background-color: var(--success-dark); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+
+        .btn-dark {
+            background-color: var(--dark);
+            color: white;
+        }
+        .btn-dark:hover { background-color: #1e293b; transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+
+        /* Simulators Specific */
+        .resistor-display {
+            background: #e2e8f0;
+            padding: 2.5rem 1rem;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .resistor-wire {
+            width: 15%;
+            height: 4px;
+            background-color: #94a3b8;
+        }
+
+        .resistor-body {
+            width: 70%;
+            max-width: 250px;
+            height: 60px;
+            background: linear-gradient(180deg, #fef3c7 0%, #fcd34d 40%, #d97706 100%);
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.5);
+            position: relative;
+        }
+
+        .resistor-band {
+            width: 14px;
+            height: 100%;
+            box-shadow: 2px 0 3px rgba(0,0,0,0.2);
+        }
+
+        .result-box {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .result-box.success {
+            background-color: var(--success-dark);
+        }
+
+        /* Radio Toggle */
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--bg-surface);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .radio-label input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        /* Print Media Query */
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border: none; }
+            .alert-box, .resistor-display, button { display: none !important; }
+            .card { border: 1px solid #ccc; page-break-inside: avoid; }
+            textarea.form-control { border: 1px solid #ccc; height: 100px; }
+            input.form-control { border: none; border-bottom: 1px solid #000; border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="page-header">
+        <h1>Lembar Kerja Murid (LKPD)</h1>
+        <p>Dasar-Dasar Kelistrikan (Arus, Tegangan, Hambatan) | SMK Negeri Karangpucung</p>
+    </header>
+
+    <div class="content-wrapper">
+        
+        <!-- Identitas -->
+        <section class="card highlight">
+            <div class="section-title" style="border:none; margin-bottom: 1rem; padding: 0; font-size: 1.1rem;">
+                <i class="fa-solid fa-address-card" style="color: var(--warning);"></i> Identitas Praktikan
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label class="form-label">Nama Lengkap</label>
+                    <input type="text" class="form-control" placeholder="Masukkan Nama Anda..." required>
                 </div>
-                <div style="flex: 1 1 250px; box-sizing: border-box;">
-                    <label style="font-size:13px; font-weight:bold; color: #475569; display: block; margin-bottom: 5px;">Kelas</label>
-                    <input type="text" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" placeholder="Contoh: X TITL 1" onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required>
+                <div class="form-group">
+                    <label class="form-label">Kelas</label>
+                    <input type="text" class="form-control" placeholder="Contoh: X TITL 1" required>
                 </div>
-                <div style="flex: 1 1 250px; box-sizing: border-box;">
-                    <label style="font-size:13px; font-weight:bold; color: #475569; display: block; margin-bottom: 5px;">Nomor Absen</label>
-                    <input type="number" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" placeholder="Nomor Absen" onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required>
+                <div class="form-group">
+                    <label class="form-label">Nomor Absen</label>
+                    <input type="number" class="form-control" placeholder="Nomor Absen" required>
                 </div>
-                <div style="flex: 1 1 250px; box-sizing: border-box;">
-                    <label style="font-size:13px; font-weight:bold; color: #475569; display: block; margin-bottom: 5px;">Tanggal Praktik</label>
-                    <input type="date" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required>
+                <div class="form-group">
+                    <label class="form-label">Tanggal Praktik</label>
+                    <input type="date" class="form-control" required>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Bagian 1 -->
-        <div style="margin-bottom: 30px; margin-top: 30px;">
-            <h4 style="margin: 0 0 15px 0; font-size: 16px; color: #1e3a8a; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; display: flex; align-items: center;">
-                <span style="background-color: #1e3a8a; color: #ffffff; padding: 2px 10px; border-radius: 50%; margin-right: 12px; font-size: 14px; font-weight: bold;">1</span> 
-                Praktikum 1: Membaca Kode Warna Resistor
-            </h4>
-            <p style="margin: 0 0 15px 0; text-align: justify; font-size: 14px;">
-                Gunakan simulator di bawah ini untuk membantu Anda menghitung nilai gelang warna.
-            </p>
+        <!-- Modul 1 -->
+        <section class="section-block">
+            <h2 class="section-title">
+                <span class="badge">1</span> Praktikum 1: Membaca Kode Warna Resistor
+            </h2>
+            <p style="margin-bottom: 1.5rem;">Gunakan simulator interaktif di bawah ini untuk membantu Anda memvisualisasikan dan menghitung nilai gelang warna resistor.</p>
 
-            <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-left: 5px solid #10b981; padding: 20px; margin-bottom: 20px; border-radius: 0 6px 6px 0; box-sizing: border-box;">
-                <div style="font-weight: bold; color: #166534; margin-bottom: 15px; font-size: 15px; border-bottom: 1px solid #bbf7d0; padding-bottom: 8px;">⚡ Simulator Resistor 4 Gelang</div>
-                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">Gelang 1 (Digit 1)</label>
-                        <select id="band1" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" onchange="updateResistor()" onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';">
+            <div class="alert-box">
+                <div class="alert-title"><i class="fa-solid fa-bolt"></i> Simulator Resistor 4 Gelang</div>
+                <div class="grid-4">
+                    <div class="form-group">
+                        <label class="form-label">Gelang 1 (Digit 1)</label>
+                        <select id="band1" class="form-control" onchange="updateResistor()">
                             <option value="0" data-color="#000000">Hitam (0)</option>
                             <option value="1" data-color="#8B4513" selected>Cokelat (1)</option>
                             <option value="2" data-color="#FF0000">Merah (2)</option>
@@ -72,9 +396,9 @@
                             <option value="9" data-color="#FFFFFF">Putih (9)</option>
                         </select>
                     </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">Gelang 2 (Digit 2)</label>
-                        <select id="band2" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" onchange="updateResistor()" onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';">
+                    <div class="form-group">
+                        <label class="form-label">Gelang 2 (Digit 2)</label>
+                        <select id="band2" class="form-control" onchange="updateResistor()">
                             <option value="0" data-color="#000000" selected>Hitam (0)</option>
                             <option value="1" data-color="#8B4513">Cokelat (1)</option>
                             <option value="2" data-color="#FF0000">Merah (2)</option>
@@ -87,9 +411,9 @@
                             <option value="9" data-color="#FFFFFF">Putih (9)</option>
                         </select>
                     </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">Gelang 3 (Pengali)</label>
-                        <select id="band3" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" onchange="updateResistor()" onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';">
+                    <div class="form-group">
+                        <label class="form-label">Gelang 3 (Pengali)</label>
+                        <select id="band3" class="form-control" onchange="updateResistor()">
                             <option value="1" data-color="#000000">Hitam (x1)</option>
                             <option value="10" data-color="#8B4513">Cokelat (x10)</option>
                             <option value="100" data-color="#FF0000" selected>Merah (x100)</option>
@@ -101,9 +425,9 @@
                             <option value="0.01" data-color="#C0C0C0">Perak (x0.01)</option>
                         </select>
                     </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">Gelang 4 (Toleransi)</label>
-                        <select id="band4" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" onchange="updateResistor()" onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';">
+                    <div class="form-group">
+                        <label class="form-label">Gelang 4 (Toleransi)</label>
+                        <select id="band4" class="form-control" onchange="updateResistor()">
                             <option value="1" data-color="#8B4513">Cokelat (±1%)</option>
                             <option value="2" data-color="#FF0000">Merah (±2%)</option>
                             <option value="5" data-color="#FFD700" selected>Emas (±5%)</option>
@@ -112,202 +436,196 @@
                     </div>
                 </div>
 
-                <div style="display: flex; align-items: center; justify-content: center; margin: 20px 0; background: #e2e8f0; padding: 20px 10px; border-radius: 8px; overflow: hidden; box-sizing: border-box;">
-                    <div style="width: 100%; max-width: 350px; display: flex; align-items: center; justify-content: center;">
-                        <div style="width: 15%; height: 4px; background-color: #94a3b8;"></div>
-                        <div style="width: 70%; height: 50px; background-color: #fcd34d; border-radius: 25px; position: relative; display: flex; justify-content: space-evenly; align-items: center; box-shadow: inset 0 -10px 15px rgba(0,0,0,0.1);">
-                            <div id="c-band1" style="width: 12px; height: 50px; background-color: #8B4513;"></div>
-                            <div id="c-band2" style="width: 12px; height: 50px; background-color: #000000;"></div>
-                            <div id="c-band3" style="width: 12px; height: 50px; background-color: #FF0000;"></div>
-                            <div style="width: 15px;"></div>
-                            <div id="c-band4" style="width: 12px; height: 50px; background-color: #FFD700;"></div>
-                        </div>
-                        <div style="width: 15%; height: 4px; background-color: #94a3b8;"></div>
+                <div class="resistor-display">
+                    <div class="resistor-wire"></div>
+                    <div class="resistor-body">
+                        <div id="c-band1" class="resistor-band" style="background-color: #8B4513;"></div>
+                        <div id="c-band2" class="resistor-band" style="background-color: #000000;"></div>
+                        <div id="c-band3" class="resistor-band" style="background-color: #FF0000;"></div>
+                        <div style="width: 15px;"></div>
+                        <div id="c-band4" class="resistor-band" style="background-color: #FFD700;"></div>
                     </div>
+                    <div class="resistor-wire"></div>
                 </div>
 
-                <div id="resistorResult" style="background-color: #1e3a8a; color: white; padding: 15px; border-radius: 6px; text-align: center; font-size: 16px; font-weight: bold; margin-top: 15px;">
+                <div id="resistorResult" class="result-box">
                     Nilai Resistor: 1000 Ω (1 kΩ) ±5%
                 </div>
             </div>
 
-            <div style="font-weight: bold; font-size: 15px; margin-bottom: 10px;">Kerjakan Soal Berikut:</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--dark);">Kerjakan Soal Berikut:</h3>
             
-            <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 15px; margin-bottom: 15px; box-sizing: border-box;">
-                <div style="font-weight: bold; margin-bottom: 10px; color: #1e3a8a;">Soal 1: Cokelat, Hitam, Merah, Emas</div>
-                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:12px; color:#64748b; margin-bottom:4px; display:block;">Perhitungan (D1, D2, Pengali)</label>
-                        <input type="text" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" placeholder="Contoh: 1 0 x 100" onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required>
+            <div class="card">
+                <h4 style="color: var(--primary-dark); margin-bottom: 1rem;"><i class="fa-solid fa-pen-nib"></i> Soal 1: Cokelat, Hitam, Merah, Emas</h4>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Perhitungan (D1, D2, Pengali)</label>
+                        <input type="text" class="form-control" placeholder="Contoh: 1 0 x 100" required>
                     </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:12px; color:#64748b; margin-bottom:4px; display:block;">Hasil Akhir & Toleransi</label>
-                        <input type="text" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" placeholder="Contoh: 1000 Ω ± 5%" onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required>
-                    </div>
-                </div>
-            </div>
-
-            <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 15px; margin-bottom: 15px; box-sizing: border-box;">
-                <div style="font-weight: bold; margin-bottom: 10px; color: #1e3a8a;">Soal 2: Merah, Ungu, Oranye, Perak</div>
-                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:12px; color:#64748b; margin-bottom:4px; display:block;">Perhitungan (D1, D2, Pengali)</label>
-                        <input type="text" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" placeholder="Ketik perhitungan..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required>
-                    </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:12px; color:#64748b; margin-bottom:4px; display:block;">Hasil Akhir & Toleransi</label>
-                        <input type="text" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" placeholder="Ketik hasil akhir..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required>
+                    <div class="form-group">
+                        <label class="form-label">Hasil Akhir & Toleransi</label>
+                        <input type="text" class="form-control" placeholder="Contoh: 1000 Ω ± 5%" required>
                     </div>
                 </div>
             </div>
 
-            <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 15px; margin-bottom: 15px; box-sizing: border-box;">
-                <div style="font-weight: bold; margin-bottom: 10px; color: #1e3a8a;">Soal 3: Kuning, Ungu, Hitam, Emas</div>
-                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:12px; color:#64748b; margin-bottom:4px; display:block;">Perhitungan (D1, D2, Pengali)</label>
-                        <input type="text" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" placeholder="Ketik perhitungan..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required>
+            <div class="card">
+                <h4 style="color: var(--primary-dark); margin-bottom: 1rem;"><i class="fa-solid fa-pen-nib"></i> Soal 2: Merah, Ungu, Oranye, Perak</h4>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Perhitungan (D1, D2, Pengali)</label>
+                        <input type="text" class="form-control" placeholder="Ketik perhitungan..." required>
                     </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:12px; color:#64748b; margin-bottom:4px; display:block;">Hasil Akhir & Toleransi</label>
-                        <input type="text" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" placeholder="Ketik hasil akhir..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required>
+                    <div class="form-group">
+                        <label class="form-label">Hasil Akhir & Toleransi</label>
+                        <input type="text" class="form-control" placeholder="Ketik hasil akhir..." required>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Bagian 2 -->
-        <div style="margin-bottom: 30px; page-break-before: always;">
-            <h4 style="margin: 0 0 15px 0; font-size: 16px; color: #1e3a8a; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; display: flex; align-items: center;">
-                <span style="background-color: #1e3a8a; color: #ffffff; padding: 2px 10px; border-radius: 50%; margin-right: 12px; font-size: 14px; font-weight: bold;">2</span> 
-                Praktikum 2: Arus, Tegangan, dan Daya Listrik
-            </h4>
-            <p style="margin: 0 0 15px 0; text-align: justify; font-size: 14px;">
-                Gunakan Hukum Ohm (V = I × R) dan Rumus Daya (P = V × I) untuk menyelesaikan studi kasus kelistrikan berikut.
-            </p>
-
-            <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-left: 5px solid #10b981; padding: 20px; margin-bottom: 20px; border-radius: 0 6px 6px 0; box-sizing: border-box;">
-                <div style="font-weight: bold; color: #166534; margin-bottom: 15px; font-size: 15px; border-bottom: 1px solid #bbf7d0; padding-bottom: 8px;">⚡ Kalkulator Hukum Ohm</div>
-                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">Tegangan (V) - Volt</label>
-                        <input type="number" id="inpV" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" placeholder="Volt..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';">
+            <div class="card">
+                <h4 style="color: var(--primary-dark); margin-bottom: 1rem;"><i class="fa-solid fa-pen-nib"></i> Soal 3: Kuning, Ungu, Hitam, Emas</h4>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Perhitungan (D1, D2, Pengali)</label>
+                        <input type="text" class="form-control" placeholder="Ketik perhitungan..." required>
                     </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">Arus (I) - Ampere</label>
-                        <input type="number" id="inpI" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" placeholder="Ampere..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';">
-                    </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">Tahanan (R) - Ohm</label>
-                        <input type="number" id="inpR" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" placeholder="Ohm..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';">
-                    </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">Daya (P) - Watt</label>
-                        <input type="number" id="inpP" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box; background-color: #f1f5f9; cursor: not-allowed;" placeholder="Otomatis" disabled>
+                    <div class="form-group">
+                        <label class="form-label">Hasil Akhir & Toleransi</label>
+                        <input type="text" class="form-control" placeholder="Ketik hasil akhir..." required>
                     </div>
                 </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <button style="background-color: #10b981; color: white; border: none; padding: 12px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; transition: background 0.3s; margin-top: 10px; font-size: 15px;" onmouseover="this.style.backgroundColor='#059669';" onmouseout="this.style.backgroundColor='#10b981';" onclick="calculateOhm()">Hitung</button>
+            </div>
+        </section>
+
+        <!-- Modul 2 -->
+        <section class="section-block">
+            <h2 class="section-title">
+                <span class="badge">2</span> Praktikum 2: Arus, Tegangan, & Daya Listrik
+            </h2>
+            <p style="margin-bottom: 1.5rem;">Gunakan Hukum Ohm (V = I × R) dan Rumus Daya (P = V × I) untuk menyelesaikan studi kasus kelistrikan berikut.</p>
+
+            <div class="alert-box">
+                <div class="alert-title"><i class="fa-solid fa-calculator"></i> Kalkulator Hukum Ohm</div>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--success-dark);">Masukkan minimal 2 nilai yang diketahui, sistem akan menghitung sisanya.</p>
+                <div class="grid-4" style="margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label class="form-label">Tegangan (V)</label>
+                        <input type="number" id="inpV" class="form-control" placeholder="Volt...">
                     </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <button style="background-color: #1f2937; color: white; border: none; padding: 12px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; transition: background 0.3s; margin-top: 10px; font-size: 15px;" onmouseover="this.style.backgroundColor='#111827';" onmouseout="this.style.backgroundColor='#1f2937';" onclick="resetOhm()">Reset</button>
+                    <div class="form-group">
+                        <label class="form-label">Arus (I)</label>
+                        <input type="number" id="inpI" class="form-control" placeholder="Ampere...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tahanan (R)</label>
+                        <input type="number" id="inpR" class="form-control" placeholder="Ohm...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Daya (P)</label>
+                        <input type="number" id="inpP" class="form-control" placeholder="Otomatis" disabled>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <button class="btn btn-success" onclick="calculateOhm()"><i class="fa-solid fa-play"></i> Hitung</button>
+                    <button class="btn btn-dark" onclick="resetOhm()"><i class="fa-solid fa-rotate-right"></i> Reset</button>
+                </div>
+                
+                <div id="ohmResult" class="result-box success" style="display: none;"></div>
+            </div>
+
+            <div class="card">
+                <h4 style="color: var(--primary-dark); margin-bottom: 1rem;">Studi Kasus Perhitungan Individu:</h4>
+                <div style="background-color: var(--warning-light); border-left: 4px solid var(--warning); padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem;">
+                    <p style="margin: 0; font-size: 0.95rem;">Sebuah alat listrik dirancang dengan spesifikasi <strong>Tegangan (V) = 220 Volt</strong> dan membutuhkan <strong>Arus (I) = 2.5 Ampere</strong> untuk dapat beroperasi maksimal. Hitunglah nilai Tahanan (R) pada alat tersebut dan Daya Listrik (P) yang dihasilkannya!</p>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Penyelesaian Resistansi (R):</label>
+                        <textarea class="form-control" placeholder="Tuliskan V=220, I=2.5. R = V / I = ..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Penyelesaian Daya (P):</label>
+                        <textarea class="form-control" placeholder="P = V x I = ..." required></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modul 3 -->
+        <section class="section-block">
+            <h2 class="section-title">
+                <span class="badge">3</span> Praktikum 3: Rangkaian Seri & Paralel
+            </h2>
+
+            <div class="alert-box">
+                <div class="alert-title"><i class="fa-solid fa-microchip"></i> Kalkulator Rangkaian 3 Resistor</div>
+                
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="circuitType" value="seri" checked onchange="calcCircuit()"> Rangkaian Seri
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="circuitType" value="paralel" onchange="calcCircuit()"> Rangkaian Paralel
+                    </label>
+                </div>
+
+                <div class="grid-3" style="margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label class="form-label">R1 (Ω)</label>
+                        <input type="number" id="cR1" class="form-control" value="10" oninput="calcCircuit()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">R2 (Ω)</label>
+                        <input type="number" id="cR2" class="form-control" value="20" oninput="calcCircuit()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">R3 (Ω)</label>
+                        <input type="number" id="cR3" class="form-control" value="30" oninput="calcCircuit()">
                     </div>
                 </div>
                 
-                <div id="ohmResult" style="background-color: #1f2937; color: white; padding: 15px; border-radius: 6px; text-align: center; font-size: 16px; font-weight: bold; margin-top: 15px; display: none;">
-                    Hasil muncul di sini
+                <div id="circuitResult" class="result-box">
+                    R Total (Seri): 60.00 Ω
                 </div>
             </div>
 
-            <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 15px; margin-bottom: 15px; box-sizing: border-box;">
-                <div style="font-weight: bold; margin-bottom: 10px; color: #1e3a8a;">Studi Kasus Perhitungan Individu:</div>
-                <p style="font-size: 14px; margin-bottom: 15px; background: #fffbeb; border-left: 3px solid #f59e0b; padding: 10px;">
-                    Sebuah alat listrik dirancang dengan spesifikasi <strong>Tegangan (V) = 220 Volt</strong> dan membutuhkan <strong>Arus (I) = 2.5 Ampere</strong> untuk dapat beroperasi maksimal. Hitunglah nilai Tahanan (R) pada alat tersebut dan Daya Listrik (P) yang dihasilkannya!
-                </p>
-                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">Penyelesaian Resistansi (R):</label>
-                        <textarea style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box; resize: vertical; min-height: 80px;" placeholder="Tuliskan V=220, I=2.5. R = V / I = ..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required></textarea>
+            <div class="card">
+                <p style="font-weight: 600; margin-bottom: 1rem;">Terdapat tiga buah resistor dengan nilai: R1 = 15 Ω, R2 = 30 Ω, dan R3 = 45 Ω. Tuliskan perhitungan dan hasil akhir jika ketiganya dirangkai secara:</p>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">A. Rangkaian Seri</label>
+                        <textarea class="form-control" placeholder="Rt = R1 + R2 + R3..." required></textarea>
                     </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">Penyelesaian Daya (P):</label>
-                        <textarea style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box; resize: vertical; min-height: 80px;" placeholder="P = V x I = ..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required></textarea>
+                    <div class="form-group">
+                        <label class="form-label">B. Rangkaian Paralel</label>
+                        <textarea class="form-control" placeholder="1/Rt = 1/R1 + 1/R2 + 1/R3..." required></textarea>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Bagian 3 -->
-        <div style="margin-bottom: 30px;">
-            <h4 style="margin: 0 0 15px 0; font-size: 16px; color: #1e3a8a; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; display: flex; align-items: center;">
-                <span style="background-color: #1e3a8a; color: #ffffff; padding: 2px 10px; border-radius: 50%; margin-right: 12px; font-size: 14px; font-weight: bold;">3</span> 
-                Praktikum 3: Rangkaian Listrik Seri & Paralel
-            </h4>
-
-            <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-left: 5px solid #10b981; padding: 20px; margin-bottom: 20px; border-radius: 0 6px 6px 0; box-sizing: border-box;">
-                <div style="font-weight: bold; color: #166534; margin-bottom: 15px; font-size: 15px; border-bottom: 1px solid #bbf7d0; padding-bottom: 8px;">⚡ Kalkulator Rangkaian 3 Resistor</div>
-                <div style="display: flex; flex-direction: row; gap: 15px; margin-bottom: 15px;">
-                    <label style="display: flex; align-items: center; cursor: pointer; font-size: 14px; font-weight: 500;"><input type="radio" name="circuitType" value="seri" style="margin-right: 8px; width: 18px; height: 18px;" checked onchange="calcCircuit()"> Seri</label>
-                    <label style="display: flex; align-items: center; cursor: pointer; font-size: 14px; font-weight: 500;"><input type="radio" name="circuitType" value="paralel" style="margin-right: 8px; width: 18px; height: 18px;" onchange="calcCircuit()"> Paralel</label>
-                </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">R1 (Ω)</label>
-                        <input type="number" id="cR1" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" value="10" oninput="calcCircuit()" onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';">
-                    </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">R2 (Ω)</label>
-                        <input type="number" id="cR2" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" value="20" oninput="calcCircuit()" onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';">
-                    </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">R3 (Ω)</label>
-                        <input type="number" id="cR3" style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box;" value="30" oninput="calcCircuit()" onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';">
-                    </div>
-                    <div style="flex: 1 1 100%; display: flex; align-items: flex-end;">
-                        <div id="circuitResult" style="background-color: #1e3a8a; color: white; padding: 12px; border-radius: 6px; text-align: center; font-size: 18px; font-weight: bold; width: 100%; margin-top: 10px;">
-                            R Total (Seri): 60.00 Ω
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 15px; margin-bottom: 15px; box-sizing: border-box;">
-                <p style="font-size: 14px; margin-bottom: 15px; font-weight: bold;">Terdapat tiga buah resistor dengan nilai: R1 = 15 Ω, R2 = 30 Ω, dan R3 = 45 Ω. Tuliskan perhitungan dan hasil akhir jika ketiganya dirangkai secara:</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">A. Rangkaian Seri</label>
-                        <textarea style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box; resize: vertical; min-height: 80px;" placeholder="Rt = R1 + R2 + R3..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required></textarea>
-                    </div>
-                    <div style="flex: 1 1 250px; box-sizing: border-box;">
-                        <label style="font-size:13px; font-weight:bold; display: block; margin-bottom: 5px;">B. Rangkaian Paralel</label>
-                        <textarea style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box; resize: vertical; min-height: 80px;" placeholder="1/Rt = 1/R1 + 1/R2 + 1/R3..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bagian 4 -->
-        <div style="margin-bottom: 10px; page-break-before: always;">
-            <h4 style="margin: 0 0 15px 0; font-size: 16px; color: #1e3a8a; text-transform: uppercase; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; display: flex; align-items: center;">
-                <span style="background-color: #1e3a8a; color: #ffffff; padding: 2px 10px; border-radius: 50%; margin-right: 12px; font-size: 14px; font-weight: bold;">4</span> 
-                Refleksi & Kesimpulan
-            </h4>
+        <!-- Modul 4 -->
+        <section class="section-block">
+            <h2 class="section-title">
+                <span class="badge">4</span> Refleksi & Kesimpulan
+            </h2>
             
-            <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 15px; margin-bottom: 15px; box-sizing: border-box; margin-bottom: 15px;">
-                <label style="font-size:14px; font-weight:bold; display: block; margin-bottom: 10px; color: #1e3a8a;">
-                    1. Mengapa penting bagi teknisi instalasi untuk memahami hubungan Arus, Tegangan, dan Tahanan?
-                </label>
-                <textarea style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box; resize: vertical; min-height: 100px;" placeholder="Tuliskan pendapat Anda..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required></textarea>
+            <div class="card" style="margin-bottom: 1rem;">
+                <div class="form-group">
+                    <label class="form-label" style="font-size: 1rem; color: var(--primary-dark);">1. Mengapa penting bagi teknisi instalasi untuk memahami hubungan Arus, Tegangan, dan Tahanan?</label>
+                    <textarea class="form-control" placeholder="Tuliskan pendapat Anda..." required></textarea>
+                </div>
             </div>
             
-            <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 15px; margin-bottom: 15px; box-sizing: border-box;">
-                <label style="font-size:14px; font-weight:bold; display: block; margin-bottom: 10px; color: #1e3a8a;">
-                    2. Apa kesimpulan Anda mengenai perbedaan Seri dan Paralel jika diaplikasikan di rumah?
-                </label>
-                <textarea style="width: 100%; padding: 10px 12px; font-size: 14px; font-family: inherit; color: #0f172a; background-color: #ffffff; border: 1px solid #94a3b8; border-radius: 4px; transition: all 0.2s ease-in-out; box-sizing: border-box; resize: vertical; min-height: 100px;" placeholder="Tuliskan argumen Anda..." onfocus="this.style.borderColor='#1e3a8a'; this.style.boxShadow='0 0 0 3px rgba(30, 58, 138, 0.3)'; this.style.backgroundColor='#fffbeb';" onblur="this.style.borderColor='#94a3b8'; this.style.boxShadow='none'; this.style.backgroundColor='#ffffff';" required></textarea>
+            <div class="card">
+                <div class="form-group">
+                    <label class="form-label" style="font-size: 1rem; color: var(--primary-dark);">2. Apa kesimpulan Anda mengenai perbedaan Seri dan Paralel jika diaplikasikan di rumah?</label>
+                    <textarea class="form-control" placeholder="Tuliskan argumen Anda..." required></textarea>
+                </div>
             </div>
-        </div>
+        </section>
 
     </div>
 </div>
@@ -349,7 +667,7 @@ function calculateOhm() {
         res.style.display = 'block';
         res.style.backgroundColor = '#fef2f2';
         res.style.color = '#dc2626';
-        res.innerText = 'Masukkan minimal 2 nilai!';
+        res.innerText = '⚠️ Masukkan minimal 2 nilai!';
         return;
     }
 
@@ -368,9 +686,9 @@ function calculateOhm() {
     p.value = pVal;
 
     res.style.display = 'block';
-    res.style.backgroundColor = '#10b981';
+    res.style.backgroundColor = 'var(--success-dark)';
     res.style.color = '#ffffff';
-    res.innerText = `Kalkulasi Selesai: V=${v}V, I=${i}A, R=${r}Ω, P=${pVal}W`;
+    res.innerText = `✅ Kalkulasi Selesai: V=${v}V, I=${i}A, R=${r}Ω, P=${pVal}W`;
 }
 
 function resetOhm() {
