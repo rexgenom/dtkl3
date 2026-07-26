@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jobsheet Praktik - Sifat Bahan Listrik (Konduktor, Isolator, Semikonduktor)</title>
+    <!-- HTML2PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         /* ==========================================================
            1. CSS VARIABLES & RESETS
@@ -1014,13 +1016,38 @@ Silakan lengkapi area yang ditandai dengan kotak merah sebelum melanjutkan cetak
                     if (typeof firstEmptyElement.focus === 'function') firstEmptyElement.focus();
                 }
             } else {
-                // Jika sukses, ubah title sementara untuk nama file saat di save to PDF
-                const originalTitle = document.title;
+                const btn = document.querySelector('.btn-print');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = 'Memproses PDF...';
+                btn.disabled = true;
+
                 const klp = kelompokSelect.value;
-                document.title = `Jobsheet_BahanListrik_Kelompok_${klp}_SMKN_Karangpucung`;
-                window.print();
-                // Kembalikan title asli setelah print prompt selesai
-                setTimeout(() => { document.title = originalTitle; }, 1000);
+                const element = document.querySelector('.wrapper');
+                
+                // Sembunyikan elemen no-print secara manual saat render PDF
+                const noPrintElements = element.querySelectorAll('.no-print');
+                const originalDisplays = [];
+                noPrintElements.forEach((el, index) => {
+                    originalDisplays[index] = el.style.display;
+                    el.style.display = 'none';
+                });
+
+                const opt = {
+                    margin:       0.3,
+                    filename:     `Jobsheet_BahanListrik_Kelompok_${klp}_SMKN_Karangpucung.pdf`,
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2, useCORS: true },
+                    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+                };
+
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    // Kembalikan tampilan elemen
+                    noPrintElements.forEach((el, index) => {
+                        el.style.display = originalDisplays[index];
+                    });
+                });
             }
         }
     </script>
