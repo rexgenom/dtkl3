@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobsheet Praktik PLC Bab 1 - Inspeksi & Pengawatan</title>
+    <title>Jobsheet Praktik PLC Bab 1 (HOTS 6 Jam) - Inspeksi & Pengawatan</title>
     <!-- HTML2PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- MathJax -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         /* ==========================================================
            1. CSS VARIABLES & RESETS
@@ -49,6 +51,7 @@
 
         header h1 { font-size: 28px; margin-bottom: 10px; font-weight: 800; letter-spacing: -0.5px; }
         header p { font-size: 15px; opacity: 0.9; max-width: 800px; margin: 0 auto;}
+        .badge-time { background: var(--warning-orange); color: var(--dark-blue); padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 13px; display: inline-block; margin-top: 15px;}
 
         .content { padding: 40px 30px; }
 
@@ -99,11 +102,11 @@
         }
 
         .instruction-text { font-size: 15px; margin-bottom: 25px; color: var(--text-dark); background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary-blue);}
-        
-        /* Table Styles */
-        .k3-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .k3-table th { background-color: var(--dark-blue); color: white; text-align: left; padding: 12px 15px; }
-        .k3-table td { background-color: white; border-bottom: 1px solid #e2e8f0; padding: 12px 15px; }
+        .case-study-prompt { 
+            background-color: #fffbeb; border-left: 4px solid var(--warning-orange);
+            padding: 18px; margin-top: 15px; margin-bottom: 20px; font-weight: 500; font-size: 15px; color: #92400e;
+        }
+        .dynamic-var { font-weight: bold; color: var(--primary-blue); background: #e0f2fe; padding: 2px 6px; border-radius: 4px; }
 
         /* ==========================================================
            5. INTERACTIVE SIMULATORS
@@ -136,17 +139,21 @@
         .sim-btn.active { background-color: var(--primary-blue); border-color: var(--accent-cyan); box-shadow: 0 0 10px rgba(6, 182, 212, 0.5); }
         .sim-btn.btn-pb { background-color: #dc2626; border-color: #b91c1c; }
         .sim-btn.btn-pb:active { background-color: #991b1b; transform: scale(0.98); }
+        
+        .polarity-switch { display: flex; gap: 10px; margin-bottom: 15px; background: #1e293b; padding: 10px; border-radius: 6px;}
+        .polarity-btn { flex: 1; padding: 8px; border: 1px solid #475569; background: #334155; color: white; border-radius: 4px; cursor: pointer;}
+        .polarity-btn.selected { background: var(--accent-purple); border-color: #c4b5fd; font-weight: bold;}
 
         /* Wiring Simulator */
         .wiring-box { background: #1e293b; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
         .wire-node { 
             background: #334155; padding: 10px; border-radius: 6px; text-align: center; 
             margin-bottom: 10px; font-weight: bold; cursor: pointer; border: 2px solid transparent;
+            font-size: 14px;
         }
         .wire-node:hover { background: #475569; }
-        .wire-node.selected { border-color: var(--accent-cyan); background: #0c4a6e; }
-        .wire-node.connected { background: var(--success-green); color: white; }
-        .connection-log { background: #000; font-family: monospace; padding: 15px; border-radius: 6px; color: #10b981; min-height: 80px; font-size: 13px;}
+        .wire-node.connected { background: var(--success-green); color: white; border-color: #059669; }
+        .connection-log { background: #000; font-family: monospace; padding: 15px; border-radius: 6px; color: #10b981; min-height: 100px; max-height: 150px; overflow-y: auto; font-size: 13px;}
 
         /* ==========================================================
            6. PRINT BUTTON
@@ -170,10 +177,11 @@
         @media print {
             body { background-color: var(--white); padding: 0; }
             .wrapper { border: none; box-shadow: none; padding: 0; max-width: 100%; }
-            textarea.form-control { border: 1px solid #ccc; height: 200px; }
+            textarea.form-control { border: 1px solid #ccc; height: 150px; }
             input.form-control, select.form-control { border: none; border-bottom: 1px solid #000; border-radius: 0; padding: 5px 0;}
             .module-section { page-break-inside: avoid; margin-bottom: 30px;}
             .print-toolbar, .no-print { display: none !important; }
+            .dynamic-var { border: 1px solid #000; background: none !important; }
         }
     </style>
 </head>
@@ -190,13 +198,14 @@
     <div class="wrapper">
         <header>
             <h1>JOBSHEET PRAKTIK: PLC BAB 1</h1>
-            <p>Inspeksi Perangkat Keras dan Pengawatan (Wiring) PLC Standar Industri</p>
+            <p>Inspeksi Perangkat Keras dan Pengawatan (Wiring) PLC Tingkat Lanjut (HOTS)</p>
+            <div class="badge-time">Durasi Praktik: 6 x 45 Menit (4.5 Jam)</div>
         </header>
 
         <div class="content">
             <!-- IDENTITAS -->
             <div class="identity-box">
-                <div class="identity-header">Bagian A: Identitas Siswa</div>
+                <div class="identity-header">Bagian A: Proyek Otomasi Kelompok</div>
                 <div class="grid-2-col">
                     <div class="form-group">
                         <label>Nama Lengkap Peserta Didik</label>
@@ -213,78 +222,67 @@
                         <input type="number" class="form-control" placeholder="Nomor urut absensi" required>
                     </div>
                     <div class="form-group">
-                        <label>Kelompok Kerja</label>
-                        <select class="form-control" required>
-                            <option value="">-- Pilih Kelompok --</option>
-                            <option value="1">Kelompok 1</option>
-                            <option value="2">Kelompok 2</option>
-                            <option value="3">Kelompok 3</option>
-                            <option value="4">Kelompok 4</option>
+                        <label>Pilih Mesin Proyek (Kelompok)</label>
+                        <select class="form-control" id="kelompokSelect" required onchange="updateCaseStudies()">
+                            <option value="">-- Pilih Proyek Mesin Anda --</option>
+                            <option value="1">Kelompok 1: Mesin Conveyor System</option>
+                            <option value="2">Kelompok 2: Mesin Stamping Press</option>
+                            <option value="3">Kelompok 3: Mesin Mixing Tank</option>
+                            <option value="4">Kelompok 4: Mesin Packaging</option>
+                            <option value="5">Kelompok 5: Robot Sorting Arm</option>
+                            <option value="6">Kelompok 6: Mesin Filling Station</option>
                         </select>
                     </div>
                 </div>
-            </div>
-
-            <!-- TEORI K3 -->
-            <div class="module-section">
-                <h2 class="module-title">
-                    <span class="module-number" style="background:var(--warning-orange)">!</span>
-                    Standar K3 & Warna Kabel
-                </h2>
-                <div class="instruction-text">
-                    Standar warna kabel pada panel kontrol penting untuk diketahui agar inspeksi jalur aman dan mencegah korsleting. Pelajari tabel berikut sebelum melakukan praktik virtual maupun fisik.
-                </div>
-                <table class="k3-table">
-                    <thead>
-                        <tr>
-                            <th>Jalur Kelistrikan</th>
-                            <th>Warna Kabel Disarankan</th>
-                            <th>Keterangan Penggunaan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><strong>Tegangan Utama (Fasa / L)</strong></td><td>Hitam / Merah / Coklat</td><td>Dari MCB menuju COM Output atau Beban AC.</td></tr>
-                        <tr><td><strong>Netral (N)</strong></td><td>Biru</td><td>Kembalian beban AC (Lampu, Kontaktor).</td></tr>
-                        <tr><td><strong>Ground / Arde (PE)</strong></td><td>Kuning setrip Hijau</td><td>Menghubungkan badan panel logam ke bumi.</td></tr>
-                        <tr><td><strong>DC Positif (+24VDC)</strong></td><td>Merah / Biru Tua</td><td>Power suplai ke sensor / input modul.</td></tr>
-                        <tr><td><strong>DC Negatif (0VDC)</strong></td><td>Hitam / Biru Muda</td><td>Ground referensi untuk DC power suplai.</td></tr>
-                    </tbody>
-                </table>
             </div>
 
             <!-- MODUL 1: INPUT WIRING SIMULATOR -->
             <div class="module-section">
                 <h2 class="module-title">
                     <span class="module-number">1</span>
-                    Inspeksi Wiring Input PLC (Continuity Test)
+                    Troubleshooting Sensor Input PLC (Sinking vs Sourcing)
                 </h2>
                 
                 <p class="instruction-text">
-                    Pahami jalur kabel dari sumber tegangan menuju terminal input PLC. Lakukan uji kesinambungan (Continuity Test) menggunakan simulator multimeter digital di bawah ini.
+                    Tidak semua sensor menggunakan <i>Push Button</i> pasif. Sensor industri aktif (NPN atau PNP) membutuhkan suplai daya sendiri, dan penentuan terminal <b>COM (Common)</b> pada input PLC sangat menentukan apakah sinyal akan terbaca atau tidak (Logika Sinking/Sourcing).
                 </p>
 
                 <!-- Simulator Input -->
                 <div class="interactive-tool-box no-print">
-                    <div class="tool-header">⚡ Simulator Multimeter: Continuity Test (Input Sinking)</div>
+                    <div class="tool-header">⚡ Simulator Multimeter: Analisis Polaritas Sensor</div>
                     
                     <div class="grid-2-col">
                         <div>
+                            <div class="polarity-switch">
+                                <span style="font-size: 13px; align-self: center;">Pilih Polaritas COM PLC:</span>
+                                <button class="polarity-btn selected" id="btnCom0V" onclick="setCom(0)">COM 0VDC</button>
+                                <button class="polarity-btn" id="btnCom24V" onclick="setCom(24)">COM +24VDC</button>
+                            </div>
                             <div class="multimeter-display" id="mmDisplay">O.L</div>
                             <div class="grid-2-col" style="gap:10px;">
-                                <button class="sim-btn" id="btnProbeHitam" onclick="toggleProbe('hitam')">1. Pasang Probe Hitam ke 0VDC</button>
-                                <button class="sim-btn" id="btnProbeMerah" onclick="toggleProbe('merah')">2. Pasang Probe Merah ke Input PLC 0.00</button>
+                                <button class="sim-btn" id="btnProbeHitam" onclick="toggleProbe('hitam')">1. Pasang Probe Hitam</button>
+                                <button class="sim-btn" id="btnProbeMerah" onclick="toggleProbe('merah')">2. Pasang Probe Merah</button>
                             </div>
                         </div>
-                        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                            <p style="margin-bottom: 15px; font-size: 14px; color: var(--light-blue); text-align:center;">Jalur Wiring: +24VDC -> Push Button NO -> Terminal Input 0.00</p>
-                            <button class="sim-btn btn-pb" style="height:80px; width:150px; font-size: 16px; border-radius: 50%;" onmousedown="pressPb(true)" onmouseup="pressPb(false)" onmouseleave="pressPb(false)" ontouchstart="pressPb(true)" ontouchend="pressPb(false)">TEKAN PUSH BUTTON</button>
+                        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; background:#1e293b; border-radius:8px; padding:15px;">
+                            <p style="margin-bottom: 15px; font-size: 14px; color: var(--accent-cyan); text-align:center;">
+                                Tipe Sensor Mesin Anda: <br>
+                                <strong id="sim1_sensor_type" style="font-size:18px;">[PILIH KELOMPOK]</strong>
+                            </p>
+                            <button class="sim-btn btn-pb" style="height:80px; width:150px; font-size: 16px; border-radius: 50%;" onmousedown="pressPb(true)" onmouseup="pressPb(false)" onmouseleave="pressPb(false)" ontouchstart="pressPb(true)" ontouchend="pressPb(false)">TRIGGER SENSOR</button>
                         </div>
                     </div>
                 </div>
 
+                <div class="case-study-prompt">
+                    <strong>Studi Kasus 1: Proyek <span class="dynamic-var" id="cs1_mesin">[?]</span></strong><br>
+                    Mesin Anda menggunakan komponen input berupa <strong><span class="dynamic-var" id="cs1_sensor">[?]</span></strong>. Saat diinspeksi, mekanik kebingungan menghubungkan terminal COM PLC. <br><br>
+                    Tugas Anda: Berdasarkan karakteristik tipe sensor tersebut, apakah terminal COM pada blok input PLC harus dihubungkan ke sumber 0VDC atau +24VDC? Jelaskan alasannya (Sinking/Sourcing)!
+                </div>
+
                 <div class="form-group">
-                    <label>Tugas Analisis Modul 1:</label>
-                    <textarea class="form-control" placeholder="1. Apa yang terjadi pada layar multimeter saat tombol ditekan? Mengapa demikian?&#10;2. Jelaskan urutan pengawatan (wiring) dari Power Supply hingga ke Terminal Input PLC secara rinci!" required></textarea>
+                    <label>Penjabaran Logika Analisis Modul 1:</label>
+                    <textarea class="form-control" placeholder="Tuliskan analisis Sinking/Sourcing dan alasan pemilihan COM berdasarkan tipe sensor yang didapatkan..." required></textarea>
                 </div>
             </div>
 
@@ -292,34 +290,74 @@
             <div class="module-section">
                 <h2 class="module-title">
                     <span class="module-number">2</span>
-                    Inspeksi Wiring Output PLC & Aktuator
+                    Pengawatan Multi-Aktuator (Wiring Trace)
                 </h2>
                 
                 <p class="instruction-text">
-                    Pahami jalur kelistrikan dari PLC menuju beban aktuator (Kontaktor). Latih logika pengawatan Anda dengan menyusun jalur secara berurutan pada simulator di bawah ini.
+                    Rangkaian industri tidak hanya memiliki 1 beban. Pahami jalur kelistrikan dari PLC menuju 2 aktuator terpisah secara berurutan. Uji logika pengawatan Anda pada panel virtual (Wiring Trace) di bawah ini tanpa menyebabkan korsleting.
                 </p>
 
                 <!-- Simulator Output -->
                 <div class="interactive-tool-box no-print">
-                    <div class="tool-header">🔗 Simulator Interaktif: Wiring Trace Output PLC</div>
-                    <p style="font-size: 13px; margin-bottom: 15px;">Misi: Hubungkan sumber listrik AC (Fasa) untuk menyalakan Koil Kontaktor Magnet (A1 & A2) melalui Relay Internal PLC (Terminal COM & Output). Klik terminal di bawah ini secara berurutan sesuai alur kelistrikan yang benar!</p>
+                    <div class="tool-header">🔗 Simulator Interaktif: Multi-Load Wiring Trace</div>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Misi: Rangkai kabel 220VAC untuk menyalakan 2 beban paralel (<strong><span id="sim2_load1">Beban 1</span></strong> dan <strong><span id="sim2_load2">Beban 2</span></strong>). Klik terminal secara berurutan sesuai kaidah aliran listrik Fasa ke Netral!</p>
                     
-                    <div class="grid-3-col wiring-box">
-                        <div class="wire-node" id="wn_fasa" onclick="selectNode('Fasa 220V', 'COM Output PLC', 'wn_fasa', 'wn_com')">Terminal Fasa 220V (L)</div>
-                        <div class="wire-node" id="wn_com" onclick="selectNode('COM Output PLC', 'Terminal Output PLC (100.00)', 'wn_com', 'wn_out')">Terminal COM Output PLC</div>
-                        <div class="wire-node" id="wn_out" onclick="selectNode('Terminal Output PLC (100.00)', 'A1 Koil Kontaktor', 'wn_out', 'wn_a1')">Terminal Output PLC (100.00)</div>
-                        <div class="wire-node" id="wn_a1" onclick="selectNode('A1 Koil Kontaktor', 'A2 Koil Kontaktor', 'wn_a1', 'wn_a2')">Terminal A1 Koil Kontaktor</div>
-                        <div class="wire-node" id="wn_a2" onclick="selectNode('A2 Koil Kontaktor', 'Terminal Netral (N)', 'wn_a2', 'wn_netral')">Terminal A2 Koil Kontaktor</div>
-                        <div class="wire-node" id="wn_netral" onclick="selectNode('Terminal Netral (N)', 'END', 'wn_netral', '')">Terminal Netral (N)</div>
+                    <div class="grid-4-col wiring-box" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div class="wire-node" id="wn_1" onclick="checkNode(1)">1. Fasa 220V (L)</div>
+                        <div class="wire-node" id="wn_2" onclick="checkNode(2)">2. COM Output PLC</div>
+                        <div class="wire-node" id="wn_3" onclick="checkNode(3)">3. Output 100.00</div>
+                        <div class="wire-node" id="wn_4" onclick="checkNode(4)">4. A1 <span id="sim2_L1">Beban 1</span></div>
+                        <div class="wire-node" id="wn_5" onclick="checkNode(5)">5. Output 100.01</div>
+                        <div class="wire-node" id="wn_6" onclick="checkNode(6)">6. A1 <span id="sim2_L2">Beban 2</span></div>
+                        <div class="wire-node" id="wn_7" onclick="checkNode(7)">7. A2 (Gabungan Beban)</div>
+                        <div class="wire-node" id="wn_8" onclick="checkNode(8)">8. Netral 220V (N)</div>
                     </div>
                     <div class="connection-log" id="connLog">
-                        >> Sistem Siap. Silakan klik "Terminal Fasa 220V (L)" sebagai titik awal wiring...
+                        >> Sistem Siap. Silakan klik node "1. Fasa 220V (L)" untuk memulai tarikan kabel...
                     </div>
+                    <button onclick="resetWiring()" style="margin-top:10px; background:#dc2626; color:white; border:none; padding:5px 15px; border-radius:4px; cursor:pointer;">Reset Wiring Simulator</button>
+                </div>
+
+                <div class="case-study-prompt">
+                    <strong>Studi Kasus 2: Multi-Aktuator</strong><br>
+                    Mesin Anda dirancang untuk menggerakkan dua komponen aktuator secara simultan/bergantian: <strong><span class="dynamic-var" id="cs2_beban1">[?]</span></strong> dan <strong><span class="dynamic-var" id="cs2_beban2">[?]</span></strong>. <br><br>
+                    Tugas Anda: Jabarkan alur penarikan kabel dari MCB 220VAC, melewati modul Output PLC, hingga menyalakan kedua beban tersebut dan kembali ke saluran Netral.
                 </div>
 
                 <div class="form-group">
-                    <label>Tugas Analisis Modul 2:</label>
-                    <textarea class="form-control" placeholder="Tuliskan kembali secara lengkap urutan kabel Fasa 220V hingga Netral berdasarkan simulasi di atas. Apa fungsi terminal COM pada Output PLC?" required></textarea>
+                    <label>Penjabaran Logika Analisis Modul 2:</label>
+                    <textarea class="form-control" placeholder="Tuliskan secara runut (step-by-step) penarikan kabel dari Fasa 220V hingga Netral untuk kedua beban paralel tersebut..." required></textarea>
+                </div>
+            </div>
+
+            <!-- MODUL 3: MCB CALCULATION -->
+            <div class="module-section">
+                <h2 class="module-title">
+                    <span class="module-number">3</span>
+                    Analisis Beban Arus & Penentuan MCB (Safety Engineering)
+                </h2>
+                
+                <p class="instruction-text">
+                    Sebuah panel kontrol yang baik harus memiliki perlindungan (Proteksi) daya yang presisi. Kapasitas MCB (Miniature Circuit Breaker) tidak boleh terlalu besar (bisa gagal trip saat korslet) dan tidak boleh terlalu kecil (sering trip saat operasi normal).
+                </p>
+
+                <div class="case-study-prompt">
+                    <strong>Studi Kasus 3: Perancangan Kelistrikan Mesin</strong><br>
+                    Berdasarkan spesifikasi kelistrikan Proyek Mesin Anda, diketahui rincian konsumsi daya sebagai berikut:<br>
+                    - Konsumsi Daya CPU PLC: <strong><span id="cs3_P_plc">[?]</span> Watt</strong><br>
+                    - Konsumsi Daya Total Sensor: <strong><span id="cs3_P_sensor">[?]</span> Watt</strong><br>
+                    - Konsumsi Beban Aktuator 1: <strong><span id="cs3_P_load1">[?]</span> Watt</strong><br>
+                    - Konsumsi Beban Aktuator 2/Motor: <strong><span id="cs3_P_load2">[?]</span> Watt</strong><br><br>
+                    Semua komponen disuplai (secara langsung maupun melalui Power Supply) dari jaringan listrik jala-jala <strong>\( V = 220\ Volt \)</strong> AC.<br><br>
+                    Tugas Anda:<br>
+                    a) Hitung Total Daya Keseluruhan Panel ( \( P_{total} \) ).<br>
+                    b) Gunakan Hukum Ohm \( I = \frac{P_{total}}{V} \) untuk mencari Total Arus Beban Penuh.<br>
+                    c) Tentukan Rating MCB (Ampere) yang harus dibeli di pasaran (Pilihan pasaran: 2A, 4A, 6A, 10A, 16A) yang mengakomodir beban tersebut secara aman.
+                </div>
+
+                <div class="form-group">
+                    <label>Penjabaran Perhitungan Matematis (Modul 3):</label>
+                    <textarea class="form-control" placeholder="Tuliskan proses perhitungan P total, pencarian kuat arus (Ampere), dan keputusan spesifikasi MCB Anda..." required></textarea>
                 </div>
             </div>
 
@@ -327,9 +365,92 @@
     </div> <!-- End Wrapper -->
 
     <script>
-        // --- 1. SIMULATOR MULTIMETER ---
+        // --- DATA VARIASI KELOMPOK (Proyek Mesin Industri) ---
+        const groupData = {
+            "1": { 
+                mesin: "Conveyor System", 
+                sensor: "Proximity Sensor NPN (Active Low)", sensorPolarity: "NPN",
+                beban1: "Kontaktor K1 (Motor Conveyor)", beban2: "Relay R1 (Alarm Buzzer)",
+                p_plc: 45, p_sensor: 12, p_load1: 15, p_load2: 5 
+            },
+            "2": { 
+                mesin: "Stamping Press", 
+                sensor: "Optik Sensor PNP (Active High)", sensorPolarity: "PNP",
+                beban1: "Solenoid Valve Y1 (Turun)", beban2: "Solenoid Valve Y2 (Naik)",
+                p_plc: 50, p_sensor: 15, p_load1: 30, p_load2: 30 
+            },
+            "3": { 
+                mesin: "Mixing Tank Liquid", 
+                sensor: "Flow Switch NPN", sensorPolarity: "NPN",
+                beban1: "Kontaktor K1 (Heater Tank)", beban2: "Kontaktor K2 (Pump Motor)",
+                p_plc: 45, p_sensor: 10, p_load1: 1000, p_load2: 500 
+            },
+            "4": { 
+                mesin: "Packaging Automasi", 
+                sensor: "Limit Switch NC", sensorPolarity: "PNP", // treated as PNP for sourcing logic
+                beban1: "Kontaktor K1 (Sealer)", beban2: "Lampu Indikator L1",
+                p_plc: 50, p_sensor: 0, p_load1: 15, p_load2: 100 
+            },
+            "5": { 
+                mesin: "Robot Sorting Arm", 
+                sensor: "Vision Camera NPN", sensorPolarity: "NPN",
+                beban1: "Servo Controller Axis-X", beban2: "Servo Controller Axis-Y",
+                p_plc: 60, p_sensor: 25, p_load1: 400, p_load2: 400 
+            },
+            "6": { 
+                mesin: "Filling Station Botol", 
+                sensor: "Proximity Capacitive PNP", sensorPolarity: "PNP",
+                beban1: "Valve Relays (V1 & V2)", beban2: "Kontaktor Pump (P1)",
+                p_plc: 45, p_sensor: 8, p_load1: 10, p_load2: 250 
+            }
+        };
+
+        let currentSensorPolarity = ""; // NPN or PNP
+
+        function updateCaseStudies() {
+            const klp = document.getElementById('kelompokSelect').value;
+            if (!klp) return;
+
+            const d = groupData[klp];
+
+            // Update UI Texts
+            document.getElementById('sim1_sensor_type').innerText = d.sensor;
+            currentSensorPolarity = d.sensorPolarity;
+
+            document.getElementById('cs1_mesin').innerText = d.mesin;
+            document.getElementById('cs1_sensor').innerText = d.sensor;
+
+            document.getElementById('sim2_L1').innerText = d.beban1;
+            document.getElementById('sim2_L2').innerText = d.beban2;
+            document.getElementById('sim2_load1').innerText = d.beban1;
+            document.getElementById('sim2_load2').innerText = d.beban2;
+            document.getElementById('cs2_beban1').innerText = d.beban1;
+            document.getElementById('cs2_beban2').innerText = d.beban2;
+
+            document.getElementById('cs3_P_plc').innerText = d.p_plc;
+            document.getElementById('cs3_P_sensor').innerText = d.p_sensor;
+            document.getElementById('cs3_P_load1').innerText = d.p_load1;
+            document.getElementById('cs3_P_load2').innerText = d.p_load2;
+
+            resetWiring();
+        }
+
+        // --- 1. SIMULATOR MULTIMETER (NPN/PNP Logic) ---
+        let comVoltage = 0; // 0 or 24
         let probeHitam = false;
         let probeMerah = false;
+
+        function setCom(val) {
+            comVoltage = val;
+            if(val === 0) {
+                document.getElementById('btnCom0V').classList.add('selected');
+                document.getElementById('btnCom24V').classList.remove('selected');
+            } else {
+                document.getElementById('btnCom24V').classList.add('selected');
+                document.getElementById('btnCom0V').classList.remove('selected');
+            }
+            updateMultimeter(false);
+        }
 
         function toggleProbe(warna) {
             if (warna === 'hitam') {
@@ -348,11 +469,24 @@
 
         function updateMultimeter(isPbPressed) {
             const display = document.getElementById('mmDisplay');
+            if(!currentSensorPolarity) {
+                display.innerText = "PILIH KELP.";
+                return;
+            }
+
             if (probeHitam && probeMerah) {
                 if (isPbPressed) {
-                    display.innerText = "00.0 Ω";
-                    display.style.color = "#ef4444"; // Simulate beep color change
-                    display.style.background = "#d9f99d";
+                    // Logic check: NPN needs 24V COM, PNP needs 0V COM
+                    if ((currentSensorPolarity === "NPN" && comVoltage === 24) || 
+                        (currentSensorPolarity === "PNP" && comVoltage === 0)) {
+                        display.innerText = "00.0 Ω";
+                        display.style.color = "#ef4444"; 
+                        display.style.background = "#d9f99d";
+                    } else {
+                        display.innerText = "ERR. POL"; // Error Polarity
+                        display.style.color = "#dc2626";
+                        display.style.background = "#fecaca";
+                    }
                 } else {
                     display.innerText = "O.L";
                     display.style.color = "#064e3b";
@@ -365,33 +499,37 @@
             }
         }
 
-        // --- 2. SIMULATOR WIRING ---
-        let expectedNode = 'Fasa 220V';
-        let stepCount = 0;
+        // --- 2. SIMULATOR WIRING TRACE (Multi-Load) ---
+        let expectedNodeNum = 1;
 
-        function selectNode(nodeName, nextExpected, elId, nextElId) {
+        function checkNode(nodeNum) {
             const log = document.getElementById('connLog');
-            const el = document.getElementById(elId);
+            const el = document.getElementById('wn_' + nodeNum);
 
-            if (el.classList.contains('connected')) return; // Already done
+            if (el.classList.contains('connected')) return; 
 
-            if (nodeName === expectedNode) {
+            if (nodeNum === expectedNodeNum) {
                 el.classList.add('connected');
-                stepCount++;
                 
-                if (nextExpected === 'END') {
-                    log.innerHTML += `<br>>> [<span style="color:#fff">SUCCESS</span>] Menghubungkan ke ${nodeName}. Sirkuit Output Lengkap! Kontaktor siap beroperasi.`;
-                    expectedNode = '';
+                if (nodeNum === 8) {
+                    log.innerHTML += `<br>>> [<span style="color:#fff">Sistem Berhasil Aktif</span>] Pengawatan Fasa hingga Netral Sempurna. Kedua aktuator beroperasi.`;
                 } else {
-                    log.innerHTML += `<br>>> Menghubungkan ke ${nodeName}... OK. Selanjutnya sambungkan ke ${nextExpected}.`;
-                    expectedNode = nextExpected;
+                    log.innerHTML += `<br>>> Terminal ${nodeNum} tersambung... Lanjutkan ke Node ${nodeNum + 1}.`;
+                    expectedNodeNum++;
                 }
             } else {
-                log.innerHTML += `<br>>> [<span style="color:#ef4444">ERROR</span>] Salah alur! Seharusnya Anda menghubungkan ke ${expectedNode} terlebih dahulu.`;
+                log.innerHTML += `<br>>> [<span style="color:#ef4444">KORSLETING / ERROR</span>] Salah alur pengawatan! Seharusnya menuju Terminal ${expectedNodeNum}. Mulai dari awal...`;
+                setTimeout(() => resetWiring(), 2500);
             }
-            
-            // Auto scroll log
             log.scrollTop = log.scrollHeight;
+        }
+
+        function resetWiring() {
+            expectedNodeNum = 1;
+            for(let i=1; i<=8; i++) {
+                document.getElementById('wn_'+i).classList.remove('connected');
+            }
+            document.getElementById('connLog').innerHTML = '>> Sistem Siap. Silakan klik node "1. Fasa 220V (L)" untuk memulai tarikan kabel...';
         }
 
         // --- 3. EXPORT PDF ---
@@ -410,7 +548,7 @@
             });
 
             if (!isValid) {
-                alert("Validasi Gagal: Mohon lengkapi seluruh form identitas dan kotak tugas analisis sebelum menyimpan PDF!");
+                alert("Validasi Gagal: Mohon lengkapi form identitas dan seluruh kotak analisis HOTS sebelum mengunduh PDF!");
                 return;
             }
 
@@ -421,7 +559,6 @@
 
             const element = document.querySelector('.wrapper');
             
-            // Sembunyikan elemen simulator (no-print) saat cetak
             const noPrintElements = element.querySelectorAll('.no-print');
             const originalDisplays = [];
             noPrintElements.forEach((el, index) => {
@@ -429,16 +566,15 @@
                 el.style.display = 'none';
             });
 
-            // Sesuaikan styling cetak
             element.style.borderRadius = "0";
             element.style.boxShadow = "none";
 
-            // Grab nama siswa untuk nama file
             const nama = document.querySelector('input[type="text"]').value.replace(/[^a-zA-Z0-9]/g, '_');
+            const klp = document.getElementById('kelompokSelect').value;
 
             const opt = {
                 margin:       0.3,
-                filename:     `Laporan_Praktik_PLC_${nama}.pdf`,
+                filename:     `Laporan_HOTS_PLC_Bab1_Kelompok${klp}_${nama}.pdf`,
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 2, useCORS: true },
                 jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
@@ -448,7 +584,6 @@
                 btn.innerHTML = originalText;
                 btn.disabled = false;
                 
-                // Kembalikan styling normal
                 element.style.borderRadius = "12px";
                 element.style.boxShadow = "0 15px 35px rgba(0, 0, 0, 0.1)";
                 noPrintElements.forEach((el, index) => {
