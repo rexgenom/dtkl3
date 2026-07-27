@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Instalasi Tenaga Listrik - SMK N Karangpucung 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.5);
+            --secondary: #8b5cf6;
+            --secondary-glow: rgba(139, 92, 246, 0.5);
+            --accent: #06b6d4;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --card-hover: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-darker); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; }
+
+        /* Background Effects */
+        .bg-shapes { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; }
+        .shape { position: absolute; filter: blur(100px); opacity: 0.4; animation: float 25s infinite alternate; }
+        .shape-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, var(--primary-glow), transparent 70%); animation-delay: 0s; }
+        .shape-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, var(--secondary-glow), transparent 70%); animation-delay: -5s; }
+        .shape-3 { top: 40%; left: 50%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(6, 182, 212, 0.25), transparent 70%); animation-delay: -10s; }
+        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(5%, 5%) scale(1.1); } 100% { transform: translate(-5%, -5%) scale(0.9); } }
+
+        /* Navbar */
+        nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border); z-index: 1000; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+        nav.scrolled { padding: 1rem 5%; background: rgba(2, 6, 23, 0.95); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .logo { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.3s ease; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu-btn { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+        /* Time Badge */
+        .time-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(139, 92, 246, 0.15); color: var(--secondary); padding: 0.4rem 1rem; border-radius: 30px; font-size: 0.85rem; font-weight: 700; border: 1px solid rgba(139, 92, 246, 0.3); margin-bottom: 1rem; font-family: 'Outfit', sans-serif; letter-spacing: 0.5px; }
+
+        /* Header / Hero */
+        header { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 5%; padding-top: 80px; position: relative; }
+        .hero-content { max-width: 900px; animation: slideUpFade 1s ease-out forwards; }
+        .badge { display: inline-block; padding: 0.5rem 1rem; background: rgba(59, 130, 246, 0.1); border: 1px solid var(--primary); border-radius: 50px; color: var(--primary); font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--accent); margin-bottom: 1rem; font-weight: 400; }
+        .course-duration { font-size: 1.1rem; color: #fbbf24; font-weight: 600; margin-bottom: 2rem; display: flex; align-items: center; gap: 10px; }
+        .hero-details { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 16px; backdrop-filter: blur(10px); display: inline-block; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.3s ease; }
+        .hero-details:hover { transform: translateY(-5px); }
+        .hero-details p { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+        .hero-details i { color: var(--secondary); width: 20px; }
+        .hero-details .teacher { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--glass-border); font-weight: 600; color: #fff; }
+        .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--text-muted); animation: bounce 2s infinite; text-decoration: none; transition: color 0.3s ease; }
+        .scroll-indicator:hover { color: var(--primary); }
+        .scroll-indicator .mouse { width: 30px; height: 50px; border: 2px solid currentColor; border-radius: 15px; position: relative; }
+        .scroll-indicator .wheel { width: 4px; height: 8px; background: currentColor; border-radius: 2px; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); animation: scroll 2s infinite; }
+
+        /* Sections Common */
+        section { padding: 6rem 5%; position: relative; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 50px; height: 4px; background: var(--primary); border-radius: 2px; transition: width 0.3s ease; }
+        section:hover .section-title::after { width: 100px; }
+        .section-desc { color: var(--text-muted); max-width: 700px; margin: 0 auto; font-size: 1.1rem; }
+
+        /* Elaborate Text Content Styles */
+        .text-content { color: var(--text-muted); margin-bottom: 1.5rem; text-align: justify; }
+        .text-content strong { color: var(--text-main); }
+        .formula-box { background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-left: 4px solid var(--accent); border-radius: 8px; margin: 1.5rem 0; font-family: 'Outfit', monospace; font-size: 1.2rem; color: var(--accent); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 10px; }
+        .formula-box span { color: var(--text-main); font-size: 0.95rem; font-family: 'Inter', sans-serif; margin-left: 10px; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 2rem 0; background: rgba(30, 41, 59, 0.5); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .comparison-table th, .comparison-table td { padding: 1.2rem; border: 1px solid var(--glass-border); text-align: left; }
+        .comparison-table th { background: rgba(59, 130, 246, 0.15); color: var(--primary); font-weight: 600; font-family: 'Outfit', sans-serif; font-size: 1.1rem; }
+        .comparison-table tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+        /* Listrik 3 Fasa */
+        .fasa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto; }
+        .fasa-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 2.5rem; transition: all 0.4s ease; position: relative; overflow: hidden; backdrop-filter: blur(10px); }
+        .fasa-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, transparent, rgba(255,255,255,0.03)); opacity: 0; transition: opacity 0.4s ease; }
+        .fasa-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: var(--primary); }
+        .fasa-card:hover::before { opacity: 1; }
+        .fasa-icon { font-size: 4rem; margin-bottom: 1.5rem; text-align: center; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: transform 0.5s ease; }
+        .fasa-card:hover .fasa-icon { transform: scale(1.1); }
+        .fasa-card h3 { font-size: 1.8rem; margin-bottom: 1rem; text-align: center; color: #fff; }
+
+        /* Pembangkit */
+        .pembangkit-container { max-width: 1200px; margin: 0 auto; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; overflow: hidden; backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .tabs { display: flex; border-bottom: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); }
+        .tab-btn { flex: 1; padding: 1.5rem; background: none; border: none; color: var(--text-muted); font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: 'Outfit', sans-serif; position: relative; }
+        .tab-btn:hover { color: var(--text-main); background: var(--card-hover); }
+        .tab-btn.active { color: var(--primary); background: rgba(59, 130, 246, 0.1); border-bottom: 2px solid var(--primary); }
+        .tab-content { padding: 3rem; display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+        .tab-content h4 { color: #fff; margin: 1.5rem 0 0.5rem 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        .tab-content ul { list-style: none; margin-left: 1.5rem; }
+        .tab-content ul li { margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 15px; color: var(--text-muted); }
+        .tab-content ul li i { color: var(--secondary); margin-top: 5px; }
+
+        /* Komponen */
+        .komponen-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+        .komponen-item { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 1rem; backdrop-filter: blur(10px); position: relative; overflow: hidden; }
+        .komponen-item::after { content: '\f061'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; right: 1.5rem; opacity: 0; transform: translateX(-10px); transition: all 0.3s ease; color: var(--primary); }
+        .komponen-item:hover { background: var(--card-hover); border-color: var(--secondary); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .komponen-item:hover::after { opacity: 1; transform: translateX(0); }
+        .komponen-number { width: 45px; height: 45px; border-radius: 50%; background: rgba(139, 92, 246, 0.2); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Outfit', sans-serif; font-size: 1.2rem; flex-shrink: 0; transition: transform 0.3s ease; }
+        .komponen-item:hover .komponen-number { transform: scale(1.1) rotate(10deg); background: var(--secondary); color: white; }
+        .komponen-text { font-weight: 600; font-size: 1.1rem; transition: color 0.3s ease; }
+        .komponen-item:hover .komponen-text { color: var(--accent); }
+
+        /* Simulator Styles */
+        .sim-container { background: var(--glass-bg); padding: 3rem; border-radius: 20px; text-align: center; max-width: 900px; margin: 0 auto; border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .sim-diagram { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; position: relative; }
+        .sim-node { padding: 1.5rem; background: rgba(59,130,246,0.1); border: 2px solid var(--primary); border-radius: 10px; font-weight: bold; width: 130px; transition: all 0.3s ease; }
+        .sim-node i { font-size: 2rem; margin-bottom: 10px; color: var(--primary); }
+        .sim-node#sim-gen i { animation: spin 4s linear infinite; }
+        .sim-line { flex-grow: 1; height: 8px; background: #334155; position: relative; transition: all 0.3s ease; }
+        .sim-line.active { background: #10b981; box-shadow: 0 0 10px #10b981; }
+        .sim-line.danger { background: #ef4444; box-shadow: 0 0 10px #ef4444; animation: flash 0.5s infinite; }
+        .sim-switch-box { display: flex; flex-direction: column; align-items: center; z-index: 10; margin: 0 10px; }
+        .sim-switch-label { margin-bottom: 10px; font-weight: bold; color: var(--accent); font-family: 'Outfit', sans-serif; font-size: 1.1rem;}
+        .sim-switch { padding: 15px 30px; border: none; border-radius: 8px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: all 0.3s; color: white;}
+        .sim-switch.off { background: #ef4444; box-shadow: 0 5px 0 #b91c1c; }
+        .sim-switch.on { background: #10b981; box-shadow: 0 5px 0 #047857; }
+        .sim-switch:active { transform: translateY(5px); box-shadow: 0 0 0 transparent; }
+        .sim-status { padding: 1.5rem; border-radius: 10px; font-size: 1.1rem; font-weight: bold; background: rgba(0,0,0,0.3); margin-top: 1.5rem; transition: all 0.3s ease; border: 1px solid transparent;}
+        .sim-status.error { background: rgba(239, 68, 68, 0.1); color: #f87171; border-color: #ef4444;}
+        .sim-status.success { background: rgba(16, 185, 129, 0.1); color: #34d399; border-color: #10b981;}
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* Quiz / Evaluasi Styles */
+        .quiz-container { max-width: 800px; margin: 0 auto; text-align: left;}
+        .quiz-question { background: var(--glass-bg); padding: 2rem; border-radius: 15px; border: 1px solid var(--glass-border); margin-bottom: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .quiz-question h4 { font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--accent); line-height: 1.5; }
+        .quiz-options { list-style: none; margin-left: 0 !important; }
+        .quiz-options li { margin-bottom: 0.8rem; display: block; }
+        .quiz-options label { display: block; padding: 1rem 1.5rem; background: rgba(0,0,0,0.2); border-radius: 8px; cursor: pointer; transition: all 0.2s; border: 1px solid rgba(255,255,255,0.05); }
+        .quiz-options label:hover { background: rgba(59,130,246,0.1); border-color: var(--primary); }
+        .quiz-options input[type="radio"] { display: none; }
+        .quiz-options input[type="radio"]:checked + label { background: rgba(59,130,246,0.25); border-color: var(--primary); box-shadow: inset 0 0 10px rgba(59,130,246,0.2); }
+        .btn-submit-quiz { display: block; width: 100%; max-width: 350px; margin: 2rem auto; padding: 1.2rem; font-size: 1.2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 30px; color: white; cursor: pointer; font-weight: bold; transition: transform 0.3s, box-shadow 0.3s; font-family: 'Outfit', sans-serif;}
+        .btn-submit-quiz:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(59,130,246,0.4); }
+        .quiz-result { max-width: 800px; margin: 0 auto; text-align: center; background: var(--glass-bg); padding: 3rem; border-radius: 15px; border: 2px solid var(--primary); box-shadow: 0 10px 30px rgba(59,130,246,0.2); }
+        .quiz-result h3 { font-size: 3.5rem; margin-bottom: 1rem; color: #10b981; }
+        .quiz-result.bad { border-color: #ef4444; box-shadow: 0 10px 30px rgba(239,68,68,0.2); }
+        .quiz-result.bad h3 { color: #ef4444; }
+        .quiz-result p { font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-main); }
+        .option-correct { background: rgba(16, 185, 129, 0.2) !important; border-color: #10b981 !important; color: #34d399;}
+        .option-wrong { background: rgba(239, 68, 68, 0.2) !important; border-color: #ef4444 !important; color: #f87171;}
+
+        /* Modal Structure (Unchanged) */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content { background: var(--bg-dark); border: 1px solid var(--glass-border); width: 95%; max-width: 800px; border-radius: 20px; padding: 3rem; position: relative; transform: translateY(50px) scale(0.9); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); max-height: 90vh; overflow-y: auto; }
+        .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+        .close-modal { position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.1); border: none; width: 40px; height: 40px; border-radius: 50%; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
+        .close-modal:hover { color: white; background: rgba(239, 68, 68, 0.8); transform: rotate(90deg); }
+        .modal-title { font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary); padding-right: 3rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; display: flex; align-items: center; gap: 15px; }
+        .modal-body { color: var(--text-muted); line-height: 1.8; padding-top: 1rem; text-align: justify; }
+        .modal-body h4 { color: var(--accent); margin: 1.5rem 0 0.5rem 0; font-size: 1.2rem; }
+        .modal-body ul { margin-top: 0.5rem; padding-left: 1.5rem; }
+        .modal-body li { margin-bottom: 0.8rem; }
+
+        /* Footer */
+        footer { background: var(--bg-darker); border-top: 1px solid var(--glass-border); padding: 4rem 5% 2rem; text-align: center; position: relative; overflow: hidden; }
+        footer::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--primary), transparent); }
+        .footer-content { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+        .school-logo { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(59,130,246,0.4)); } 50% { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(59,130,246,0.8)); } 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(59,130,246,0.4)); } }
+        footer p { color: var(--text-muted); margin-bottom: 0.5rem; }
+        .copyright { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; color: rgba(255,255,255,0.3); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            .nav-links { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: var(--bg-darker); flex-direction: column; align-items: center; padding-top: 2rem; transition: left 0.3s ease; border-top: 1px solid var(--glass-border); }
+            .nav-links.active { left: 0; }
+            .nav-links li { width: 100%; text-align: center; padding: 1rem 0; }
+            .nav-links a { font-size: 1.2rem; display: block; width: 100%; }
+            .hero-title { font-size: 2.2rem; }
+            .tabs { flex-direction: column; }
+            .tab-btn { border-bottom: 1px solid var(--glass-border); }
+            .tab-btn.active { border-bottom: none; border-left: 4px solid var(--primary); background: linear-gradient(90deg, rgba(59,130,246,0.1), transparent); }
+            .komponen-grid { grid-template-columns: 1fr; }
+            .comparison-table { display: block; overflow-x: auto; }
+            .sim-diagram { flex-direction: column; gap: 10px; }
+            .sim-line { width: 10px; height: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">ITL Kelas 12</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#listrik-3-fasa">Sistem 3 Fasa</a></li>
+            <li><a href="#pembangkit">Instalasi</a></li>
+            <li><a href="#komponen">Komponen</a></li>
+            <li><a href="#simulator">Simulator</a></li>
+            <li><a href="#evaluasi">Evaluasi</a></li>
+        </ul>
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Header / Hero -->
+    <header id="beranda">
+        <div class="hero-content">
+            <span class="badge"><i class="fas fa-laptop-code"></i> Modul Pembelajaran Komprehensif</span>
+            <h1 class="hero-title">Instalasi Tenaga Listrik</h1>
+            <h2 class="hero-subtitle">Memahami Sistem Instalasi Tenaga Listrik 3 Fasa (Bagian 1)</h2>
+            
+            <div class="course-duration">
+                <i class="far fa-clock"></i> Alokasi Waktu: 6 x 45 Menit (Total 270 Menit)
+            </div>
+            
+            <div class="hero-details">
+                <p><i class="fas fa-graduation-cap"></i> Kelas 12 TITL 2</p>
+                <p><i class="fas fa-bolt"></i> Jurusan Teknik Instalasi Tenaga Listrik</p>
+                <p><i class="fas fa-school"></i> SMK Negeri Karangpucung</p>
+                <p><i class="far fa-calendar-alt"></i> Tahun Ajaran 2026</p>
+                <p class="teacher"><i class="fas fa-chalkboard-teacher"></i> Guru Mapel: Muhamad Rendi Muhindo, S.Pd.</p>
+            </div>
+        </div>
+
+        <a href="#listrik-3-fasa" class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Mulai Belajar</span>
+        </a>
+    </header>
+
+    <!-- Section 1: Listrik 3 Fasa -->
+    <section id="listrik-3-fasa">
+        <div class="section-header">
+            <span class="time-badge"><i class="fas fa-hourglass-half"></i> Sesi 1-2 (2 x 45 Menit)</span>
+            <h2 class="section-title">Konsep Sistem Listrik 3 Fasa</h2>
+            <p class="section-desc">Mempelajari teori dasar, perbedaan, perhitungan tegangan arus, dan pengaplikasian dari dua macam hubungan utama yang digunakan dalam kelistrikan 3 fasa: Hubungan Bintang dan Segitiga.</p>
+        </div>
+
+        <div class="fasa-grid">
+            <div class="fasa-card">
+                <div class="fasa-icon"><i class="fas fa-project-diagram"></i></div>
+                <h3>Hubungan Bintang (Y)</h3>
+                <p class="text-content">Terbentuk ketika salah satu ujung dari tiga kumparan (R, S, T) disatukan pada satu <strong>Titik Netral (N)</strong>. Menyediakan dua tingkat tegangan: Fasa-ke-Netral (220V) dan Fasa-ke-Fasa (380V).</p>
+                <div class="formula-box">
+                    <div>V<sub>LL</sub> = &radic;3 &times; V<sub>LN</sub> <span>(Tegangan Saluran = 1.732 &times; Fasa)</span></div>
+                    <div>I<sub>L</sub> = I<sub>ph</sub> <span>(Arus Saluran = Arus Fasa)</span></div>
+                </div>
+            </div>
+            
+            <div class="fasa-card">
+                <div class="fasa-icon"><i class="fas fa-play" style="transform: rotate(-90deg);"></i></div>
+                <h3>Hubungan Segitiga (&Delta;)</h3>
+                <p class="text-content">Terbentuk ketika ujung kumparan disambungkan berurutan membentuk segitiga tertutup. <strong>Tidak ada netral</strong>. Diaplikasikan pada transmisi jarak jauh dan motor industri.</p>
+                <div class="formula-box">
+                    <div>V<sub>LL</sub> = V<sub>ph</sub> <span>(Tegangan Saluran = Tegangan Fasa)</span></div>
+                    <div>I<sub>L</sub> = &radic;3 &times; I<sub>ph</sub> <span>(Arus Saluran = 1.732 &times; Arus Fasa)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Aspek</th>
+                    <th>Bintang (Y)</th>
+                    <th>Segitiga (&Delta;)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Netral</strong></td><td>Tersedia (Sistem 4 Kawat)</td><td>Tidak ada (Sistem 3 Kawat)</td></tr>
+                <tr><td><strong>Beban</strong></td><td>1 Fasa (220V) & 3 Fasa (380V)</td><td>Hanya 3 Fasa (380V/lebih)</td></tr>
+                <tr><td><strong>Isolasi</strong></td><td>Lebih rendah</td><td>Lebih tinggi (menahan V_LL penuh)</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Section 2: Pembangkit -->
+    <section id="pembangkit">
+        <div class="section-header">
+            <span class="time-badge"><i class="fas fa-hourglass-half"></i> Sesi 3-4 (2 x 45 Menit)</span>
+            <h2 class="section-title">Instalasi Pembangkit Listrik</h2>
+            <p class="section-desc">Mendalami kelengkapan mekanikal-elektrikal dan perancangan instalasi kelistrikannya yang berkapasitas ekstra besar.</p>
+        </div>
+
+        <div class="pembangkit-container">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="openTab(event, 'kelengkapan')">Kelengkapan Pusat Pembangkit</button>
+                <button class="tab-btn" onclick="openTab(event, 'instalasi')">Instalasi Listrik Pembangkit</button>
+            </div>
+
+            <div id="kelengkapan" class="tab-content active">
+                <h3 style="color: var(--accent); font-size: 1.8rem;"><i class="fas fa-cogs" style="margin-right: 10px;"></i> Kelengkapan Utama Pembangkit</h3>
+                <h4>1. Prime Mover (Penggerak Mula)</h4>
+                <p class="text-content">Mesin utama pemutar poros. Jenisnya: Turbin Air (Pelton/Francis/Kaplan), Turbin Uap, Mesin Diesel.</p>
+                <h4>2. Sistem Pendukung Kritis (Auxiliary Systems)</h4>
+                <ul>
+                    <li><i class="fas fa-thermometer-half"></i> <strong>Sistem Pendingin:</strong> Hidrogen (H2) atau siklus air tertutup.</li>
+                    <li><i class="fas fa-oil-can"></i> <strong>Sistem Pelumas:</strong> Mencegah keausan poros pada ribuan RPM.</li>
+                    <li><i class="fas fa-desktop"></i> <strong>Control Room:</strong> Pusat SCADA untuk pantauan HMI 24 jam.</li>
+                </ul>
+            </div>
+
+            <div id="instalasi" class="tab-content">
+                <h3 style="color: var(--accent); font-size: 1.8rem;"><i class="fas fa-network-wired" style="margin-right: 10px;"></i> Sistem Instalasi Listrik</h3>
+                <h4>1. Sistem Pengkabelan (Power Cabling)</h4>
+                <p class="text-content">Tegangan 11kV-25kV dengan arus puluhan ribu Ampere menggunakan rel tembaga atau XLPE single-core ukuran raksasa.</p>
+                <h4>2. Pembumian Terpadu (Grounding Grid)</h4>
+                <ul>
+                    <li><i class="fas fa-layer-group"></i> Jaring (Mesh) tembaga ditanam di bawah area tanah pembangkit.</li>
+                    <li><i class="fas fa-bolt"></i> Earth Resistance < 1 Ohm untuk cegah bahaya tegangan langkah.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Komponen -->
+    <section id="komponen">
+        <div class="section-header">
+            <span class="time-badge"><i class="fas fa-hourglass-half"></i> Sesi 5 (1 x 45 Menit)</span>
+            <h2 class="section-title">Komponen Instalasi</h2>
+            <p class="section-desc">Mengkaji fungsi dan cara kerja peralatan sirkuit daya. (Klik untuk detail)</p>
+        </div>
+
+        <div class="komponen-grid">
+            <div class="komponen-item" onclick="openModal('modal-generator')">
+                <div class="komponen-number">1</div><div class="komponen-text">Generator Sinkron</div>
+            </div>
+            <div class="komponen-item" onclick="openModal('modal-busbar')">
+                <div class="komponen-number">2</div><div class="komponen-text">Busbar (Rel Daya)</div>
+            </div>
+            <div class="komponen-item" onclick="openModal('modal-kabel')">
+                <div class="komponen-number">3</div><div class="komponen-text">Sistem IPB (Kabel Daya)</div>
+            </div>
+            <div class="komponen-item" onclick="openModal('modal-pemutus')">
+                <div class="komponen-number">4</div><div class="komponen-text">Pemutus (PMT) & Pemisah (PMS)</div>
+            </div>
+            <div class="komponen-item" onclick="openModal('modal-pemakaian')">
+                <div class="komponen-number">5</div><div class="komponen-text">Sistem Pemakaian Sendiri</div>
+            </div>
+            <div class="komponen-item" onclick="openModal('modal-baterai')">
+                <div class="komponen-number">6</div><div class="komponen-text">Baterai & Sistem DC</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Simulator PMT & PMS -->
+    <section id="simulator">
+        <div class="section-header">
+            <span class="time-badge"><i class="fas fa-desktop"></i> Simulasi Praktik</span>
+            <h2 class="section-title">Simulator Manuver Jaringan</h2>
+            <p class="section-desc">Praktekkan SOP (Standard Operating Procedure) pengoperasian saklar daya tinggi di Pembangkit. <br><strong style="color:var(--accent);">ATURAN EMAS:</strong> Pemisah (PMS) <strong>TIDAK BOLEH</strong> diubah statusnya ketika berbeban arus listrik (PMT keadaan ON)!</p>
+        </div>
+        <div class="sim-container">
+            <div class="sim-diagram">
+                <div class="sim-node" id="sim-gen"><i class="fas fa-fan"></i><br>Generator <br><small>11 kV</small></div>
+                
+                <div class="sim-line" id="line-1"></div>
+                
+                <div class="sim-switch-box">
+                    <div class="sim-switch-label">PMT (Breaker)</div>
+                    <button id="btn-pmt" class="sim-switch off" onclick="togglePMT()">OFF (OPEN)</button>
+                </div>
+                
+                <div class="sim-line" id="line-2"></div>
+                
+                <div class="sim-switch-box">
+                    <div class="sim-switch-label">PMS (Disconnect)</div>
+                    <button id="btn-pms" class="sim-switch off" onclick="togglePMS()">OFF (OPEN)</button>
+                </div>
+                
+                <div class="sim-line" id="line-3"></div>
+                
+                <div class="sim-node" id="sim-bus"><i class="fas fa-align-justify"></i><br>Busbar<br>Utama</div>
+            </div>
+            <div class="sim-status" id="sim-status">
+                <i class="fas fa-info-circle"></i> Sistem Terputus Sepenuhnya. Aman untuk perbaikan dan perawatan.
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Evaluasi Langsung -->
+    <section id="evaluasi" style="padding-top: 2rem;">
+        <div class="section-header">
+           <span class="time-badge"><i class="fas fa-clipboard-check"></i> Sesi 6 (1 x 45 Menit) - Ujian Akhir</span>
+           <h2 class="section-title">Evaluasi Modul Pembelajaran</h2>
+           <p class="section-desc">Uji pemahaman Anda langsung di sini. Jawablah 5 pertanyaan pilihan ganda yang diringkas dari materi Bab 1.</p>
+        </div>
+        
+        <div class="quiz-container" id="quiz-container">
+            <!-- JavaScript will render questions here -->
+        </div>
+
+        <div class="quiz-result" id="quiz-result" style="display:none;">
+            <h3 id="score-display"></h3>
+            <p id="score-msg"></p>
+            <button class="btn-submit-quiz" onclick="resetQuiz()" style="margin-top: 1rem;">Coba Lagi</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="school-logo"><i class="fas fa-bolt"></i></div>
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem;">SMK Negeri Karangpucung</h3>
+            <p style="color: var(--text-main); font-weight: 500;">Program Keahlian: Teknik Instalasi Tenaga Listrik (TITL)</p>
+            <p>Mencetak Teknisi Listrik yang Kompeten, Profesional, Cerdas, dan Siap Bersaing di Industri Kelistrikan</p>
+            
+            <div class="copyright">
+                &copy; 2026 Modul Pembelajaran Interaktif (Simulator + CBT)<br>
+                Disusun khusus oleh <strong>Muhamad Rendi Muhindo, S.Pd.</strong>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS CONTENT (Abridged to fit neatly while retaining detail) -->
+    <!-- Generator -->
+    <div class="modal-overlay" id="modal-generator">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-generator')"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title"><i class="fas fa-fan" style="color: var(--accent);"></i> Generator Sinkron</h3>
+            <div class="modal-body">
+                <p>Mengubah energi mekanik turbin menjadi energi listrik AC 3 Fasa. Menggunakan <strong>Sistem Eksitasi Brushless</strong> (tanpa sikat) di mana arus DC diinduksikan ke rotor untuk membuat medan magnet. Dilengkapi <strong>AVR</strong> otomatis dan sistem pendingin gas Hidrogen (H2) untuk efisiensi tinggi pada PLTU skala raksasa.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Busbar -->
+    <div class="modal-overlay" id="modal-busbar">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-busbar')"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title"><i class="fas fa-align-justify" style="color: var(--accent);"></i> Busbar (Rel Daya)</h3>
+            <div class="modal-body">
+                <p>Titik pertemuan daya dari generator sebelum masuk trafo step-up. Terbuat dari tembaga murni/aluminium tebal. Sistem canggih menggunakan <strong>Double Busbar</strong> atau <strong>Breaker and a Half</strong> yang sangat andal dan memungkinkan manuver kelistrikan tanpa memadamkan sistem (Blackout).</p>
+            </div>
+        </div>
+    </div>
+    <!-- Kabel IPB -->
+    <div class="modal-overlay" id="modal-kabel">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-kabel')"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title"><i class="fas fa-plug" style="color: var(--accent);"></i> Isolated Phase Bus (IPB)</h3>
+            <div class="modal-body">
+                <p>Penghantar antara Generator dan Busbar. Karena arusnya puluhan ribu Ampere, kabel biasa diganti <strong>IPB</strong>. Tiap konduktor fasa (R,S,T) dibungkus selongsong logam individual secara terpisah untuk mencegah 100% kejadian korsleting antar fasa (Phase-to-Phase Short Circuit).</p>
+            </div>
+        </div>
+    </div>
+    <!-- Pemutus & Pemisah -->
+    <div class="modal-overlay" id="modal-pemutus">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-pemutus')"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title"><i class="fas fa-toggle-on" style="color: var(--accent);"></i> PMT dan PMS</h3>
+            <div class="modal-body">
+                <ul>
+                    <li><strong>PMT (Circuit Breaker):</strong> Saklar yang mampu memutus arus berbeban & hubung singkat seketika. Menggunakan gas SF6 atau hampa udara (Vacuum) untuk memadamkan ledakan busur api plasma.</li>
+                    <li><strong>PMS (Disconnect Switch):</strong> Saklar kasat mata. <strong>ATURAN KESELAMATAN:</strong> PMS DILARANG dioperasikan saat ada arus (PMT ON), karena akan memicu ledakan maut (Busur Api).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Pemakaian Sendiri -->
+    <div class="modal-overlay" id="modal-pemakaian">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-pemakaian')"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title"><i class="fas fa-industry" style="color: var(--accent);"></i> Instalasi PS & UAT</h3>
+            <div class="modal-body">
+                <p>Pembangkit butuh listrik untuk menghidupkan dirinya sendiri (pompa air, kipas boiler, AC). Daya ini diambil dari <strong>UAT (Unit Auxiliary Transformer)</strong> yang menurunkan tegangan keluaran generator untuk konsumsi internal. Saat start-up, daya dipancing dari luar menggunakan SST (Station Service Transformer).</p>
+            </div>
+        </div>
+    </div>
+    <!-- Baterai Aki -->
+    <div class="modal-overlay" id="modal-baterai">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-baterai')"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title"><i class="fas fa-battery-full" style="color: var(--accent);"></i> Baterai Aki & Sistem DC</h3>
+            <div class="modal-body">
+                <p>Pertahanan terakhir saat terjadi <em>Blackout</em> (Padam total). Bank Baterai DC 110V/220V akan otomatis menyuplai pompa oli darurat poros turbin, relai proteksi, penerangan, dan penggerak saklar PMT. Tanpa aki, turbin hancur dan PMT tidak bisa bermanuver mengisolasi gangguan.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Integrations -->
+    <script>
+        // Navbar & Modals Logic
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+        });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if(navLinks.classList.contains('active')){ icon.classList.replace('fa-bars','fa-times'); } 
+            else { icon.classList.replace('fa-times','fa-bars'); }
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.replace('fa-times','fa-bars');
+            });
+        });
+
+        function openTab(evt, tabName) {
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; tabcontent[i].classList.remove("active"); }
+            const tablinks = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
+            const activeTab = document.getElementById(tabName);
+            activeTab.style.display = "block";
+            setTimeout(() => { activeTab.classList.add("active"); }, 10);
+            evt.currentTarget.classList.add("active");
+        }
+
+        function openModal(modalId) { document.getElementById(modalId).classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeModal(modalId) { document.getElementById(modalId).classList.remove('active'); document.body.style.overflow = 'auto'; }
+        
+        window.addEventListener('click', (e) => { if (e.target.classList.contains('modal-overlay')) { e.target.classList.remove('active'); document.body.style.overflow = 'auto'; } });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { document.querySelectorAll('.modal-overlay.active').forEach(modal => { modal.classList.remove('active'); document.body.style.overflow = 'auto'; }); } });
+
+        /* ============================
+           SIMULATOR MANUVER LOGIC
+           ============================ */
+        let pmtState = false; // OFF
+        let pmsState = false; // OFF
+
+        function updateSimUI() {
+            const line1 = document.getElementById('line-1');
+            const line2 = document.getElementById('line-2');
+            const line3 = document.getElementById('line-3');
+            const btnPMT = document.getElementById('btn-pmt');
+            const btnPMS = document.getElementById('btn-pms');
+            const statusBox = document.getElementById('sim-status');
+            const bus = document.getElementById('sim-bus');
+            const gen = document.getElementById('sim-gen');
+
+            btnPMT.className = 'sim-switch ' + (pmtState ? 'on' : 'off');
+            btnPMT.innerText = pmtState ? 'ON (CLOSED)' : 'OFF (OPEN)';
+            
+            btnPMS.className = 'sim-switch ' + (pmsState ? 'on' : 'off');
+            btnPMS.innerText = pmsState ? 'ON (CLOSED)' : 'OFF (OPEN)';
+
+            line1.className = 'sim-line active'; // Gen is spinning
+
+            if (pmtState) {
+                line2.className = 'sim-line active';
+                if (pmsState) {
+                    line3.className = 'sim-line active';
+                    statusBox.className = 'sim-status success';
+                    statusBox.innerHTML = '<i class="fas fa-check-circle"></i> Sistem Normal Berbeban. Daya listrik disalurkan penuh ke Busbar Utama.';
+                    bus.style.borderColor = "#10b981";
+                    bus.style.boxShadow = "0 0 15px #10b981";
+                } else {
+                    line3.className = 'sim-line';
+                    statusBox.className = 'sim-status';
+                    statusBox.innerHTML = '<i class="fas fa-info-circle"></i> PMT ON (Berbeban) namun PMS masih terbuka. Daya tertahan di PMT.';
+                    bus.style.borderColor = "var(--primary)";
+                    bus.style.boxShadow = "none";
+                }
+            } else {
+                line2.className = 'sim-line';
+                line3.className = 'sim-line';
+                bus.style.borderColor = "var(--primary)";
+                bus.style.boxShadow = "none";
+                if (pmsState) {
+                    statusBox.className = 'sim-status';
+                    statusBox.innerHTML = '<i class="fas fa-shield-alt"></i> PMT OFF, PMS tertutup. Sistem bersiap beroperasi. Aman karena tak berbeban.';
+                } else {
+                    statusBox.className = 'sim-status';
+                    statusBox.innerHTML = '<i class="fas fa-shield-alt"></i> Sistem terputus sepenuhnya (Total Isolation). Sangat aman untuk perbaikan.';
+                }
+            }
+        }
+
+        function togglePMT() {
+            pmtState = !pmtState;
+            updateSimUI();
+        }
+
+        function togglePMS() {
+            if (pmtState === true) {
+                // VIOLATION: Operates PMS under load!
+                const statusBox = document.getElementById('sim-status');
+                statusBox.className = 'sim-status error';
+                statusBox.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size:1.5rem;"></i><br><strong>FATAL ERROR / PELANGGARAN SOP!</strong><br>Terjadi ledakan busur api raksasa! Pemisah (PMS) dioperasikan saat PMT masih keadaan ON (berbeban arus).';
+                
+                document.getElementById('btn-pms').style.animation = 'flash 0.5s 3';
+                setTimeout(() => { document.getElementById('btn-pms').style.animation = 'none'; }, 1500);
+                
+                // Add red flashes to lines to simulate explosion
+                document.getElementById('line-2').className = 'sim-line danger';
+                document.getElementById('line-3').className = 'sim-line danger';
+                return;
+            }
+            pmsState = !pmsState;
+            updateSimUI();
+        }
+
+        /* ============================
+           EVALUASI CBT LOGIC
+           ============================ */
+        const quizData = [
+            {
+                q: "1. Pada sistem listrik 3 fasa, konfigurasi manakah yang TIDAK memiliki kawat netral dan biasa digunakan untuk menyuplai beban motor listrik di industri?",
+                options: ["Hubungan Bintang (Y / Wye)", "Hubungan Segitiga (Delta / &Delta;)", "Hubungan Campuran Bintang-Segitiga", "Sistem Kelistrikan Paralel"],
+                a: 1
+            },
+            {
+                q: "2. Komponen vital di pusat pembangkit yang memiliki peran merubah energi mekanik (putaran poros turbin) menjadi energi listrik arus bolak-balik (AC) adalah?",
+                options: ["Transformator Penaik Tegangan", "Busbar Utama", "Generator Sinkron", "Baterai Aki / Sistem DC"],
+                a: 2
+            },
+            {
+                q: "3. Media apakah yang paling sering digunakan untuk memadamkan ledakan busur api plasma pada Pemutus Tenaga (PMT) tegangan ekstra tinggi di Switchyard?",
+                options: ["Gas Oksigen (O2)", "Gas Hidrogen (H2)", "Gas Nitrogen (N2)", "Gas Sulfur Heksafluorida (SF6)"],
+                a: 3
+            },
+            {
+                q: "4. Sesuai dengan SOP Manuver Tegangan Tinggi, alat pemutus (saklar) yang HANYA boleh diubah statusnya (buka/tutup) dalam keadaan sama sekali <strong>tanpa beban arus listrik</strong> adalah?",
+                options: ["Circuit Breaker / Pemutus Tenaga (PMT)", "Disconnect Switch / Pemisah (PMS)", "Miniature Circuit Breaker (MCB)", "Load Break Switch / Pemutus Beban (PMB)"],
+                a: 1
+            },
+            {
+                q: "5. Untuk menghantarkan daya ekstra besar dan mencegah hubung singkat antar-fasa yang sangat fatal antara generator dan busbar, teknologi pengkabelan modern yang menggunakan pipa selubung logam untuk tiap fasanya disebut?",
+                options: ["SUTET (Saluran Udara Ekstra Tinggi)", "IPB (Isolated Phase Bus)", "UAT (Unit Auxiliary Transformer)", "Sistem Pendingin Hidrogen"],
+                a: 1
+            }
+        ];
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            quizData.forEach((item, index) => {
+                let optionsHTML = '';
+                item.options.forEach((opt, optIndex) => {
+                    optionsHTML += `
+                        <li>
+                            <input type="radio" name="q${index}" id="q${index}_opt${optIndex}" value="${optIndex}">
+                            <label id="label_q${index}_opt${optIndex}" for="q${index}_opt${optIndex}">${String.fromCharCode(65 + optIndex)}. ${opt}</label>
+                        </li>
+                    `;
+                });
+                
+                container.innerHTML += `
+                    <div class="quiz-question" id="questionBox${index}">
+                        <h4>${item.q}</h4>
+                        <ul class="quiz-options">
+                            ${optionsHTML}
+                        </ul>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML += `<button class="btn-submit-quiz" onclick="submitQuiz()"><i class="fas fa-paper-plane"></i> Kirim Jawaban & Lihat Nilai</button>`;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            let allAnswered = true;
+            
+            quizData.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (!selected) { allAnswered = false; }
+            });
+            
+            if (!allAnswered) {
+                alert("Mohon jawab seluruh pertanyaan sebelum mengirimkan kuis!");
+                return;
+            }
+            
+            quizData.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const userAns = parseInt(selected.value);
+                
+                const inputs = document.querySelectorAll(`input[name="q${index}"]`);
+                inputs.forEach(input => input.disabled = true);
+                
+                if (userAns === item.a) {
+                    score += 20; 
+                    document.getElementById(`label_q${index}_opt${userAns}`).classList.add('option-correct');
+                } else {
+                    document.getElementById(`label_q${index}_opt${userAns}`).classList.add('option-wrong');
+                    document.getElementById(`label_q${index}_opt${item.a}`).classList.add('option-correct');
+                }
+            });
+            
+            document.querySelector('.btn-submit-quiz').style.display = 'none';
+            
+            const resBox = document.getElementById('quiz-result');
+            resBox.style.display = 'block';
+            const scoreDisplay = document.getElementById('score-display');
+            const scoreMsg = document.getElementById('score-msg');
+            
+            scoreDisplay.innerText = `Nilai Anda: ${score} / 100`;
+            
+            if (score >= 80) {
+                resBox.className = 'quiz-result';
+                scoreDisplay.style.color = '#10b981';
+                scoreMsg.innerHTML = "<strong>Sangat Kompeten!</strong><br>Anda memahami dengan sempurna kaidah instalasi dan manuver kelistrikan pembangkit. Anda lulus materi Bab 1!";
+            } else if (score >= 60) {
+                resBox.className = 'quiz-result';
+                scoreDisplay.style.color = '#fbbf24';
+                scoreMsg.innerHTML = "<strong>Cukup Kompeten.</strong><br>Ada beberapa poin SOP dan komponen yang perlu dipelajari ulang sebelum terjun ke industri.";
+            } else {
+                resBox.className = 'quiz-result bad';
+                scoreDisplay.style.color = '#ef4444';
+                scoreMsg.innerHTML = "<strong>Belum Kompeten.</strong><br>Sangat berbahaya jika melakukan instalasi dengan tingkat pemahaman ini. Silakan review Modul dari awal.";
+            }
+        }
+
+        function resetQuiz() {
+            document.getElementById('quiz-result').style.display = 'none';
+            renderQuiz();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            updateSimUI();
+            renderQuiz();
+        });
+    </script>
+</body>
+</html>
