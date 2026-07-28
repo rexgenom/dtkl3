@@ -40,7 +40,7 @@
            2. CONTAINER & LAYOUT
            ========================================================== */
         .wrapper {
-            max-width: 1000px;
+            max-width: 700px;
             margin: 0 auto;
             background-color: var(--white);
             border: 1px solid #e2e8f0;
@@ -156,48 +156,75 @@
         }
 
         /* ==========================================================
-           4. TABLE STYLES & RESPONSIVE WRAPPER
+           4. TABLE STYLES (MOBILE-FIRST DESAIN BERTUMPUK)
            ========================================================== */
-        .table-responsive {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            width: 100%;
-            margin-bottom: 25px;
-        }
-
-        table {
-            width: 100%;
-            min-width: 800px; 
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        th {
-            background-color: var(--text-dark);
-            color: var(--white);
-            padding: 15px;
-            border: 1px solid var(--text-dark);
-            text-align: left;
-            font-weight: 600;
-        }
-
-        td {
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            vertical-align: top;
-        }
-
-        .td-bg-light {
-            background-color: var(--bg-gray);
-            font-weight: bold;
+        table { min-width: 100%; width: 100%; }
+        
+        table, thead, tbody, th, td, tr { 
+            display: block; 
+            width: 100%; 
         }
         
-        .td-center {
-            text-align: center;
+        thead { display: none; }
+        
+        tr { 
+            margin-bottom: 15px; 
+            border: 2px solid var(--border-color); 
+            border-radius: 8px; 
+            overflow: hidden; 
+        }
+        
+        td { 
+            border: none; 
+            border-bottom: 1px solid var(--border-color); 
+            padding: 15px; 
+            text-align: left !important; 
+            width: 100% !important; /* Mencegah style bawaan merusak tata letak */
+        }
+        td:last-child { border-bottom: none; }
+        
+        .td-bg-light { 
+            background-color: var(--bg-gray); 
+            font-weight: bold; 
+        }
+        
+        /* Munculkan judul kolom otomatis menggunakan data-label (Untuk Tugas 2 dst) */
+        td[data-label]::before {
+            content: attr(data-label);
+            display: block;
+            font-weight: bold;
+            color: var(--accent-orange);
+            margin-bottom: 8px;
+            font-size: 13px;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 5px;
         }
 
-        .table-alt-row {
-            background-color: #f8fafc;
+        /* ==========================================================
+           TABEL 1: INFORMASI UMUM (HANYA IDENTITAS YANG DINAMIS)
+           ========================================================== */
+        /* Grid 2 kolom khusus untuk baris identitas, abaikan baris terakhir (Roleplay) */
+        #table-identitas tr:not(:last-child) {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            align-items: center;
+        }
+        
+        /* Penyesuaian khusus sel dalam tabel 1 */
+        #table-identitas td {
+            padding: 12px 15px;
+            box-sizing: border-box;
+        }
+        
+        /* Garis vertikal pemisah HANYA untuk sel di dalam baris grid */
+        #table-identitas tr:not(:last-child) td:nth-child(odd) {
+            border-right: 1px solid var(--border-color);
+        }
+        
+        /* Hilangkan garis bawah pada elemen terbawah di dalam grid */
+        #table-identitas tr:not(:last-child) td:nth-last-child(1),
+        #table-identitas tr:not(:last-child) td:nth-last-child(2) {
+            border-bottom: none;
         }
 
         /* ==========================================================
@@ -530,6 +557,13 @@
             align-items: center;
         }
 
+        /* ==========================================================
+           9. RESPONSIVE MOBILE LAYOUT
+           (Telah digabungkan ke style utama untuk Mobile-First Design)
+           ========================================================== */
+
+    <style>
+
         @media print {
             body { background-color: var(--white); padding: 0; }
             .wrapper { border: none; box-shadow: none; padding: 0; max-width: 100%; }
@@ -580,7 +614,7 @@
         </div>
 
         <div class="table-responsive">
-            <table>
+            <table id="table-identitas">
                 <tbody>
                     <tr>
                         <td class="td-bg-light" style="width: 20%;">Mata Pelajaran</td>
@@ -662,17 +696,17 @@
                     <tbody>
                         <tr>
                             <td class="td-bg-light td-center" style="vertical-align: middle;">Padlock & Hasp</td>
-                            <td><textarea class="form-control" placeholder="Jelaskan cara pemasangannya pada panel..." required></textarea></td>
-                            <td><textarea class="form-control" placeholder="Tuliskan warna gembok, jumlah lubang hasp..." required></textarea></td>
+                            <td data-label="Fungsi / Penggunaan Fisik di Bengkel"><textarea class="form-control" placeholder="Jelaskan cara pemasangannya pada panel..." required></textarea></td>
+                            <td data-label="Dokumentasi Kondisi Komponen"><textarea class="form-control" placeholder="Tuliskan warna gembok, jumlah lubang hasp..." required></textarea></td>
                         </tr>
                         <tr>
                             <td class="td-bg-light td-center" style="vertical-align: middle;">Tagout (Label)</td>
-                            <td><textarea class="form-control" placeholder="Jelaskan mengapa Tagout saja tidak cukup..." required></textarea></td>
-                            <td><textarea class="form-control" placeholder="Data apa saja yang wajib ditulis di tag..." required></textarea></td>
+                            <td data-label="Fungsi / Penggunaan Fisik di Bengkel"><textarea class="form-control" placeholder="Jelaskan mengapa Tagout saja tidak cukup..." required></textarea></td>
+                            <td data-label="Dokumentasi Kondisi Komponen"><textarea class="form-control" placeholder="Data apa saja yang wajib ditulis di tag..." required></textarea></td>
                         </tr>
                         <tr>
                             <td class="td-bg-light td-center" style="vertical-align: middle; color:#b45309;">Analisis Residual Energy</td>
-                            <td colspan="2"><textarea class="form-control" placeholder="Identifikasi sumber energi sisa (misal: kapasitor/baterai) pada panel praktik dan bagaimana cara menetralkannya..." style="min-height: 80px;" required></textarea></td>
+                            <td colspan="2" data-label="Tindakan / Solusi Penetralan"><textarea class="form-control" placeholder="Identifikasi sumber energi sisa (misal: kapasitor/baterai) pada panel praktik dan bagaimana cara menetralkannya..." style="min-height: 80px;" required></textarea></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1023,27 +1057,61 @@
                 let namaKelompok = kelompokInput && kelompokInput.value ? kelompokInput.value.replace(/[\\s\\W]+/g, '_') : 'Kelompok';
                 const filename = 'Laporan_LOTO_' + namaKelompok + '.pdf';
 
+                // Pastikan scroll berada di paling atas
+                window.scrollTo(0, 0);
+
+                // Sembunyikan elemen no-print
+                const noPrints = document.querySelectorAll('.no-print');
+                const originalDisplays = [];
+                noPrints.forEach((el, i) => {
+                    originalDisplays[i] = el.style.display;
+                    el.style.display = 'none';
+                });
+
+                // Hapus efek bayangan dan garis tepi saat diprint agar menyerupai kertas murni
+                const origWrapperBorder = element.style.border;
+                const origWrapperShadow = element.style.boxShadow;
+                
+                element.style.border = 'none';
+                element.style.boxShadow = 'none';
+
                 // Konfigurasi html2pdf
                 const opt = {
                     margin:       10,
                     filename:     filename,
                     image:        { type: 'jpeg', quality: 0.98 },
-                    html2canvas:  { scale: 2, useCORS: true },
+                    html2canvas:  { 
+                        scale: 2, 
+                        useCORS: true,
+                        scrollY: 0,
+                        scrollX: 0
+                    },
                     jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
                     pagebreak:    { mode: ['css', 'legacy'] }
                 };
 
-                // Eksekusi generate PDF
-                html2pdf().set(opt).from(element).save().then(() => {
-                    // Kembalikan tombol seperti semula
-                    printBtn.innerHTML = originalText;
-                    printBtn.disabled = false;
-                }).catch(err => {
-                    console.error("Error generating PDF", err);
-                    alert("Terjadi kesalahan saat membuat PDF. Silakan coba lagi.");
-                    printBtn.innerHTML = originalText;
-                    printBtn.disabled = false;
-                });
+                // Beri waktu sejenak sebelum membuat PDF
+                setTimeout(() => {
+                    html2pdf().set(opt).from(element).save().then(() => {
+                        // Kembalikan style
+                        noPrints.forEach((el, i) => el.style.display = originalDisplays[i]);
+                        element.style.border = origWrapperBorder;
+                        element.style.boxShadow = origWrapperShadow;
+
+                        printBtn.innerHTML = originalText;
+                        printBtn.disabled = false;
+                    }).catch(err => {
+                        console.error("Error generating PDF", err);
+                        alert("Terjadi kesalahan saat membuat PDF. Silakan coba lagi.");
+                        
+                        noPrints.forEach((el, i) => el.style.display = originalDisplays[i]);
+                        element.style.border = origWrapperBorder;
+                        element.style.boxShadow = origWrapperShadow;
+
+                        printBtn.innerHTML = originalText;
+                        printBtn.disabled = false;
+                    });
+                }, 500);
             }
         }
     </script>
