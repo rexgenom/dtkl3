@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobsheet Pertemuan 2 - LOTO</title>
+    <style>
+        /* ==========================================================
+           1. CSS VARIABLES & RESETS
+           ========================================================== */
+        :root {
+            --primary-blue: #1e3a8a;
+            --light-blue: #eff6ff;
+            --border-color: #cbd5e1;
+            --text-dark: #1f2937;
+            --text-muted: #64748b;
+            --bg-gray: #f8fafc;
+            --accent-orange: #ea580c;
+            --danger-red: #dc2626;
+            --success-green: #10b981;
+            --white: #ffffff;
+            --focus-ring: rgba(30, 58, 138, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #334155;
+            line-height: 1.6;
+            background-color: #f1f5f9;
+            padding: 30px 15px;
+        }
+
+        /* ==========================================================
+           2. CONTAINER & LAYOUT
+           ========================================================== */
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-box {
+            text-align: center;
+            background-color: var(--light-blue);
+            border-left: 5px solid var(--primary-blue);
+            padding: 20px;
+            margin-bottom: 35px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .header-title {
+            margin: 0;
+            font-size: 22px;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .header-subtitle {
+            margin: 8px 0 0 0;
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+
+        /* ==========================================================
+           3. TYPOGRAPHY & SECTIONS
+           ========================================================== */
+        .section-container {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            margin: 0 0 20px 0;
+            font-size: 18px;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--primary-blue);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-badge {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .instruction-text {
+            margin: 0 0 15px 0;
+            text-align: justify;
+            font-size: 15px;
+        }
+
+        .alert-box {
+            background-color: #fef2f2;
+            border-left: 5px solid var(--danger-red);
+            padding: 15px;
+            border-radius: 0 4px 4px 0;
+            margin-bottom: 15px;
+        }
+
+        .alert-title {
+            margin: 0 0 10px 0;
+            color: #991b1b;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .alert-list {
+            margin: 0 0 0 20px;
+            padding: 0;
+            color: #991b1b;
+            font-size: 14px;
+        }
+
+        .case-box {
+            background-color: #fff7ed;
+            border-left: 5px solid var(--accent-orange);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .case-title {
+            margin: 0 0 10px 0;
+            color: #c2410c;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .case-desc {
+            margin: 0;
+            font-size: 15px;
+            color: #431407;
+            font-style: italic;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        /* ==========================================================
+           4. TABLE STYLES & RESPONSIVE WRAPPER
+           ========================================================== */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            min-width: 800px; 
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 15px;
+            border: 1px solid var(--text-dark);
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            vertical-align: top;
+        }
+
+        .td-bg-light {
+            background-color: var(--bg-gray);
+            font-weight: bold;
+        }
+        
+        .td-center {
+            text-align: center;
+        }
+
+        .table-alt-row {
+            background-color: #f8fafc;
+        }
+
+        /* ==========================================================
+           5. INTERACTIVE FORM ELEMENTS
+           ========================================================== */
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 14px;
+            font-family: inherit;
+            color: #0f172a;
+            background-color: var(--white);
+            border: 1px solid #94a3b8;
+            border-radius: 4px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px var(--focus-ring);
+            background-color: #fffbeb;
+        }
+
+        .form-control-inline {
+            display: inline-block;
+            width: calc(100% - 35px);
+            margin-bottom: 8px;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 8px;
+            transition: color 0.2s;
+        }
+        
+        .checkbox-label input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .input-error {
+            border: 2px solid var(--danger-red) !important;
+            background-color: #fef2f2 !important;
+        }
+
+        /* ==========================================================
+           6. CUSTOM MODAL ALERT
+           ========================================================== */
+        .modal-overlay {
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.5); 
+            align-items: center; 
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fef2f2;
+            border-top: 5px solid var(--danger-red);
+            border-radius: 8px;
+            padding: 25px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-title {
+            color: #991b1b;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .modal-text {
+            color: #450a0a;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .modal-btn {
+            background-color: var(--danger-red);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .modal-btn:hover {
+            background-color: #b91c1c;
+        }
+
+        /* ==========================================================
+           7. PRINT BUTTON & MEDIA QUERY
+           ========================================================== */
+        .print-toolbar {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: var(--text-dark);
+            border-radius: 8px;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-print {
+            background-color: var(--success-green);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .btn-print:hover {
+            background-color: #059669;
+        }
+
+        .toolbar-text {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        /* ==========================================================
+           8. SIMULATOR LOTO
+           ========================================================== */
+        .sim-container {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 25px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border: 2px solid #334155;
+        }
+        .sim-header {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid #334155;
+            padding-bottom: 10px;
+        }
+        .sim-panel {
+            background: #cbd5e1;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 220px;
+            border: 4px solid #94a3b8;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        .mcb-box {
+            width: 90px;
+            height: 140px;
+            background: #f8fafc;
+            border: 2px solid #475569;
+            border-radius: 6px;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .mcb-switch {
+            width: 45px;
+            height: 65px;
+            background: #ef4444; 
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 0 #b91c1c;
+            transform: translateY(-12px);
+        }
+        .mcb-switch.off {
+            background: #22c55e; 
+            box-shadow: 0 -4px 0 #15803d;
+            transform: translateY(12px);
+        }
+        .mcb-label, .mcb-label-bottom {
+            font-size: 11px;
+            font-weight: bold;
+            color: #1e293b;
+            position: absolute;
+        }
+        .mcb-label { top: 8px; }
+        .mcb-label-bottom { bottom: 8px; }
+
+        .sim-tools {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .tool-btn {
+            background: #334155;
+            border: 1px solid #475569;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        .tool-btn:hover { background: #475569; transform: translateY(-2px); }
+        .tool-btn:active { transform: translateY(0); }
+        
+        .lockout-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(234, 179, 8, 0.95);
+            border: 2px solid #a16207;
+            border-radius: 6px;
+            display: none;
+            z-index: 10;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+        }
+        .tag-overlay {
+            position: absolute;
+            top: 60%;
+            left: 70%;
+            width: 60px;
+            height: 85px;
+            background: #fff;
+            border: 2px solid #dc2626;
+            color: #dc2626;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            padding: 5px;
+            display: none;
+            z-index: 11;
+            transform: rotate(15deg);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            line-height: 1.2;
+        }
+
+        .indicator-light {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: 0 0 15px #ef4444;
+            border: 2px solid #7f1d1d;
+            transition: all 0.3s;
+        }
+        .indicator-light.off {
+            background: #1e293b;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+            border-color: #0f172a;
+        }
+
+        .multimeter-display {
+            background: #0f172a;
+            color: #22c55e;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            display: none;
+            border: 2px solid #334155;
+            letter-spacing: 2px;
+        }
+
+        .sim-feedback {
+            background: #334155;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            border-left: 4px solid #3b82f6;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+        }
+
+        @media print {
+            body { background-color: var(--white); padding: 0; }
+            .wrapper { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+            .no-print { display: none !important; }
+            .table-responsive { overflow-x: visible; margin-bottom: 20px; }
+            table { min-width: 100%; }
+            .form-control {
+                border: 1px solid transparent;
+                border-bottom: 1px dashed #94a3b8;
+                background-color: transparent !important;
+                padding: 4px 0;
+                resize: none;
+            }
+            textarea { overflow: hidden; }
+        }
+    </style>
+    <!-- Tambahkan library html2pdf.js untuk export langsung ke PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <div id="alertModal" class="modal-overlay no-print">
+        <div class="modal-content">
+            <h3 class="modal-title">⚠️ PERINGATAN!</h3>
+            <p class="modal-text">Masih ada kolom jawaban, identitas, atau checklist yang belum terisi.<br><br>Silakan lengkapi area yang ditandai dengan warna merah muda sebelum menyimpan PDF.</p>
+            <button class="modal-btn" onclick="closeModal()">SAYA MENGERTI</button>
+        </div>
+    </div>
+
+    <div class="print-toolbar no-print">
+        <span class="toolbar-text">
+            Pastikan seluruh hasil simulasi dan roleplay telah didokumentasikan sebelum menyimpan.
+        </span>
+        <button type="button" class="btn-print" onclick="validateAndPrint()">
+            Simpan PDF / Cetak Laporan
+        </button>
+    </div>
+
+    <div class="wrapper">
+        
+        <div class="header-box">
+            <h3 class="header-title">
+                Lembar Kerja Praktikum - Pertemuan 2
+            </h3>
+            <p class="header-subtitle">
+                Prosedur Isolasi Energi (Lockout/Tagout) | Kode: JS-TITL-K3LH-LOTO
+            </p>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="td-bg-light" style="width: 20%;">Mata Pelajaran</td>
+                        <td style="width: 30%;">Dasar-Dasar Kejuruan (K3LH)</td>
+                        <td class="td-bg-light" style="width: 20%;">Nama Kelompok</td>
+                        <td style="width: 30%;">
+                            <input type="text" class="form-control" placeholder="Contoh: Kelompok 1" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-bg-light">Materi Pokok</td>
+                        <td>Implementasi LOTO & Verifikasi Zero Energy</td>
+                        <td class="td-bg-light">Kelas / Semester</td>
+                        <td>
+                            <input type="text" class="form-control" placeholder="Contoh: X TITL 1" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-bg-light">Guru Pengampu</td>
+                        <td>Muhamad Rendi Muhindo, S.Pd.</td>
+                        <td class="td-bg-light">Tanggal Praktik</td>
+                        <td>
+                            <input type="date" class="form-control" id="tanggalPraktik" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-bg-light" style="vertical-align: top;">
+                            Peran Roleplay (Pasangan)
+                        </td>
+                        <td colspan="3">
+                            <div style="margin-bottom: 10px;">
+                                <span style="display:inline-block; width: 150px; font-weight:bold;">murid 1 (Teknisi):</span>
+                                <input type="text" class="form-control form-control-inline" placeholder="Nama Lengkap murid 1" required>
+                            </div>
+                            <div style="margin-bottom: 5px;">
+                                <span style="display:inline-block; width: 150px; font-weight:bold;">murid 2 (Safety Officer):</span>
+                                <input type="text" class="form-control form-control-inline" placeholder="Nama Lengkap murid 2" required>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-container">
+            <h4 class="section-title">
+                <span class="section-badge">1</span> 
+                Tugas I: Pendahuluan & Analisis Kasus (Apersepsi)
+            </h4>
+            <div class="case-box">
+                <h5 class="case-title">Studi Kasus Multi-Lantai</h5>
+                <p class="case-desc">
+                    "Jika kalian memperbaiki jalur kabel yang sama dengan teman yang berada di beda lantai, bagaimana agar teman kalian tidak tidak sengaja menyalakan MCB utama yang telah kalian matikan sebelumnya?"
+                </p>
+            </div>
+            <div style="margin-top: 15px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 8px;">Tuliskan Solusi Analisis Kelompok Kalian:</label>
+                <textarea class="form-control" style="min-height: 100px;" placeholder="Tuliskan analisis dan langkah pencegahan berdasarkan konsep Lockout Tagout..." required></textarea>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h4 class="section-title">
+                <span class="section-badge">2</span> 
+                Tugas II: Eksplorasi (Mindful) Perangkat LOTO & Residual Energy
+            </h4>
+            <p class="instruction-text">
+                Berdasarkan demonstrasi Guru di bengkel, identifikasi fungsi perangkat pengunci yang tersedia di meja kalian dan temukan kemungkinan bahaya energi sisa (residual energy) pada panel distribusi.
+            </p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Komponen LOTO</th>
+                            <th style="width: 40%;">Fungsi / Penggunaan Fisik di Bengkel</th>
+                            <th style="width: 35%;">Dokumentasi Kondisi Komponen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="td-bg-light td-center" style="vertical-align: middle;">Padlock & Hasp</td>
+                            <td><textarea class="form-control" placeholder="Jelaskan cara pemasangannya pada panel..." required></textarea></td>
+                            <td><textarea class="form-control" placeholder="Tuliskan warna gembok, jumlah lubang hasp..." required></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="td-bg-light td-center" style="vertical-align: middle;">Tagout (Label)</td>
+                            <td><textarea class="form-control" placeholder="Jelaskan mengapa Tagout saja tidak cukup..." required></textarea></td>
+                            <td><textarea class="form-control" placeholder="Data apa saja yang wajib ditulis di tag..." required></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="td-bg-light td-center" style="vertical-align: middle; color:#b45309;">Analisis Residual Energy</td>
+                            <td colspan="2"><textarea class="form-control" placeholder="Identifikasi sumber energi sisa (misal: kapasitor/baterai) pada panel praktik dan bagaimana cara menetralkannya..." style="min-height: 80px;" required></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section-container" style="page-break-before: always; padding-top: 20px;">
+            <h4 class="section-title">
+                <span class="section-badge">3</span> 
+                Tugas III: Diskusi & Elaborasi (Meaningful) - Roleplay / Simulasi
+            </h4>
+            <div class="alert-box">
+                <p class="alert-title">Skenario Roleplay (Bekerja Berpasangan):</p>
+                <ul class="alert-list">
+                    <li><strong>murid 1 (Teknisi):</strong> Bertugas mengaplikasikan LOTO di panel utama (Locking & Tagging).</li>
+                    <li><strong>murid 2 (Safety Officer):</strong> Bertugas menguji dan memastikan sirkuit sudah benar-benar mati (zero energy state) menggunakan <em>test pen</em> atau <em>multimeter</em>.</li>
+                </ul>
+            </div>
+            
+            <!-- SIMULATOR LOTO -->
+            <div class="sim-container no-print">
+                <div class="sim-header">
+                    <h5 style="margin: 0; color: #38bdf8; font-size: 16px;">🎮 Simulator Interaktif LOTO (Selesaikan Sebelum Mengisi Checklist)</h5>
+                    <button type="button" class="tool-btn" style="padding: 5px 10px; font-size: 12px; background: #dc2626;" onclick="resetSimulator()">🔄 Reset</button>
+                </div>
+                
+                <div class="sim-panel">
+                    <div class="indicator-light" id="sim-lamp"></div>
+                    <div class="mcb-box">
+                        <div class="mcb-label">ON</div>
+                        <div class="mcb-switch" id="sim-mcb" onclick="toggleMCB()"></div>
+                        <div class="mcb-label-bottom">OFF</div>
+                        
+                        <!-- Lockout Overlays -->
+                        <div class="lockout-overlay" id="sim-lock">🔒</div>
+                        <div class="tag-overlay" id="sim-tag">DANGER<br>DO NOT<br>OPERATE</div>
+                    </div>
+                </div>
+
+                <div class="multimeter-display" id="sim-multimeter-screen">
+                    000 V
+                </div>
+                
+                <div class="sim-feedback" id="sim-feedback">
+                    ℹ️ Info: Sistem dalam keadaan aktif (bertegangan). Klik tuas MCB untuk mematikan.
+                </div>
+
+                <div class="sim-tools">
+                    <button type="button" class="tool-btn" onclick="applyLock()">🔒 Pasang Lock & Hasp</button>
+                    <button type="button" class="tool-btn" onclick="applyTag()">🏷️ Pasang Tagout</button>
+                    <button type="button" class="tool-btn" onclick="useMultimeter()">⚡ Gunakan Multimeter</button>
+                </div>
+            </div>
+            
+            <p style="font-weight:bold; margin-bottom: 10px;">Checklist Observasi Simulasi (Otomatis tercentang dari simulator):</p>
+            
+            <div style="border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; background-color: #ffffff;">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="chk-step1" required> Teknisi mematikan beban dan meng-OFF-kan MCB utama.
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="chk-step2" required> Teknisi memasang Circuit Breaker Lockout, Hasp, dan Padlock secara presisi.
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="chk-step3" required> Teknisi mengisi data pada Tagout dan menggantungkannya pada gembok.
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="chk-step4" required> Safety Officer mencoba menekan tombol ON panel untuk memastikan penguncian mekanis berhasil (Konsep logis Tagging tanpa Locking = gagal).
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="chk-step5" required> Safety Officer menggunakan Multimeter / Test Pen pada busbar keluaran.
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="chk-step6" required> Safety Officer mengonfirmasi pembacaan 0 Volt (Zero Energy State tercapai).
+                </label>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 8px;">Temuan saat Simulasi:</label>
+                <textarea class="form-control" style="min-height: 100px;" placeholder="Tuliskan kendala saat memasang perangkat LOTO atau saat Safety Officer melakukan pengukuran Zero Energy State..." required></textarea>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h4 class="section-title">
+                <span class="section-badge">4</span> 
+                Tugas IV: Refleksi (Joyful) & Kesimpulan
+            </h4>
+            <p class="instruction-text">
+                Berdasarkan pengalaman roleplay yang baru saja kalian lakukan, jawablah pertanyaan refleksi berikut:
+            </p>
+            
+            <div style="margin-bottom: 25px;">
+                <p style="margin: 0 0 10px 0; font-size: 15px; font-weight: bold; color: var(--text-dark);">
+                    1. "Bagian mana dari prosedur LOTO yang menurut kalian paling rawan terlewat atau paling sering diremehkan oleh pekerja di lapangan?"
+                </p>
+                <textarea class="form-control" style="min-height: 100px;" placeholder="Ceritakan pengalaman dan analisis logis kalian di sini..." required></textarea>
+            </div>
+            
+            <div style="margin-bottom: 10px;">
+                <p style="margin: 0 0 10px 0; font-size: 15px; font-weight: bold; color: var(--text-dark);">
+                    2. "Berdasarkan keseluruhan materi dan praktik, simpulkan urutan standar baku prosedur LOTO secara ringkas!"
+                </p>
+                <textarea class="form-control" style="min-height: 120px;" placeholder="1. Persiapan, 2. Shutdown, 3. Isolasi, 4. Lock & Tag, 5. ... 6. ..." required></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Deklarasi global untuk elemen yang butuh scroll
+        let elementToFocus = null;
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Auto-expand textarea & hapus error saat diketik
+            const textareas = document.querySelectorAll('textarea');
+            textareas.forEach(el => {
+                el.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = (this.scrollHeight) + 'px';
+                    this.classList.remove('input-error'); 
+                });
+            });
+
+            // Hapus error saat input diisi
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(el => {
+                el.addEventListener('input', function() {
+                    this.classList.remove('input-error');
+                    if(this.type === 'checkbox'){
+                        const parentLabel = this.closest('label');
+                        if(parentLabel) parentLabel.style.color = '#334155';
+                    }
+                });
+            });
+        });
+
+        // --- LOGIKA SIMULATOR LOTO ---
+        let simState = {
+            mcbOn: true,
+            hasLock: false,
+            hasTag: false,
+            mechanicalTested: false,
+            meterTested: false
+        };
+
+        function updateSimUI(msg = null) {
+            const mcb = document.getElementById('sim-mcb');
+            const lamp = document.getElementById('sim-lamp');
+            const lock = document.getElementById('sim-lock');
+            const tag = document.getElementById('sim-tag');
+            const feedback = document.getElementById('sim-feedback');
+            
+            if (simState.mcbOn) {
+                mcb.classList.remove('off');
+                lamp.classList.remove('off');
+            } else {
+                mcb.classList.add('off');
+                lamp.classList.add('off');
+            }
+            
+            lock.style.display = simState.hasLock ? 'flex' : 'none';
+            tag.style.display = simState.hasTag ? 'block' : 'none';
+            
+            if (msg) feedback.innerHTML = msg;
+            
+            // Auto-update checkboxes
+            if (!simState.mcbOn) checkStep('chk-step1');
+            if (simState.hasLock) checkStep('chk-step2');
+            if (simState.hasTag) checkStep('chk-step3');
+            if (simState.mechanicalTested) checkStep('chk-step4');
+            if (simState.meterTested) checkStep('chk-step5');
+            if (simState.meterTested && !simState.mcbOn) checkStep('chk-step6');
+        }
+
+        function checkStep(id) {
+            const cb = document.getElementById(id);
+            if (cb) {
+                cb.checked = true;
+                const parent = cb.closest('label');
+                if (parent) parent.style.color = '#334155'; // Hilangkan efek error
+            }
+        }
+
+        function toggleMCB() {
+            if (simState.hasLock) {
+                simState.mechanicalTested = true;
+                updateSimUI('⚠️ <b>Uji Coba Mekanis Gagal:</b> Tuas terkunci dengan aman. Penguncian berhasil! (Syarat 4 Terpenuhi)');
+                return;
+            }
+            
+            simState.mcbOn = !simState.mcbOn;
+            if (simState.mcbOn) {
+                updateSimUI('⚠️ <b>Peringatan:</b> Sistem kembali menyala dan bertegangan!');
+            } else {
+                updateSimUI('✅ MCB dimatikan. Sistem aman untuk dipasang perangkat LOTO.');
+            }
+        }
+
+        function applyLock() {
+            if (simState.mcbOn) {
+                updateSimUI('❌ <b>Gagal:</b> Matikan MCB terlebih dahulu sebelum memasang gembok/pengunci!');
+                return;
+            }
+            if (simState.hasLock) {
+                updateSimUI('ℹ️ Lock sudah terpasang.');
+                return;
+            }
+            simState.hasLock = true;
+            updateSimUI('✅ Lock & Hasp berhasil dipasang.');
+        }
+
+        function applyTag() {
+            if (!simState.hasLock) {
+                updateSimUI('❌ <b>Gagal:</b> Pasang Lock & Hasp terlebih dahulu sebelum menempelkan Tag!');
+                return;
+            }
+            if (simState.hasTag) {
+                updateSimUI('ℹ️ Tag sudah terpasang.');
+                return;
+            }
+            simState.hasTag = true;
+            updateSimUI('✅ Tagout (Label Peringatan) berhasil dipasang.');
+        }
+
+        function useMultimeter() {
+            const meterScreen = document.getElementById('sim-multimeter-screen');
+            meterScreen.style.display = 'block';
+            
+            if (simState.mcbOn) {
+                meterScreen.style.color = '#ef4444';
+                meterScreen.innerHTML = '220 V';
+                updateSimUI('⚠️ <b>Tegangan Terdeteksi!</b> Bahaya! Sistem belum diisolasi.');
+            } else {
+                meterScreen.style.color = '#22c55e';
+                meterScreen.innerHTML = '000 V';
+                simState.meterTested = true;
+                
+                if (simState.hasLock && simState.hasTag && simState.mechanicalTested) {
+                    updateSimUI('🎉 <b>Luar Biasa!</b> Pembacaan 0 Volt. Zero Energy State berhasil diverifikasi. LOTO selesai.');
+                } else if (!simState.hasLock) {
+                    updateSimUI('⚠️ Tegangan 0V, namun perangkat pengunci belum dipasang. Tidak aman untuk bekerja!');
+                } else if (!simState.mechanicalTested) {
+                    updateSimUI('⚠️ Tegangan 0V, namun Anda belum menguji kekuatan penguncian fisik (Try Out).');
+                } else {
+                    updateSimUI('✅ Tegangan 0V. Aman.');
+                }
+                updateSimUI(); // Update checkbox state
+            }
+            
+            setTimeout(() => {
+                meterScreen.style.display = 'none';
+            }, 3000);
+        }
+
+        function resetSimulator() {
+            simState = {
+                mcbOn: true,
+                hasLock: false,
+                hasTag: false,
+                mechanicalTested: false,
+                meterTested: false
+            };
+            updateSimUI('🔄 Simulator di-reset. Silakan mulai kembali dari awal.');
+            
+            [1,2,3,4,5,6].forEach(i => {
+                const cb = document.getElementById(`chk-step${i}`);
+                if (cb) cb.checked = false;
+            });
+        }
+        // --- END LOGIKA SIMULATOR ---
+
+        // Fungsi untuk menutup modal dan scroll ke field yang kosong
+        function closeModal() {
+            document.getElementById('alertModal').style.display = 'none';
+            if (elementToFocus) {
+                elementToFocus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (typeof elementToFocus.focus === 'function') {
+                    // Beri jeda sedikit agar scroll selesai sebelum focus
+                    setTimeout(() => elementToFocus.focus(), 300);
+                }
+            }
+        }
+
+        // Fungsi utama validasi
+        function validateAndPrint() {
+            let isComplete = true;
+            elementToFocus = null;
+
+            // Bersihkan error state sebelumnya
+            document.querySelectorAll('.input-error').forEach(el => {
+                el.classList.remove('input-error');
+            });
+            document.querySelectorAll('.checkbox-label').forEach(el => {
+                el.style.color = '#334155';
+            });
+
+            // 1. Cek semua input teks & date & textarea yang required
+            const fieldsToCheck = document.querySelectorAll('textarea[required], input[type="text"][required], input[type="date"][required]');
+            
+            fieldsToCheck.forEach(field => {
+                if (field.value.trim() === '') {
+                    isComplete = false;
+                    field.classList.add('input-error');
+                    if (!elementToFocus) elementToFocus = field;
+                }
+            });
+
+            // 2. Cek semua checkbox yang required
+            const checkboxes = document.querySelectorAll('input[type="checkbox"][required]');
+            checkboxes.forEach(cb => {
+                if(!cb.checked) {
+                    isComplete = false;
+                    const parentLabel = cb.closest('label');
+                    if(parentLabel) parentLabel.style.color = '#dc2626';
+                    if (!elementToFocus) elementToFocus = cb;
+                }
+            });
+
+            // 3. Eksekusi
+            if (!isComplete) {
+                // Tampilkan Custom Modal alih-alih fungsi alert() bawaan
+                document.getElementById('alertModal').style.display = 'flex';
+            } else {
+                // Sinkronkan value input dan textarea ke atribut agar terbaca oleh html2pdf
+                document.querySelectorAll('input, textarea').forEach(el => {
+                    if (el.tagName === 'TEXTAREA') {
+                        el.textContent = el.value;
+                    } else if (el.type === 'checkbox') {
+                        if (el.checked) el.setAttribute('checked', 'checked');
+                        else el.removeAttribute('checked');
+                    } else {
+                        el.setAttribute('value', el.value);
+                    }
+                });
+
+                // Ambil elemen pembungkus utama
+                const element = document.querySelector('.wrapper');
+                
+                // Ubah status tombol print saat memproses
+                const printBtn = document.querySelector('.btn-print');
+                const originalText = printBtn.innerHTML;
+                printBtn.innerHTML = 'Menyimpan PDF...';
+                printBtn.disabled = true;
+
+                // Nama file dinamis berdasarkan kelompok
+                const kelompokInput = document.querySelector('input[placeholder="Contoh: Kelompok 1"]');
+                let namaKelompok = kelompokInput && kelompokInput.value ? kelompokInput.value.replace(/[\\s\\W]+/g, '_') : 'Kelompok';
+                const filename = 'Laporan_LOTO_' + namaKelompok + '.pdf';
+
+                // Konfigurasi html2pdf
+                const opt = {
+                    margin:       10,
+                    filename:     filename,
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2, useCORS: true },
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                    pagebreak:    { mode: ['css', 'legacy'] }
+                };
+
+                // Eksekusi generate PDF
+                html2pdf().set(opt).from(element).save().then(() => {
+                    // Kembalikan tombol seperti semula
+                    printBtn.innerHTML = originalText;
+                    printBtn.disabled = false;
+                }).catch(err => {
+                    console.error("Error generating PDF", err);
+                    alert("Terjadi kesalahan saat membuat PDF. Silakan coba lagi.");
+                    printBtn.innerHTML = originalText;
+                    printBtn.disabled = false;
+                });
+            }
+        }
+    </script>
+</body>
+</html>
