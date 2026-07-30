@@ -580,25 +580,24 @@
             textarea { overflow: hidden; }
         }
     </style>
-    <!-- Tambahkan library html2pdf.js untuk export langsung ke PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 </head>
 <body>
 
     <div id="alertModal" class="modal-overlay no-print">
         <div class="modal-content">
             <h3 class="modal-title">⚠️ PERINGATAN!</h3>
-            <p class="modal-text">Masih ada kolom jawaban, identitas, atau checklist yang belum terisi.<br><br>Silakan lengkapi area yang ditandai dengan warna merah muda sebelum menyimpan PDF.</p>
+            <p class="modal-text">Masih ada kolom jawaban, identitas, atau checklist yang belum terisi.<br><br>Silakan lengkapi area yang ditandai dengan warna merah muda sebelum mencetak PDF.</p>
             <button class="modal-btn" onclick="closeModal()">SAYA MENGERTI</button>
         </div>
     </div>
 
     <div class="print-toolbar no-print">
         <span class="toolbar-text">
-            Pastikan seluruh hasil simulasi dan roleplay telah didokumentasikan sebelum menyimpan.
+            Pastikan seluruh hasil simulasi dan roleplay telah didokumentasikan sebelum mencetak.
         </span>
         <button type="button" class="btn-print" onclick="validateAndPrint()">
-            Simpan PDF / Cetak Laporan
+            Cetak PDF
         </button>
     </div>
 
@@ -1031,87 +1030,20 @@
                 // Tampilkan Custom Modal alih-alih fungsi alert() bawaan
                 document.getElementById('alertModal').style.display = 'flex';
             } else {
-                // Sinkronkan value input dan textarea ke atribut agar terbaca oleh html2pdf
-                document.querySelectorAll('input, textarea').forEach(el => {
-                    if (el.tagName === 'TEXTAREA') {
-                        el.textContent = el.value;
-                    } else if (el.type === 'checkbox') {
-                        if (el.checked) el.setAttribute('checked', 'checked');
-                        else el.removeAttribute('checked');
-                    } else {
-                        el.setAttribute('value', el.value);
-                    }
-                });
-
-                // Ambil elemen pembungkus utama
-                const element = document.querySelector('.wrapper');
-                
-                // Ubah status tombol print saat memproses
-                const printBtn = document.querySelector('.btn-print');
-                const originalText = printBtn.innerHTML;
-                printBtn.innerHTML = 'Menyimpan PDF...';
-                printBtn.disabled = true;
-
-                // Nama file dinamis berdasarkan kelompok
+                // Nama file dinamis berdasarkan kelompok untuk nama file cetak
                 const kelompokInput = document.querySelector('input[placeholder="Contoh: Kelompok 1"]');
-                let namaKelompok = kelompokInput && kelompokInput.value ? kelompokInput.value.replace(/[\\s\\W]+/g, '_') : 'Kelompok';
-                const filename = 'Laporan_LOTO_' + namaKelompok + '.pdf';
-
-                // Pastikan scroll berada di paling atas
-                window.scrollTo(0, 0);
-
-                // Sembunyikan elemen no-print
-                const noPrints = document.querySelectorAll('.no-print');
-                const originalDisplays = [];
-                noPrints.forEach((el, i) => {
-                    originalDisplays[i] = el.style.display;
-                    el.style.display = 'none';
-                });
-
-                // Hapus efek bayangan dan garis tepi saat diprint agar menyerupai kertas murni
-                const origWrapperBorder = element.style.border;
-                const origWrapperShadow = element.style.boxShadow;
+                let namaKelompok = kelompokInput && kelompokInput.value ? kelompokInput.value.replace(/[\s\W]+/g, '_') : 'Kelompok';
+                const filename = 'Laporan_LOTO_' + namaKelompok;
                 
-                element.style.border = 'none';
-                element.style.boxShadow = 'none';
-
-                // Konfigurasi html2pdf
-                const opt = {
-                    margin:       10,
-                    filename:     filename,
-                    image:        { type: 'jpeg', quality: 0.98 },
-                    html2canvas:  { 
-                        scale: 2, 
-                        useCORS: true,
-                        scrollY: 0,
-                        scrollX: 0
-                    },
-                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                    pagebreak:    { mode: ['css', 'legacy'] }
-                };
-
-                // Beri waktu sejenak sebelum membuat PDF
-                setTimeout(() => {
-                    html2pdf().set(opt).from(element).save().then(() => {
-                        // Kembalikan style
-                        noPrints.forEach((el, i) => el.style.display = originalDisplays[i]);
-                        element.style.border = origWrapperBorder;
-                        element.style.boxShadow = origWrapperShadow;
-
-                        printBtn.innerHTML = originalText;
-                        printBtn.disabled = false;
-                    }).catch(err => {
-                        console.error("Error generating PDF", err);
-                        alert("Terjadi kesalahan saat membuat PDF. Silakan coba lagi.");
-                        
-                        noPrints.forEach((el, i) => el.style.display = originalDisplays[i]);
-                        element.style.border = origWrapperBorder;
-                        element.style.boxShadow = origWrapperShadow;
-
-                        printBtn.innerHTML = originalText;
-                        printBtn.disabled = false;
-                    });
-                }, 500);
+                // Simpan judul asli
+                const originalTitle = document.title;
+                document.title = filename;
+                
+                // Panggil dialog cetak bawaan browser
+                window.print();
+                
+                // Kembalikan judul asli
+                document.title = originalTitle;
             }
         }
     </script>
